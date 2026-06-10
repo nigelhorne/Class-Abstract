@@ -187,8 +187,6 @@ truthy.  To test enforcement inside a harness:
 
     use Class::Abstract;
 
-=head3 Purpose
-
 Called automatically by C<use Class::Abstract>.  Adds C<Class::Abstract>
 to the calling package's C<@ISA> (if not already present), making the
 calling package abstract in the same way as C<use parent 'Class::Abstract'>.
@@ -224,13 +222,6 @@ The class name (C<'Class::Abstract'>) as a plain string.
 
     { type => 'string' }    # always returns 'Class::Abstract'
 
-=head3 MESSAGES
-
-    Message    Meaning / Action
-    -------    ----------------
-    (none)     import() produces no error messages.  It silently skips adding
-               to @ISA if Class::Abstract is already present.
-
 =cut
 
 sub import {
@@ -260,8 +251,6 @@ sub import {
 
     my $obj = ConcreteChild->new;
     my $obj = ConcreteChild->new(%initial_attrs);
-
-=head3 Purpose
 
 Base constructor with abstract-class enforcement.  When called on an
 abstract class (one with C<Class::Abstract> directly in its C<@ISA>), it
@@ -373,8 +362,6 @@ sub new {
     Class::Abstract::check_abstract($class);
     $class->Class::Abstract::check_abstract;
 
-=head3 Purpose
-
 Enforces the abstract-class contract from within a user-defined C<new()>.
 Call this at the top of an abstract class's own C<new()> when that class
 overrides C<new()> directly rather than delegating to C<SUPER::new()>.
@@ -446,8 +433,6 @@ sub check_abstract {
     my $bool = $obj->is_abstract;
     my $bool = Class::Abstract->is_abstract('SomeClass');
 
-=head3 Purpose
-
 Returns C<1> if the invocant (or named class) is a B<directly> abstract class
 (i.e. has C<Class::Abstract> in its own C<@ISA>, or is C<Class::Abstract>
 itself).  Returns C<0> for concrete subclasses even if they transitively
@@ -496,12 +481,6 @@ C<1> if directly abstract, C<0> otherwise, as a plain integer.
 
     { type => 'integer', values => [0, 1] }
 
-=head3 MESSAGES
-
-    Message    Meaning / Action
-    -------    ----------------
-    (none)     is_abstract() does not croak or carp.
-
 =cut
 
 sub is_abstract {
@@ -522,11 +501,10 @@ sub is_abstract {
 # ---------------------------------------------------------------------------
 
 # _is_direct_abstract
-# Purpose      : Determine whether a class is directly abstract, meaning
-#                Class::Abstract appears in its own @ISA (not transitively).
+# Determine whether a class is directly abstract, meaning
+#        Class::Abstract appears in its own @ISA (not transitively).
 # Entry        : $class -- the package name to check (plain string)
 # Exit status  : Returns 1 if directly abstract, 0 (empty string) if not.
-# Side effects : None.  Read-only access to the symbol table.
 # Notes        : Class::Abstract itself is treated as abstract (the module
 #                cannot be instantiated directly).
 #                This check is intentionally shallow: only the immediate @ISA

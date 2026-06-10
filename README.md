@@ -166,13 +166,6 @@ The class name (`'Class::Abstract'`) as a plain string.
 
     { type => 'string' }    # always returns 'Class::Abstract'
 
-### MESSAGES
-
-    Message    Meaning / Action
-    -------    ----------------
-    (none)     import() produces no error messages.  It silently skips adding
-               to @ISA if Class::Abstract is already present.
-
 ## new
 
     my $obj = ConcreteChild->new;
@@ -354,12 +347,6 @@ can call this as a class method or an instance method.
 #### Output
 
     { type => 'integer', values => [0, 1] }
-
-### MESSAGES
-
-    Message    Meaning / Action
-    -------    ----------------
-    (none)     is_abstract() does not croak or carp.
 
 # KNOWN LIMITATIONS
 
