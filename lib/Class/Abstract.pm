@@ -658,6 +658,8 @@ L<Return::Set>.
 
 =over 4
 
+=item * L<Test Dashboard|https://nigelhorne.github.io/Class-Abstract/coverage/>
+
 =item * L<Sub::Abstract>
 
 Sister module: enforces abstract (pure-virtual) method contracts.

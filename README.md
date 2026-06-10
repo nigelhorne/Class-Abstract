@@ -464,6 +464,7 @@ The following schemas formally specify the module's behaviour.
 
 # SEE ALSO
 
+- [Test Dashboard](https://nigelhorne.github.io/Class-Abstract/coverage/)
 - [Sub::Abstract](https://metacpan.org/pod/Sub%3A%3AAbstract)
 
     Sister module: enforces abstract (pure-virtual) method contracts.
