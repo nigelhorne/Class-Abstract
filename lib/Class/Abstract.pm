@@ -224,23 +224,6 @@ The class name (C<'Class::Abstract'>) as a plain string.
 
     { type => 'string' }    # always returns 'Class::Abstract'
 
-=head3 FORMAL SPECIFICATION
-
-    -- Type abbreviations
-    Package == seq CHAR    -- Perl package name string
-
-    -- Pre-condition
-    caller? : Package
-    caller? /= 'Class::Abstract'
-
-    -- Post-condition
-    'Class::Abstract' in ISA(caller?)
-
-    -- Effect on ISA
-    ISA(caller?)' = ISA(caller?) union {'Class::Abstract'}
-                    if 'Class::Abstract' not in ISA(caller?),
-                    ISA(caller?) otherwise
-
 =head3 MESSAGES
 
     Message    Meaning / Action
@@ -347,31 +330,6 @@ A new blessed empty hashref of class C<$class>.
                 CROAK "Cannot instantiate abstract class CLASS directly"
         END UNLESS
         RETURN bless({}, class)
-
-=head3 FORMAL SPECIFICATION
-
-    -- bypass_active predicate (OR; $BYPASS checked first)
-    bypass_active <=>
-        $BYPASS
-        or ($config{harness_bypass} and HARNESS_ACTIVE)
-
-    -- Successful construction
-    +-- New (success) ----------------------------------------+
-    | class?   : Package                                      |
-    | result!  : blessed hashref                             |
-    |---------------------------------------------------------|
-    | not is_direct_abstract(class?) \/ bypass_active        |
-    | result! = bless({}, class?)                            |
-    +---------------------------------------------------------+
-
-    -- Failed construction
-    +-- New (failure) ----------------------------------------+
-    | class?   : Package                                      |
-    |---------------------------------------------------------|
-    | is_direct_abstract(class?) /\ not bypass_active        |
-    | croak("Cannot instantiate abstract class "             |
-    |        ++ class? ++ " directly")                       |
-    +---------------------------------------------------------+
 
 =head3 MESSAGES
 
@@ -537,22 +495,6 @@ C<1> if directly abstract, C<0> otherwise, as a plain integer.
 =head4 Output
 
     { type => 'integer', values => [0, 1] }
-
-=head3 FORMAL SPECIFICATION
-
-    -- is_abstract predicate
-    +-- IsAbstract -------------------------------------------+
-    | self?   : Package | blessed ref                         |
-    | result! : B                                             |
-    |---------------------------------------------------------|
-    | let c = ref(self?) if blessed, else self?               |
-    | result! = is_direct_abstract(c)                         |
-    +---------------------------------------------------------+
-
-    -- is_direct_abstract predicate
-    is_direct_abstract(c) <=>
-        c = 'Class::Abstract'
-        \/ 'Class::Abstract' in direct_ISA(c)
 
 =head3 MESSAGES
 
@@ -774,6 +716,66 @@ C<$ENV{HARNESS_ACTIVE}> is set.  Set to 0 to test enforcement in a harness.
 Note C<$BYPASS> takes precedence (see L</Bypass precedence>).
 
 =back
+
+=head1 FORMAL SPECIFICATION
+
+=head2 import
+
+    -- Type abbreviations
+    Package == seq CHAR    -- Perl package name string
+
+    -- Pre-condition
+    caller? : Package
+    caller? /= 'Class::Abstract'
+
+    -- Post-condition
+    'Class::Abstract' in ISA(caller?)
+
+    -- Effect on ISA
+    ISA(caller?)' = ISA(caller?) union {'Class::Abstract'}
+                    if 'Class::Abstract' not in ISA(caller?),
+                    ISA(caller?) otherwise
+
+=head2 new
+
+    -- bypass_active predicate (OR; $BYPASS checked first)
+    bypass_active <=>
+        $BYPASS
+        or ($config{harness_bypass} and HARNESS_ACTIVE)
+
+    -- Successful construction
+    +-- New (success) ----------------------------------------+
+    | class?   : Package                                      |
+    | result!  : blessed hashref                             |
+    |---------------------------------------------------------|
+    | not is_direct_abstract(class?) \/ bypass_active        |
+    | result! = bless({}, class?)                            |
+    +---------------------------------------------------------+
+
+    -- Failed construction
+    +-- New (failure) ----------------------------------------+
+    | class?   : Package                                      |
+    |---------------------------------------------------------|
+    | is_direct_abstract(class?) /\ not bypass_active        |
+    | croak("Cannot instantiate abstract class "             |
+    |        ++ class? ++ " directly")                       |
+    +---------------------------------------------------------+
+
+=head2 is_abstract
+
+    -- is_abstract predicate
+    +-- IsAbstract -------------------------------------------+
+    | self?   : Package | blessed ref                         |
+    | result! : B                                             |
+    |---------------------------------------------------------|
+    | let c = ref(self?) if blessed, else self?               |
+    | result! = is_direct_abstract(c)                         |
+    +---------------------------------------------------------+
+
+    -- is_direct_abstract predicate
+    is_direct_abstract(c) <=>
+        c = 'Class::Abstract'
+        \/ 'Class::Abstract' in direct_ISA(c)
 
 =head1 AUTHOR
 
