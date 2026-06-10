@@ -127,13 +127,11 @@ truthy.  To test enforcement inside a harness:
 
     Cannot instantiate abstract class Animal directly
 
-# PUBLIC INTERFACE
+# METHODS/SUBROUTINES
 
 ## import
 
     use Class::Abstract;
-
-### Purpose
 
 Called automatically by `use Class::Abstract`.  Adds `Class::Abstract`
 to the calling package's `@ISA` (if not already present), making the
@@ -170,8 +168,6 @@ The class name (`'Class::Abstract'`) as a plain string.
 
     my $obj = ConcreteChild->new;
     my $obj = ConcreteChild->new(%initial_attrs);
-
-### Purpose
 
 Base constructor with abstract-class enforcement.  When called on an
 abstract class (one with `Class::Abstract` directly in its `@ISA`), it
@@ -254,8 +250,6 @@ A new blessed empty hashref of class `$class`.
     Class::Abstract::check_abstract($class);
     $class->Class::Abstract::check_abstract;
 
-### Purpose
-
 Enforces the abstract-class contract from within a user-defined `new()`.
 Call this at the top of an abstract class's own `new()` when that class
 overrides `new()` directly rather than delegating to `SUPER::new()`.
@@ -301,8 +295,6 @@ Croaks on failure.
     my $bool = SomeClass->is_abstract;
     my $bool = $obj->is_abstract;
     my $bool = Class::Abstract->is_abstract('SomeClass');
-
-### Purpose
 
 Returns `1` if the invocant (or named class) is a **directly** abstract class
 (i.e. has `Class::Abstract` in its own `@ISA`, or is `Class::Abstract`

@@ -181,7 +181,7 @@ truthy.  To test enforcement inside a harness:
 
     Cannot instantiate abstract class Animal directly
 
-=head1 PUBLIC INTERFACE
+=head1 METHODS/SUBROUTINES
 
 =head2 import
 
