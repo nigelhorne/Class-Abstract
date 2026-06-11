@@ -11,3 +11,4 @@ t/basic.t
 t/bypass.t
 t/is_abstract.t
 t/override_new.t
+t/unit.t
