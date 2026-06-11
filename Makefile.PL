@@ -27,6 +27,7 @@ WriteMakefile(
 	},
 	TEST_REQUIRES => {
 		'Test::Most'  => 0,
+		'Test::Returns' => 0,
 	},
 	clean   => { FILES => 'Class-Abstract-*' },
 	dist    => $dist,

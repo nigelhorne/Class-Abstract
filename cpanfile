@@ -1,3 +1,5 @@
+# Generated from Makefile.PL using makefilepl2cpanfile
+
 requires 'perl', '5.008';
 
 requires 'Carp';
@@ -7,9 +9,7 @@ requires 'Scalar::Util';
 
 on 'test' => sub {
 	requires 'Test::Most';
-	requires 'Test::DescribeMe';
-	requires 'Test::Needs';
-	requires 'Test::NoWarnings';
+	requires 'Test::Returns';
 };
 
 on 'develop' => sub {
