@@ -10,6 +10,7 @@ t/00-load.t
 t/basic.t
 t/bypass.t
 t/edge_cases.t
+t/extended_tests.t
 t/function.t
 t/integration.t
 t/is_abstract.t

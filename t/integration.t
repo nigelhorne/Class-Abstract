@@ -632,4 +632,72 @@ subtest 'Scalar::Util integration -- every new() result satisfies blessed()' => 
 	ok blessed($cat),     'IT::Cat object satisfies blessed()';
 };
 
+# ===========================================================================
+# INTEGRATION: blessed abstract-class object used as new() invocant
+#
+# When an existing object of an abstract class is used as invocant to new(),
+# new() extracts the class via blessed() and then checks if that class is
+# abstract.  With enforcement on, the croak fires because the extracted
+# class IS the abstract class.
+# ===========================================================================
+
+subtest 'end-to-end: blessed abstract instance as new() invocant causes croak' => sub {
+	plan tests => 3;
+
+	# Create an abstract instance using bypass (to get past enforcement)
+	my $abstract_obj;
+	{
+		local $Class::Abstract::BYPASS = 1;
+		$abstract_obj = IT::Vehicle->new();
+	}
+
+	ok blessed($abstract_obj), 'precondition: abstract instance created under bypass';
+	is ref($abstract_obj), 'IT::Vehicle',
+		'precondition: instance is blessed into IT::Vehicle (abstract)';
+
+	# With enforcement on, passing this object to new() must croak
+	enforcement_on {
+		throws_ok { Class::Abstract::new($abstract_obj) }
+			qr/Cannot instantiate abstract class IT::Vehicle directly/,
+			'new(blessed abstract obj) croaks after extracting abstract class from blessed ref';
+	};
+};
+
+# ===========================================================================
+# INTEGRATION: production context across full hierarchy
+#
+# Simulates running outside a harness (HARNESS_ACTIVE unset, harness_bypass=1)
+# with no BYPASS.  This is the default deployment scenario.
+# ===========================================================================
+
+subtest 'end-to-end: enforcement in production context (no harness, default settings)' => sub {
+	plan tests => 3;
+
+	# Production: BYPASS=0, harness_bypass=1 (default), HARNESS_ACTIVE='' (no harness)
+	{
+		local $Class::Abstract::BYPASS                 = 0;
+		local $Class::Abstract::config{harness_bypass} = 1;
+		local $ENV{HARNESS_ACTIVE}                     = '';
+
+		# Abstract class must be blocked
+		throws_ok { IT::Vehicle->new() }
+			qr/Cannot instantiate abstract class IT::Vehicle directly/,
+			'abstract IT::Vehicle blocked in production context';
+
+		# Concrete subclass must succeed
+		lives_ok { IT::Car->new() }
+			'concrete IT::Car succeeds in production context';
+	}
+
+	# Multi-level: IT::Animal (abstract), IT::Mammal (also abstract), IT::Dog (concrete)
+	{
+		local $Class::Abstract::BYPASS                 = 0;
+		local $Class::Abstract::config{harness_bypass} = 1;
+		local $ENV{HARNESS_ACTIVE}                     = '';
+
+		lives_ok { IT::Dog->new() }
+			'IT::Dog (two levels from abstract) succeeds in production context';
+	}
+};
+
 done_testing;

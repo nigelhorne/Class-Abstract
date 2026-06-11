@@ -311,6 +311,43 @@ subtest 'new() -- croaks for undef invocant' => sub {
 		'new(undef) croaks with the documented error message';
 };
 
+# Purpose: "" is defined but length 0 -- the 'l&&!r' branch of 'defined&&length'
+subtest 'new() -- croaks for defined-but-empty string class name' => sub {
+	plan tests => 1;
+
+	# defined('') is true; length('') is 0 -- the guard fires on the right-hand side
+	throws_ok { Class::Abstract::new('') }
+		$config{err_new_undef},
+		'new("") croaks: empty string passes defined() but fails length()';
+};
+
+# Purpose: production scenario -- harness_bypass=1 (default) but HARNESS_ACTIVE unset
+# simulates running outside a test harness with default settings.
+subtest 'new() -- production scenario: harness_bypass=1, no HARNESS_ACTIVE, no BYPASS' => sub {
+	plan tests => 2;
+
+	# bypass expression: 0 || (1 && '') = false -> enforcement fires
+	{
+		local $Class::Abstract::BYPASS                 = 0;
+		local $Class::Abstract::config{harness_bypass} = 1;
+		local $ENV{HARNESS_ACTIVE}                     = '';
+
+		throws_ok { UT::Abstract->new() }
+			$config{err_abstract},
+			'enforcement fires in production: BYPASS=0, harness_bypass=1, HARNESS_ACTIVE=""';
+	}
+
+	# Concrete class must still succeed in the same context
+	{
+		local $Class::Abstract::BYPASS                 = 0;
+		local $Class::Abstract::config{harness_bypass} = 1;
+		local $ENV{HARNESS_ACTIVE}                     = '';
+
+		lives_ok { UT::Concrete->new() }
+			'concrete class succeeds in production context';
+	}
+};
+
 # Purpose: blessed/unblessed distinction -- blessed ref yields its class, unblessed croaks
 subtest 'new() -- distinguishes blessed from unblessed reference invocants' => sub {
 	plan tests => 2;
@@ -427,6 +464,29 @@ subtest 'check_abstract() -- croaks for undef argument' => sub {
 	throws_ok { Class::Abstract::check_abstract(undef) }
 		$config{err_chk_undef},
 		'check_abstract(undef) croaks with documented message';
+};
+
+# Purpose: "" is defined but length 0 -- check_abstract() must also croak
+subtest 'check_abstract() -- croaks for defined-but-empty string argument' => sub {
+	plan tests => 1;
+
+	throws_ok { Class::Abstract::check_abstract('') }
+		$config{err_chk_undef},
+		'check_abstract("") croaks: defined empty string fails the length guard';
+};
+
+# Purpose: production scenario -- same as new() but for check_abstract()
+subtest 'check_abstract() -- production scenario: harness_bypass=1, no HARNESS_ACTIVE' => sub {
+	plan tests => 1;
+
+	# bypass expression: 0 || (1 && '') = false -> enforcement fires
+	local $Class::Abstract::BYPASS                 = 0;
+	local $Class::Abstract::config{harness_bypass} = 1;
+	local $ENV{HARNESS_ACTIVE}                     = '';
+
+	throws_ok { Class::Abstract::check_abstract($config{pkg_abstract}) }
+		$config{err_abstract},
+		'check_abstract() croaks in production: harness_bypass=1, HARNESS_ACTIVE=""';
 };
 
 # ===========================================================================

@@ -417,6 +417,25 @@ subtest 'new() -- returned object has no memory cycles' => sub {
 	memory_cycle_ok $obj, 'new() returns a cycle-free blessed hashref';
 };
 
+# Purpose: defined-but-empty string hits the length guard before _is_direct_abstract
+# This exercises the 'l&&!r' branch of the 'defined($class) && length($class)' condition.
+subtest 'new() -- empty string class hits defined-but-empty guard, _is_direct_abstract not called' => sub {
+	plan tests => 2;
+
+	# Spy: _is_direct_abstract must NOT be called because the guard fires first
+	my $spy = spy 'Class::Abstract::_is_direct_abstract';
+
+	throws_ok { Class::Abstract::new('') }
+		qr/new\(\) requires a defined class name as invocant/,
+		'new("") croaks at the defined/length guard';
+
+	restore_all();
+
+	my @calls = $spy->();
+	is scalar(@calls), 0,
+		'_is_direct_abstract never called: guard fires before the enforcement check';
+};
+
 # Purpose: new() must not clobber $_ in the calling scope
 subtest 'new() -- does not clobber $_' => sub {
 	plan tests => 1;
@@ -523,6 +542,24 @@ subtest 'check_abstract() -- does not clobber $_' => sub {
 	enforcement_on { Class::Abstract::check_abstract($config{pkg_concrete}) };
 
 	is $_, $config{sentinel}, '$_ unchanged after check_abstract()';
+};
+
+# Purpose: empty string hits the length guard before _is_direct_abstract is called
+subtest 'check_abstract() -- empty string fires length guard; _is_direct_abstract not called' => sub {
+	plan tests => 2;
+
+	# Spy: _is_direct_abstract must NOT be called when the length guard fires first
+	my $spy = spy 'Class::Abstract::_is_direct_abstract';
+
+	throws_ok { Class::Abstract::check_abstract('') }
+		qr/check_abstract\(\) requires a defined class name/,
+		'check_abstract("") croaks at the defined/length guard';
+
+	restore_all();
+
+	my @calls = $spy->();
+	is scalar(@calls), 0,
+		'_is_direct_abstract never called: length guard fires before enforcement check';
 };
 
 # ===========================================================================

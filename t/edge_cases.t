@@ -193,6 +193,16 @@ subtest 'check_abstract() -- exotic unblessed ref invocants croak correctly' => 
 		'check_abstract(sub{}) croaks with documented message';
 };
 
+# Purpose: "" is defined but length 0 -- check_abstract() must croak (l&&!r condition)
+subtest 'check_abstract() -- "" is rejected: defined-but-empty string fails the length guard' => sub {
+	plan tests => 1;
+
+	# "" passes defined() but fails length() -- the same 'l&&!r' branch as in new()
+	throws_ok { Class::Abstract::check_abstract('') }
+		qr/check_abstract\(\) requires a defined class name/,
+		'check_abstract("") croaks: empty string is defined but length 0';
+};
+
 # ===========================================================================
 # SECTION 4: Boundary string inputs to new()
 #
@@ -200,6 +210,16 @@ subtest 'check_abstract() -- exotic unblessed ref invocants croak correctly' => 
 # very long identifiers, and numeric strings all pass these guards even though
 # they may not be valid Perl package names.  The module accepts them silently.
 # ===========================================================================
+
+# Purpose: "" is defined but has length 0 -- must croak (fails the length guard)
+subtest 'new() -- "" is rejected: defined-but-empty string fails the length guard' => sub {
+	plan tests => 1;
+
+	# "" passes defined() but fails length() -- the 'l&&!r' condition branch
+	throws_ok { Class::Abstract::new('') }
+		qr/new\(\) requires a defined class name as invocant/,
+		'new("") croaks: empty string is defined but length 0';
+};
 
 # Purpose: "0" is falsy but has length 1 -- must be accepted as a class name
 subtest 'new() -- "0" is accepted as a class name (falsy but length 1)' => sub {
