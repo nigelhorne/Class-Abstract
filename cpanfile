@@ -9,6 +9,7 @@ requires 'Scalar::Util';
 
 on 'test' => sub {
 	requires 'Test::Memory::Cycle';
+	requires 'Test::Mockingbird';
 	requires 'Test::Most';
 	requires 'Test::Returns';
 };
