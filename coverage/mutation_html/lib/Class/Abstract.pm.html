@@ -631,14 +631,8 @@ Approximate LCSAJ segments: 37<br>
 </span><span class="">  339: 
 </span><span class="">  340: 	# Accept blessed objects as invocants (e.g. $obj-&gt;new style), but reject
 </span><span class="">  341: 	# plain (unblessed) references such as arrayrefs or coderefs.
-</span><span class="survived-1 tooltip" data-tooltip="Mutation survived. Add targeted tests to validate this branch.">  342: 	if (ref $class) {
-</span>
-					<details class="mutant-details">
-					<summary>Mutants (Total: 1, Killed: 0, Survived: 1)</summary>
-					<ul>
-				<li><b>COND_INV_342_2: Invert condition if to unless</b><br>MEDIUM: Add tests asserting both true and false outcomes
-</li></ul></details>
-<span class="">  343: 		croak sprintf(&#39;new() invocant must be a class name or blessed object, got %s&#39;, ref $class)
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  342: 	if (ref $class) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  343: 		croak sprintf(&#39;new() invocant must be a class name or blessed object, got %s&#39;, ref $class)
 </span><span class="">  344: 			unless blessed($class);
 </span><span class="">  345: 		$class = ref($class);
 </span><span class="">  346: 	}
@@ -647,14 +641,8 @@ Approximate LCSAJ segments: 37<br>
 </span><span class="">  349: 		unless defined($class) &amp;&amp; length($class);
 </span><span class="">  350: 
 </span><span class="">  351: 	# Enforce the abstract-class contract unless bypass is active.
-</span><span class="survived-1 tooltip" data-tooltip="Mutation survived. Add targeted tests to validate this branch.">  352: 	unless ($BYPASS || ($config{harness_bypass} &amp;&amp; $ENV{HARNESS_ACTIVE})) {
-</span>
-					<details class="mutant-details">
-					<summary>Mutants (Total: 1, Killed: 0, Survived: 1)</summary>
-					<ul>
-				<li><b>COND_INV_352_2: Invert condition unless to if</b><br>MEDIUM: Add tests asserting both true and false outcomes
-</li></ul></details>
-<span class="">  353: 		croak sprintf($ERR_ABSTRACT, $class)
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  352: 	unless ($BYPASS || ($config{harness_bypass} &amp;&amp; $ENV{HARNESS_ACTIVE})) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  353: 		croak sprintf($ERR_ABSTRACT, $class)
 </span><span class="">  354: 			if _is_direct_abstract($class);
 </span><span class="">  355: 	}
 </span><span class="">  356: 
@@ -715,14 +703,8 @@ Approximate LCSAJ segments: 37<br>
 </span><span class="">  411: sub check_abstract {
 </span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">412 → 414 → 420</span></span><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">412 → 414 → 0</span></span>  412: 	my ($class) = @_;
 </span><span class="">  413: 
-</span><span class="survived-1 tooltip" data-tooltip="Mutation survived. Add targeted tests to validate this branch.">  414: 	if (ref $class) {
-</span>
-					<details class="mutant-details">
-					<summary>Mutants (Total: 1, Killed: 0, Survived: 1)</summary>
-					<ul>
-				<li><b>COND_INV_414_2: Invert condition if to unless</b><br>MEDIUM: Add tests asserting both true and false outcomes
-</li></ul></details>
-<span class="">  415: 		croak &#39;check_abstract() requires a class name or blessed object&#39;
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  414: 	if (ref $class) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  415: 		croak &#39;check_abstract() requires a class name or blessed object&#39;
 </span><span class="">  416: 			unless blessed($class);
 </span><span class="">  417: 		$class = ref($class);
 </span><span class="">  418: 	}
@@ -730,14 +712,8 @@ Approximate LCSAJ segments: 37<br>
 </span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">420 → 423 → 427</span></span><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">420 → 423 → 0</span></span>  420: 	croak &#39;check_abstract() requires a defined class name&#39;
 </span><span class="">  421: 		unless defined($class) &amp;&amp; length($class);
 </span><span class="">  422: 
-</span><span class="survived-1 tooltip" data-tooltip="Mutation survived. Add targeted tests to validate this branch.">  423: 	unless ($BYPASS || ($config{harness_bypass} &amp;&amp; $ENV{HARNESS_ACTIVE})) {
-</span>
-					<details class="mutant-details">
-					<summary>Mutants (Total: 1, Killed: 0, Survived: 1)</summary>
-					<ul>
-				<li><b>COND_INV_423_2: Invert condition unless to if</b><br>MEDIUM: Add tests asserting both true and false outcomes
-</li></ul></details>
-<span class="">  424: 		croak sprintf($ERR_ABSTRACT, $class)
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  423: 	unless ($BYPASS || ($config{harness_bypass} &amp;&amp; $ENV{HARNESS_ACTIVE})) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  424: 		croak sprintf($ERR_ABSTRACT, $class)
 </span><span class="">  425: 			if _is_direct_abstract($class);
 </span><span class="">  426: 	}
 </span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">427 → 427 → 0</span></span>  427: 	return;
@@ -830,53 +806,11 @@ Approximate LCSAJ segments: 37<br>
 </span><span class="">  514: sub _is_direct_abstract {
 </span><span class="">  515: 	my ($class) = @_;
 </span><span class="">  516: 
-</span><span class="survived-2 tooltip" data-tooltip="Return value mutation survived. Add tests asserting exact return values. Boolean logic mutation survived. Add tests covering both true and false paths.">  517: 	return 0 unless defined $class;
-</span>
-					<details class="mutant-details">
-					<summary>Mutants (Total: 2, Killed: 0, Survived: 2)</summary>
-					<ul>
-				<li><b>BOOL_NEGATE_517_2: Negate boolean return expression</b><br>MEDIUM: Add tests asserting both true and false outcomes
-
-								<div class="suggested-test">
-								<div class="suggest-label">🧪 Suggested Test</div>
-								<pre># Boolean branch test suggestion
-ok( !func(INPUT), &#39;Verify boolean branch behaviour&#39; );
-</pre>
-								</div>
-							</li><li><b>RETURN_UNDEF_517_2: Replace return expression with undef</b><br>LOW: Mutation survived, but impact may be minor
-
-								<div class="suggested-test">
-								<div class="suggest-label">🧪 Suggested Test</div>
-								<pre># Return value assertion
-is( func(INPUT), EXPECTED, &#39;Verify correct return value&#39; );
-</pre>
-								</div>
-							</li></ul></details>
-<span class="">  518: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  517: 	return 0 unless defined $class;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  518: 
 </span><span class="">  519: 	# Class::Abstract itself must not be instantiable.
-</span><span class="survived-2 tooltip" data-tooltip="Boolean logic mutation survived. Add tests covering both true and false paths. Return value mutation survived. Add tests asserting exact return values.">  520: 	return 1 if $class eq $SELF;
-</span>
-					<details class="mutant-details">
-					<summary>Mutants (Total: 2, Killed: 0, Survived: 2)</summary>
-					<ul>
-				<li><b>BOOL_NEGATE_520_2: Negate boolean return expression</b><br>MEDIUM: Add tests asserting both true and false outcomes
-
-								<div class="suggested-test">
-								<div class="suggest-label">🧪 Suggested Test</div>
-								<pre># Boolean branch test suggestion
-ok( !func(INPUT), &#39;Verify boolean branch behaviour&#39; );
-</pre>
-								</div>
-							</li><li><b>RETURN_UNDEF_520_2: Replace return expression with undef</b><br>LOW: Mutation survived, but impact may be minor
-
-								<div class="suggested-test">
-								<div class="suggest-label">🧪 Suggested Test</div>
-								<pre># Return value assertion
-is( func(INPUT), EXPECTED, &#39;Verify correct return value&#39; );
-</pre>
-								</div>
-							</li></ul></details>
-<span class="">  521: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  520: 	return 1 if $class eq $SELF;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  521: 
 </span><span class="">  522: 	# Check if Class::Abstract appears directly in the class&#39;s own @ISA.
 </span><span class="">  523: 	no strict &#39;refs&#39;;
 </span><span class="">  524: 	return (grep { $_ eq $SELF } @{&quot;${class}::ISA&quot;}) ? 1 : 0;
