@@ -4,100 +4,110 @@
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781125262.98062,
+         "finish" : 1781139939.30428,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "-e",
-         "start" : 1781125261.16857,
+         "start" : 1781139936.92704,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781125261.31075,
+         "finish" : 1781139937.07711,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "-e",
-         "start" : 1781125261.31066,
+         "start" : 1781139937.07694,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781125261.59452,
+         "finish" : 1781139937.37533,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/00-load.t",
-         "start" : 1781125261.57047,
+         "start" : 1781139937.3497,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781125261.92,
+         "finish" : 1781139937.72962,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/basic.t",
-         "start" : 1781125261.90167,
+         "start" : 1781139937.71021,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781125262.25426,
+         "finish" : 1781139938.09209,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/bypass.t",
-         "start" : 1781125262.23968,
+         "start" : 1781139938.0739,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781125262.57918,
+         "finish" : 1781139938.43955,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/is_abstract.t",
-         "start" : 1781125262.56965,
+         "start" : 1781139938.42935,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781125262.90674,
+         "finish" : 1781139938.78575,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/override_new.t",
-         "start" : 1781125262.89399,
+         "start" : 1781139938.77001,
+         "version" : "0.01"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1781139939.18242,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.4",
+         "run" : "t/unit.t",
+         "start" : 1781139939.12327,
          "version" : "0.01"
       }
    ],
    "summary" : {
       "Total" : {
          "branch" : {
-            "covered" : 24,
-            "error" : 12,
-            "percentage" : 66.6666666666667,
+            "covered" : 33,
+            "error" : 3,
+            "percentage" : 91.6666666666667,
             "total" : 36,
             "uncoverable" : 0
          },
          "condition" : {
-            "covered" : 13,
-            "error" : 14,
-            "percentage" : 48.1481481481481,
+            "covered" : 21,
+            "error" : 6,
+            "percentage" : 77.7777777777778,
             "total" : 27,
             "uncoverable" : 0
          },
          "statement" : {
-            "covered" : 58,
-            "error" : 2,
-            "percentage" : 96.6666666666667,
+            "covered" : 60,
+            "percentage" : 100,
             "total" : 60
          },
          "subroutine" : {
@@ -106,32 +116,31 @@
             "total" : 14
          },
          "total" : {
-            "covered" : 109,
-            "error" : 28,
-            "percentage" : 79.5620437956204,
+            "covered" : 128,
+            "error" : 9,
+            "percentage" : 93.4306569343066,
             "total" : 137,
             "uncoverable" : 0
          }
       },
       "lib/Class/Abstract.pm" : {
          "branch" : {
-            "covered" : 24,
-            "error" : 12,
-            "percentage" : 66.6666666666667,
+            "covered" : 33,
+            "error" : 3,
+            "percentage" : 91.6666666666667,
             "total" : 36,
             "uncoverable" : 0
          },
          "condition" : {
-            "covered" : 13,
-            "error" : 14,
-            "percentage" : 48.1481481481481,
+            "covered" : 21,
+            "error" : 6,
+            "percentage" : 77.7777777777778,
             "total" : 27,
             "uncoverable" : 0
          },
          "statement" : {
-            "covered" : 58,
-            "error" : 2,
-            "percentage" : 96.6666666666667,
+            "covered" : 60,
+            "percentage" : 100,
             "total" : 60
          },
          "subroutine" : {
@@ -140,9 +149,9 @@
             "total" : 14
          },
          "total" : {
-            "covered" : 109,
-            "error" : 28,
-            "percentage" : 79.5620437956204,
+            "covered" : 128,
+            "error" : 9,
+            "percentage" : 93.4306569343066,
             "total" : 137,
             "uncoverable" : 0
          }
