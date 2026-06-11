@@ -20,13 +20,13 @@ https://pjcj.net
 <h1>Branch Coverage</h1>
 <table>
 <tr><td class="h" align="right">File:</td><td align="left">lib/Class/Abstract.pm</td></tr>
-<tr><td class="h" align="right">Coverage:</td><td align="left" class="c2">91.7%</td></tr>
+<tr><td class="h" align="right">Coverage:</td><td align="left" class="c2">97.2%</td></tr>
 </table>
 <div><br/></div>
 <table>
 <tr><th>line</th><th>%</th><th colspan="2">coverage</th><th>branch</th></tr>
 <tr><td class="h"><a id="L233">233</a></td><td class="c0">50</td><td class="c0">T</td><td class="c3">F</td><td class="s">unless defined $caller and length $caller</td></tr>
-<tr><td class="h"><a id="L237">237</a></td><td class="c0">50</td><td class="c0">T</td><td class="c3">F</td><td class="s">if $caller eq $SELF</td></tr>
+<tr><td class="h"><a id="L237">237</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if $caller eq $SELF</td></tr>
 <tr><td class="h"><a id="L243">243</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless _is_direct_abstract($caller)</td></tr>
 <tr><td class="h"><a id="L342">342</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if (ref $class)</td></tr>
 <tr><td class="h"><a id="L343">343</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless &amp;blessed($class)</td></tr>
@@ -40,7 +40,7 @@ https://pjcj.net
 <tr><td class="h"><a id="L424">424</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if _is_direct_abstract($class)</td></tr>
 <tr><td class="h"><a id="L491">491</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">defined $class_arg ? :</td></tr>
 <tr><td class="h"><a id="L493">493</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless defined $class and length $class</td></tr>
-<tr><td class="h"><a id="L517">517</a></td><td class="c0">50</td><td class="c0">T</td><td class="c3">F</td><td class="s">unless defined $class</td></tr>
+<tr><td class="h"><a id="L517">517</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">unless defined $class</td></tr>
 <tr><td class="h"><a id="L520">520</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">if $class eq $SELF</td></tr>
 <tr><td class="h"><a id="L524">524</a></td><td class="c3">100</td><td class="c3">T</td><td class="c3">F</td><td class="s">grep({$_ eq $SELF;} @{&quot;${class}::ISA&quot;;}) ? :</td></tr>
 </table>

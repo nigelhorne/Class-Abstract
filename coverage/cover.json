@@ -4,97 +4,119 @@
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781139939.30428,
+         "finish" : 1781140666.3428,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "-e",
-         "start" : 1781139936.92704,
+         "start" : 1781140663.33124,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781139937.07711,
+         "finish" : 1781140663.47659,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "-e",
-         "start" : 1781139937.07694,
+         "start" : 1781140663.47646,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781139937.37533,
+         "finish" : 1781140663.75691,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/00-load.t",
-         "start" : 1781139937.3497,
+         "start" : 1781140663.73353,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781139937.72962,
+         "finish" : 1781140664.07921,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/basic.t",
-         "start" : 1781139937.71021,
+         "start" : 1781140664.06205,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781139938.09209,
+         "finish" : 1781140664.41379,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/bypass.t",
-         "start" : 1781139938.0739,
+         "start" : 1781140664.39993,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781139938.43955,
+         "finish" : 1781140664.7809,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.4",
+         "run" : "t/function.t",
+         "start" : 1781140664.73775,
+         "version" : "0.01"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1781140665.18414,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.4",
+         "run" : "t/integration.t",
+         "start" : 1781140665.14255,
+         "version" : "0.01"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1781140665.54301,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/is_abstract.t",
-         "start" : 1781139938.42935,
+         "start" : 1781140665.53404,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781139938.78575,
+         "finish" : 1781140665.86736,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/override_new.t",
-         "start" : 1781139938.77001,
+         "start" : 1781140665.85509,
          "version" : "0.01"
       },
       {
          "OS" : "linux",
          "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1781139939.18242,
+         "finish" : 1781140666.23487,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/unit.t",
-         "start" : 1781139939.12327,
+         "start" : 1781140666.18442,
          "version" : "0.01"
       }
    ],
    "summary" : {
       "Total" : {
          "branch" : {
-            "covered" : 33,
-            "error" : 3,
-            "percentage" : 91.6666666666667,
+            "covered" : 35,
+            "error" : 1,
+            "percentage" : 97.2222222222222,
             "total" : 36,
             "uncoverable" : 0
          },
@@ -116,18 +138,18 @@
             "total" : 14
          },
          "total" : {
-            "covered" : 128,
-            "error" : 9,
-            "percentage" : 93.4306569343066,
+            "covered" : 130,
+            "error" : 7,
+            "percentage" : 94.8905109489051,
             "total" : 137,
             "uncoverable" : 0
          }
       },
       "lib/Class/Abstract.pm" : {
          "branch" : {
-            "covered" : 33,
-            "error" : 3,
-            "percentage" : 91.6666666666667,
+            "covered" : 35,
+            "error" : 1,
+            "percentage" : 97.2222222222222,
             "total" : 36,
             "uncoverable" : 0
          },
@@ -149,9 +171,9 @@
             "total" : 14
          },
          "total" : {
-            "covered" : 128,
-            "error" : 9,
-            "percentage" : 93.4306569343066,
+            "covered" : 130,
+            "error" : 7,
+            "percentage" : 94.8905109489051,
             "total" : 137,
             "uncoverable" : 0
          }
