@@ -8,6 +8,7 @@ requires 'Return::Set';
 requires 'Scalar::Util';
 
 on 'test' => sub {
+	requires 'Test::Memory::Cycle';
 	requires 'Test::Most';
 	requires 'Test::Returns';
 };

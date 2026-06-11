@@ -26,6 +26,7 @@ WriteMakefile(
 		'Scalar::Util' => 0,
 	},
 	TEST_REQUIRES => {
+		'Test::Memory::Cycle' => 0,
 		'Test::Most'  => 0,
 		'Test::Returns' => 0,
 	},
