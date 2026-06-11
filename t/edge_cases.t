@@ -486,57 +486,54 @@ subtest '_is_direct_abstract("") reads @main::ISA (internal edge case)' => sub {
 };
 
 # ===========================================================================
-# SECTION 10: Scalar::Util::blessed() tamper-resistance via ($) prototype
+# SECTION 10: Scalar::Util::blessed() invocant guard boundary tests
 #
-# blessed() is imported with prototype ($), which causes Perl to resolve calls
-# against the compiled-in prototype rather than the runtime symbol table.
-# Test::Mockingbird (and local *glob replacement) cannot intercept these
-# compiled calls.  We document this structural property with a prototype check,
-# then verify the behavioral boundary directly.
+# new() uses blessed() to detect whether the invocant is an object and to
+# extract its class.  Note: blessed() carries a ($) prototype; whether that
+# prototype prevents Test::Mockingbird from intercepting it is Perl-version-
+# and Test::Mockingbird-version-dependent.  All tests here are purely
+# behavioural and require no mocking of blessed() itself.
 # ===========================================================================
 
-# Purpose: blessed() has ($) prototype making runtime mock injection ineffective;
-# we verify the prototype and test the falsy/truthy boundary behaviourally.
-subtest 'blessed() tamper-resistance -- ($) prototype prevents falsy-mock injection' => sub {
+# Purpose: verify the prototype annotation and the unblessed/blessed boundary
+subtest 'blessed() invocant guard -- prototype check and unblessed/blessed boundary' => sub {
 	plan tests => 3;
 
-	# Confirm the prototype that makes blessed() immune to runtime replacement
+	# Confirm the ($) prototype annotation; its effect on mock intercept varies by version
 	my $proto = prototype(\&Scalar::Util::blessed);
 	is $proto, '$',
-		'blessed() has ($) prototype -- runtime mock cannot intercept compiled calls';
+		'Scalar::Util::blessed has ($) prototype annotation';
 
-	# Behavioral equivalent: unblessed ref -> blessed() returns undef (falsy) -> croak
+	# Unblessed ref: blessed() returns undef (falsy) -> croak with ref type
 	throws_ok { Class::Abstract::new({}) }
 		$config{err_new_unblessed},
-		'unblessed hashref: blessed()=undef; new() croaks (same outcome as falsy mock)';
+		'unblessed hashref: blessed()=undef; new() croaks with documented message';
 
-	# Behavioral equivalent: blessed ref -> blessed() returns class name (truthy) -> accepted
+	# Blessed ref: blessed() returns class name (truthy) -> invocant accepted
 	my $blessed_ref = bless {}, $config{pkg_concrete};
 	lives_ok { Class::Abstract::new($blessed_ref) }
-		'blessed ref: blessed()=class_name; new() succeeds (falsy guard working correctly)';
+		'blessed ref: blessed()=class_name; new() accepts the invocant';
 };
 
-# Purpose: mock of Class::Abstract::blessed has no effect due to ($) prototype --
-# the unblessed ref guard fires regardless, which is STRONGER than if blessed were mockable.
-subtest 'blessed() tamper-resistance -- mock has no effect; unblessed ref still croaks' => sub {
-	plan tests => 2;
+# Purpose: prove that a blessed-ref invocant extracts the class from blessed()
+# and creates a fresh, distinct object of that class.
+subtest 'new() with blessed ref invocant -- creates new object of the blessed class' => sub {
+	plan tests => 3;
 
-	# SECURITY: because blessed() has ($) prototype, the mock below cannot intercept
-	# the compiled call inside new().  The invocant guard remains active regardless
-	# of mock state -- structural tamper-resistance.
-	mock 'Class::Abstract::blessed' => sub { 'SomeFakeClass' };
+	# When a blessed object is passed as invocant, new() extracts the class from
+	# blessed($invocant) and returns a new object blessed into that class.
+	my $existing = bless {}, $config{pkg_concrete};
+	my $new_obj;
+	lives_ok { $new_obj = Class::Abstract::new($existing) }
+		'blessed ref invocant: new() does not croak';
 
-	# Even with mock installed, the unblessed ref is still rejected
-	throws_ok { Class::Abstract::new([]) }
-		$config{err_new_unblessed},
-		'SECURITY: mock of Class::Abstract::blessed has no effect; arrayref still croaks';
+	# The result is blessed into the same class as the invocant
+	is ref($new_obj), $config{pkg_concrete},
+		'new object is blessed into the same class as the invocant';
 
-	restore_all();
-
-	# Confirm prototype survives mock/restore -- tamper-resistance is not bypassed
-	my $proto = prototype(\&Scalar::Util::blessed);
-	is $proto, '$',
-		'blessed() prototype intact after mock/restore cycle';
+	# The result is a distinct reference -- new() always allocates a fresh hashref
+	isnt $new_obj, $existing,
+		'new object is a different reference than the invocant';
 };
 
 # ===========================================================================
