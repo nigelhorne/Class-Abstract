@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 350
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - uses: shogo82148/actions-setup-perl@v1
@@ -30,22 +30,27 @@ jobs:
 
       - run: echo "$(pwd)/local/bin" >> $GITHUB_PATH
 
-      - run: |
-          perl Makefile.PL
-          make install
+      - run: perl Makefile.PL && make
 
       - name: Find last code commit
         run: |
           BASE=$(git log --oneline | grep -v "^.\{8\} \(Add generated mutant\|Add coverage snapshot\|Update mutation results\)" | head -1 | awk '{print $1}')
+          if [ -z "$BASE" ]; then
+            echo "::warning::Could not determine a base commit from git log; test-generator-mutate will fall back to HEAD~1"
+          fi
           echo "MUTATION_BASE_SHA=$BASE" >> $GITHUB_ENV
           echo "Base commit for mutation diff: $BASE"
-          git diff --name-only "${BASE}^" HEAD
+          if git rev-parse "${BASE}^" >/dev/null 2>&1; then
+            git diff --name-only "${BASE}^" HEAD
+          else
+            echo "Base commit is the root commit, no parent to diff against"
+          fi
 
       - name: Install App::Test::Generator
         run: |
           if [ "${{ github.repository }}" != "nigelhorne/App-Test-Generator" ]; then
             cpanm -iqn Data::Random::Structure Data::Random::String::Matches Data::Random::String Data::Random
-            cpanm -iqn App::Test::Generator@0.38
+            cpanm -iqn App::Test::Generator@0.39
           fi
 
       - name: Generate the mutants
@@ -64,16 +69,19 @@ jobs:
             --lib lib \
             --tests t \
             --json mutation.json \
+            --changed_only \
+            --base_sha "$MUTATION_BASE_SHA" \
             --mutation_level fast
 
       - name: Commit mutation results
         run: |
+          git add mutation.json
           git config user.name "GitHub Actions"
           git config user.email "github-actions@github.com"
-          git add mutation.json
           if git diff --cached --quiet; then
-            echo "No mutation.json changes to commit"
+            echo "No changes to commit"
           else
             git commit -m "Update mutation results ($(date +%Y-%m-%d) $(git rev-parse --short HEAD))"
-            git push
+            git pull --rebase --quiet origin "${GITHUB_REF_NAME}" || true
+            git push origin HEAD:"${GITHUB_REF_NAME}"
           fi
