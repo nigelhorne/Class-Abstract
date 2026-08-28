@@ -8,6 +8,7 @@ requires 'Return::Set';
 requires 'Scalar::Util';
 
 on 'test' => sub {
+	requires 'IPC::System::Simple';
 	requires 'Test::Memory::Cycle';
 	requires 'Test::Mockingbird';
 	requires 'Test::Most';

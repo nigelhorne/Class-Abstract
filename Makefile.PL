@@ -24,8 +24,8 @@ WriteMakefile(
 		'Readonly'   => 0,
 		'Return::Set' => 0,
 		'Scalar::Util' => 0,
-	},
-	TEST_REQUIRES => {
+	}, TEST_REQUIRES => {
+		'IPC::System::Simple' => 0,
 		'Test::Memory::Cycle' => 0,
 		'Test::Mockingbird' => 0,
 		'Test::Most'  => 0,
