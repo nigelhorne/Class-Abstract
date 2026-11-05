@@ -2,212 +2,256 @@
    "runs" : [
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069282.66162,
+         "finish" : 1793887499.12379,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "-e",
-         "start" : 1793069279.44029,
+         "start" : 1793887495.60288,
          "version" : "0.02"
       },
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069279.54934,
+         "finish" : 1793887495.68859,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "-e",
-         "start" : 1793069279.54924,
+         "start" : 1793887495.68851,
          "version" : "0.02"
       },
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069279.76483,
+         "finish" : 1793887495.85821,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/00-load.t",
-         "start" : 1793069279.74473,
+         "start" : 1793887495.84245,
          "version" : "0.02"
       },
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069280.01889,
+         "finish" : 1793887496.06714,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/basic.t",
-         "start" : 1793069280.00827,
+         "start" : 1793887496.05807,
          "version" : "0.02"
       },
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069280.27607,
+         "finish" : 1793887496.27267,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/bypass.t",
-         "start" : 1793069280.26765,
+         "start" : 1793887496.26461,
          "version" : "0.02"
       },
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069280.56033,
+         "finish" : 1793887496.56271,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/edge_cases.t",
-         "start" : 1793069280.52575,
+         "start" : 1793887496.51034,
          "version" : "0.02"
       },
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069280.8709,
+         "finish" : 1793887496.82321,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/extended_tests.t",
-         "start" : 1793069280.85036,
+         "start" : 1793887496.80593,
          "version" : "0.02"
       },
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069281.17648,
+         "finish" : 1793887497.22718,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/function.t",
-         "start" : 1793069281.14103,
+         "start" : 1793887497.03234,
          "version" : "0.02"
       },
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069281.49245,
+         "finish" : 1793887497.559,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/integration.t",
-         "start" : 1793069281.46122,
+         "start" : 1793887497.53336,
          "version" : "0.02"
       },
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069281.77724,
+         "finish" : 1793887497.78457,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/is_abstract.t",
-         "start" : 1793069281.77015,
+         "start" : 1793887497.77867,
          "version" : "0.02"
       },
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069282.03389,
+         "finish" : 1793887498.40287,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.4",
+         "run" : "t/locales.t",
+         "start" : 1793887497.97523,
+         "version" : "0.02"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1793887498.08742,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.4",
+         "run" : "-e",
+         "start" : 1793887498.08722,
+         "version" : "0.02"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1793887498.22886,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.4",
+         "run" : "-e",
+         "start" : 1793887498.22866,
+         "version" : "0.02"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1793887498.36817,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.4",
+         "run" : "-e",
+         "start" : 1793887498.36798,
+         "version" : "0.02"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1793887498.61039,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/mutant_killers.t",
-         "start" : 1793069282.02136,
+         "start" : 1793887498.59934,
          "version" : "0.02"
       },
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069282.29341,
+         "finish" : 1793887498.82084,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/override_new.t",
-         "start" : 1793069282.28602,
+         "start" : 1793887498.81301,
          "version" : "0.02"
       },
       {
          "OS" : "linux",
-         "abstract" : "Enforce abstract (non-instantiable) base classes for plain-Perl OO",
+         "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1793069282.57339,
+         "finish" : 1793887499.04789,
          "name" : "Class-Abstract",
          "perl" : "5.40.4",
          "run" : "t/unit.t",
-         "start" : 1793069282.53896,
+         "start" : 1793887499.01573,
          "version" : "0.02"
       }
    ],
    "summary" : {
       "Total" : {
          "branch" : {
-            "covered" : 36,
+            "covered" : 30,
             "error" : 0,
             "percentage" : 100,
-            "total" : 36,
+            "total" : 30,
             "uncoverable" : 0
          },
          "condition" : {
-            "covered" : 27,
+            "covered" : 23,
             "error" : 0,
             "percentage" : 100,
-            "total" : 27,
+            "total" : 23,
             "uncoverable" : 0
          },
          "statement" : {
-            "covered" : 60,
+            "covered" : 69,
             "percentage" : 100,
-            "total" : 60
+            "total" : 69
          },
          "subroutine" : {
-            "covered" : 14,
+            "covered" : 18,
             "percentage" : 100,
-            "total" : 14
+            "total" : 18
          },
          "total" : {
-            "covered" : 137,
+            "covered" : 140,
             "error" : 0,
             "percentage" : 100,
-            "total" : 137,
+            "total" : 140,
             "uncoverable" : 0
          }
       },
       "lib/Class/Abstract.pm" : {
          "branch" : {
-            "covered" : 36,
+            "covered" : 30,
             "error" : 0,
             "percentage" : 100,
-            "total" : 36,
+            "total" : 30,
             "uncoverable" : 0
          },
          "condition" : {
-            "covered" : 27,
+            "covered" : 23,
             "error" : 0,
             "percentage" : 100,
-            "total" : 27,
+            "total" : 23,
             "uncoverable" : 0
          },
          "statement" : {
-            "covered" : 60,
+            "covered" : 69,
             "percentage" : 100,
-            "total" : 60
+            "total" : 69
          },
          "subroutine" : {
-            "covered" : 14,
+            "covered" : 18,
             "percentage" : 100,
-            "total" : 14
+            "total" : 18
          },
          "total" : {
-            "covered" : 137,
+            "covered" : 140,
             "error" : 0,
             "percentage" : 100,
-            "total" : 137,
+            "total" : 140,
             "uncoverable" : 0
          }
       }

@@ -27,493 +27,772 @@ https://pjcj.net
 <tr><th>line</th><th>stmt</th><th>bran</th><th>cond</th><th>sub</th><th>time</th><th>code</th></tr>
 <tr><td class="h">1</td><td></td><td></td><td></td><td></td><td></td><td class="s">package Class::Abstract;</td></tr>
 <tr><td class="h">2</td><td colspan="6"></td></tr><tr><td class="h">3</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Minimum required Perl version: 5.8.</td></tr>
-<tr><td class="h">4</td><td><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L4">11</a></div></td><td><div>742889</div><div>13</div></td><td class="s">use 5.008;</td></tr>
-<tr><td class="h">5</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L5">11</a></div></td><td><div>12</div><div>6</div><div>62</div></td><td class="s">use strict;</td></tr>
-<tr><td class="h">6</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L6">11</a></div></td><td><div>14</div><div>7</div><div>165</div></td><td class="s">use warnings;</td></tr>
-<tr><td class="h">7</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L7">11</a></div></td><td><div>11</div><div>7</div><div>152</div></td><td class="s">use Carp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qw(croak);</td></tr>
-<tr><td class="h">8</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L8">11</a></div></td><td><div>533</div><div>3594</div><div>139</div></td><td class="s">use Readonly;</td></tr>
-<tr><td class="h">9</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L9">11</a></div></td><td><div>19</div><div>7</div><div>105</div></td><td class="s">use Scalar::Util qw(blessed);</td></tr>
-<tr><td class="h">10</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L10">11</a></div></td><td><div>710</div><div>101839</div><div>663</div></td><td class="s">use Return::Set&nbsp;&nbsp;qw(set_return);</td></tr>
-<tr><td class="h">11</td><td colspan="6"></td></tr><tr><td class="h">12 - 20</td><td colspan="5"></td><td class="s"><pre>=head1 NAME
+<tr><td class="h">4</td><td><div class="c3">15</div><div class="c3">15</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L4">15</a></div></td><td><div>611278</div><div>14</div></td><td class="s">use 5.008;</td></tr>
+<tr><td class="h">5</td><td><div class="c3">15</div><div class="c3">15</div><div class="c3">15</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L5">15</a></div></td><td><div>10</div><div>8</div><div>62</div></td><td class="s">use strict;</td></tr>
+<tr><td class="h">6</td><td><div class="c3">15</div><div class="c3">15</div><div class="c3">15</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L6">15</a></div></td><td><div>11</div><div>6</div><div>203</div></td><td class="s">use warnings;</td></tr>
+<tr><td class="h">7</td><td><div class="c3">15</div><div class="c3">15</div><div class="c3">15</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L7">15</a></div></td><td><div>12</div><div>9</div><div>181</div></td><td class="s">use Carp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qw(croak);</td></tr>
+<tr><td class="h">8</td><td><div class="c3">15</div><div class="c3">15</div><div class="c3">15</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L8">15</a></div></td><td><div>828</div><div>5446</div><div>234</div></td><td class="s">use Readonly;</td></tr>
+<tr><td class="h">9</td><td><div class="c3">15</div><div class="c3">15</div><div class="c3">15</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L9">15</a></div></td><td><div>14</div><div>5</div><div>150</div></td><td class="s">use Scalar::Util qw(blessed);</td></tr>
+<tr><td class="h">10</td><td><div class="c3">15</div><div class="c3">15</div><div class="c3">15</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L10">15</a></div></td><td><div>1069</div><div>157021</div><div>972</div></td><td class="s">use Return::Set&nbsp;&nbsp;qw(set_return);</td></tr>
+<tr><td class="h">11</td><td colspan="6"></td></tr><tr><td class="h">12</td><td></td><td></td><td></td><td></td><td></td><td class="s">=encoding utf8</td></tr>
+<tr><td class="h">13</td><td colspan="6"></td></tr><tr><td class="h">14 - 218</td><td colspan="5"></td><td class="s"><pre>=head1 NAME
 
-Class::Abstract - Enforce abstract (non-instantiable) base classes for plain-Perl OO
+Class::Abstract - Stop code from making objects of a class that is only a template
 
 =head1 VERSION
 
 Version 0.02
 
-=cut</pre></td></tr>
-<tr><td class="h">21</td><td colspan="6"></td></tr><tr><td class="h">22</td><td></td><td></td><td></td><td></td><td></td><td class="s">our $VERSION = &#39;0.02&#39;;</td></tr>
-<tr><td class="h">23</td><td colspan="6"></td></tr><tr><td class="h">24</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
-<tr><td class="h">25</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Constants</td></tr>
-<tr><td class="h">26</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
-<tr><td class="h">27</td><td colspan="6"></td></tr><tr><td class="h">28</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Self-referential constant: the canonical name of this package.</td></tr>
-<tr><td class="h">29</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly::Scalar my $SELF =&gt; __PACKAGE__;</td></tr>
-<tr><td class="h">30</td><td colspan="6"></td></tr><tr><td class="h">31</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Error message emitted when direct instantiation of an abstract class is</td></tr>
-<tr><td class="h">32</td><td></td><td></td><td></td><td></td><td></td><td class="s"># attempted.&nbsp;&nbsp;Kept as a constant so tests can match against it exactly.</td></tr>
-<tr><td class="h">33</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly::Scalar my $ERR_ABSTRACT =&gt;</td></tr>
-<tr><td class="h">34</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;Cannot instantiate abstract class %s directly&#39;;</td></tr>
-<tr><td class="h">35</td><td colspan="6"></td></tr><tr><td class="h">36</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
-<tr><td class="h">37</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Public variables</td></tr>
-<tr><td class="h">38</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
-<tr><td class="h">39</td><td colspan="6"></td></tr><tr><td class="h">40</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Set to a true value to suppress all abstract-class croaks globally.</td></tr>
-<tr><td class="h">41</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Always use &#39;local&#39; in tests to prevent state from bleeding between cases.</td></tr>
-<tr><td class="h">42</td><td></td><td></td><td></td><td></td><td></td><td class="s">our $BYPASS = 0;</td></tr>
-<tr><td class="h">43</td><td colspan="6"></td></tr><tr><td class="h">44</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Runtime tunables.&nbsp;&nbsp;Modify $config{harness_bypass} to control whether</td></tr>
-<tr><td class="h">45</td><td></td><td></td><td></td><td></td><td></td><td class="s"># HARNESS_ACTIVE suppresses enforcement.</td></tr>
-<tr><td class="h">46</td><td></td><td></td><td></td><td></td><td></td><td class="s">our %config = (</td></tr>
-<tr><td class="h">47</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;harness_bypass =&gt; 1,&nbsp;&nbsp;&nbsp;&nbsp;# 1 = suppress croaks when HARNESS_ACTIVE is set</td></tr>
-<tr><td class="h">48</td><td></td><td></td><td></td><td></td><td></td><td class="s">);</td></tr>
-<tr><td class="h">49</td><td colspan="6"></td></tr><tr><td class="h">50</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
-<tr><td class="h">51</td><td></td><td></td><td></td><td></td><td></td><td class="s"># PUBLIC INTERFACE</td></tr>
-<tr><td class="h">52</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
-<tr><td class="h">53</td><td colspan="6"></td></tr><tr><td class="h">54 - 225</td><td colspan="5"></td><td class="s"><pre>=head1 SYNOPSIS
+=head1 SYNOPSIS
 
-&nbsp;&nbsp;&nbsp;&nbsp;# ---- Preferred: use parent -------------------------------------------
+=head2 1. Make a class abstract (the usual way)
+
 &nbsp;&nbsp;&nbsp;&nbsp;package Animal;
-&nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;&nbsp;&nbsp;&nbsp;&nbsp;# Animal is now abstract
 
-&nbsp;&nbsp;&nbsp;&nbsp;# ---- Alternative: use Class::Abstract --------------------------------
-&nbsp;&nbsp;&nbsp;&nbsp;package Vehicle;
-&nbsp;&nbsp;&nbsp;&nbsp;use Class::Abstract;&nbsp;&nbsp;&nbsp;&nbsp;# equivalent: adds Class::Abstract to @ISA
-
-&nbsp;&nbsp;&nbsp;&nbsp;# ---- Combine with Sub::Abstract for method contracts -----------------
-&nbsp;&nbsp;&nbsp;&nbsp;package Animal;
-&nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;
-&nbsp;&nbsp;&nbsp;&nbsp;use Sub::Abstract qw(speak eat);&nbsp;&nbsp;&nbsp;# subclasses must implement these
-
-&nbsp;&nbsp;&nbsp;&nbsp;# ---- Concrete subclass -----------------------------------------------
 &nbsp;&nbsp;&nbsp;&nbsp;package Dog;
-&nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Animal&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;use parent -norequire, &#39;Animal&#39;; # Dog is a normal (concrete) class
+
+&nbsp;&nbsp;&nbsp;&nbsp;package main;
+&nbsp;&nbsp;&nbsp;&nbsp;my $dog = Dog-&gt;new;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# works: you get a Dog object
+&nbsp;&nbsp;&nbsp;&nbsp;my $bad = Animal-&gt;new;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# dies: &quot;Cannot instantiate abstract class Animal directly&quot;
+
+=head2 2. Make a class abstract with &quot;use&quot;
+
+&nbsp;&nbsp;&nbsp;&nbsp;package Vehicle;
+&nbsp;&nbsp;&nbsp;&nbsp;use Class::Abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# same result as: use parent &#39;Class::Abstract&#39;
+
+=head2 3. A child class that stores its own data
+
+&nbsp;&nbsp;&nbsp;&nbsp;package Dog;
+&nbsp;&nbsp;&nbsp;&nbsp;use parent -norequire, &#39;Animal&#39;;
 
 &nbsp;&nbsp;&nbsp;&nbsp;sub new {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class, %args) = @_;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $self = $class-&gt;SUPER::new;&nbsp;&nbsp;# delegates through Animal to here
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;{name} = $args{name};
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $self = $class-&gt;SUPER::new;&nbsp;&nbsp;&nbsp;# the check happens here
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;{name} = $args{name};&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# then add your own data
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self;
 &nbsp;&nbsp;&nbsp;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;sub speak { &#39;Woof&#39; }
-&nbsp;&nbsp;&nbsp;&nbsp;sub eat&nbsp;&nbsp;&nbsp;{ &#39;Nom&#39;&nbsp;&nbsp;}
 
-&nbsp;&nbsp;&nbsp;&nbsp;# ---- If Animal defines its own new(), call check_abstract() first ----
-&nbsp;&nbsp;&nbsp;&nbsp;package Animal;
+&nbsp;&nbsp;&nbsp;&nbsp;package main;
+&nbsp;&nbsp;&nbsp;&nbsp;my $rex = Dog-&gt;new(name =&gt; &#39;Rex&#39;);
+
+=head2 4. An abstract class that has its own new()
+
+&nbsp;&nbsp;&nbsp;&nbsp;package Shape;
 &nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;
 
 &nbsp;&nbsp;&nbsp;&nbsp;sub new {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $class = shift;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract::check_abstract($class);&nbsp;&nbsp;# enforces abstract contract
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return bless { a =&gt; &#39;default&#39; }, $class;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class, %args) = @_;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract::check_abstract($class);&nbsp;&nbsp;&nbsp;# dies if $class is Shape
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return bless { colour =&gt; $args{colour} }, $class;
 &nbsp;&nbsp;&nbsp;&nbsp;}
 
-&nbsp;&nbsp;&nbsp;&nbsp;# ---- Runtime behaviour -----------------------------------------------
-&nbsp;&nbsp;&nbsp;&nbsp;Animal-&gt;new;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# croaks: Cannot instantiate abstract class Animal directly
-&nbsp;&nbsp;&nbsp;&nbsp;Dog-&gt;new(name =&gt; &#39;Rex&#39;); # returns a blessed Dog hashref
-&nbsp;&nbsp;&nbsp;&nbsp;Animal-&gt;is_abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 1
-&nbsp;&nbsp;&nbsp;&nbsp;Dog-&gt;is_abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 0
+&nbsp;&nbsp;&nbsp;&nbsp;package Circle;
+&nbsp;&nbsp;&nbsp;&nbsp;use parent -norequire, &#39;Shape&#39;;
+
+&nbsp;&nbsp;&nbsp;&nbsp;package main;
+&nbsp;&nbsp;&nbsp;&nbsp;my $c = Circle-&gt;new(colour =&gt; &#39;red&#39;);&nbsp;&nbsp;&nbsp;# works
+&nbsp;&nbsp;&nbsp;&nbsp;Shape-&gt;new(colour =&gt; &#39;red&#39;);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# dies
+
+=head2 5. Ask whether a class is abstract
+
+&nbsp;&nbsp;&nbsp;&nbsp;Animal-&gt;is_abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 1
+&nbsp;&nbsp;&nbsp;&nbsp;Dog-&gt;is_abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 0
+&nbsp;&nbsp;&nbsp;&nbsp;$rex-&gt;is_abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 0 (asks about Dog)
+&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract-&gt;is_abstract(&#39;Animal&#39;);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 1
+&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract-&gt;is_abstract($rex);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 0
+
+=head2 6. Make an object of an abstract class inside a test
+
+&nbsp;&nbsp;&nbsp;&nbsp;use Test::More;
+
+&nbsp;&nbsp;&nbsp;&nbsp;my $animal = do {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;local $Class::Abstract::BYPASS = 1;&nbsp;&nbsp;&nbsp;&nbsp;# turn the check off for this block only
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Animal-&gt;new;
+&nbsp;&nbsp;&nbsp;&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;is( $animal-&gt;legs, 4, &#39;default number of legs&#39; );
+
+=head2 7. Use with Sub::Abstract
+
+&nbsp;&nbsp;&nbsp;&nbsp;package Animal;
+&nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# nobody can make an Animal directly
+&nbsp;&nbsp;&nbsp;&nbsp;use Sub::Abstract qw(speak);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# every child class must write speak()
 
 =head1 DESCRIPTION
 
-Prevents direct instantiation of a class while still allowing concrete
-subclasses to call C&lt;$class-E&lt;gt&gt;SUPER::new(...)&gt; through the normal
-inheritance chain.
+=head2 What this module does
 
-A class becomes abstract by listing C&lt;Class::Abstract&gt; as a direct parent:
+An I&lt;abstract class&gt; is a class that is only a template.&nbsp;&nbsp;It holds code
+that its child classes share, but it is not complete on its own.&nbsp;&nbsp;You
+should never make an object of it.&nbsp;&nbsp;You make objects of its child classes
+instead.
 
-&nbsp;&nbsp;&nbsp;&nbsp;package Animal;
-&nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;&nbsp;&nbsp;&nbsp;# Animal is abstract
+Perl has no built-in way to say &quot;this class is abstract&quot;.&nbsp;&nbsp;This module
+adds one.&nbsp;&nbsp;When code tries to make an object of an abstract class, the
+program dies with a clear error message.&nbsp;&nbsp;Child classes work normally.
 
-or equivalently via C&lt;use&gt;:
-
-&nbsp;&nbsp;&nbsp;&nbsp;use Class::Abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# also adds to @ISA
-
-Only the class that has C&lt;Class::Abstract&gt; directly in its C&lt;@ISA&gt; is
-abstract.&nbsp;&nbsp;Subclasses of that class are B&lt;not&gt; automatically abstract; each
-abstract class in a hierarchy must opt in explicitly.
-
-The enforcement check is performed at runtime inside C&lt;new()&gt;.&nbsp;&nbsp;When a
-concrete subclass calls C&lt;$class-E&lt;gt&gt;SUPER::new(...)&gt;, C&lt;$class&gt; is the
-concrete subclass, not the abstract base, so the check passes.
-
-=head2 Usage forms
+=head2 Terms used in this document
 
 =over 4
 
-=item Inheritance form (preferred)
+=item class, package
+
+In Perl, a class is a package.&nbsp;&nbsp;C&lt;Animal&gt; and C&lt;Dog&gt; are package names.
+
+=item parent class, child class, @ISA
+
+Each package has a list called C&lt;@ISA&gt; that names its parent classes.
+If C&lt;@Dog::ISA&gt; contains C&lt;Animal&gt;, then C&lt;Dog&gt; is a child of C&lt;Animal&gt;,
+and C&lt;Dog&gt; can use C&lt;Animal&gt;&#39;s methods.
+
+=item abstract, concrete
+
+A class is I&lt;abstract&gt; when C&lt;Class::Abstract&gt; is in its B&lt;own&gt; C&lt;@ISA&gt;.
+All other classes are I&lt;concrete&gt; (normal).
+
+=item invocant
+
+The value on the left of the arrow in a method call.&nbsp;&nbsp;In
+C&lt;&lt; Dog-&gt;new &gt;&gt; the invocant is the string C&lt;&#39;Dog&#39;&gt;.&nbsp;&nbsp;In
+C&lt;&lt; $rex-&gt;speak &gt;&gt; the invocant is the object C&lt;$rex&gt;.
+
+=item croak, die
+
+Stop the program (or the current C&lt;eval&gt; block) with an error message.
+
+=item bypass
+
+A setting that turns the check off.&nbsp;&nbsp;See L&lt;/Turning the check off&gt;.
+
+=item test harness
+
+The program that runs test files, for example C&lt;prove&gt; or C&lt;make test&gt;.
+It sets the environment variable C&lt;HARNESS_ACTIVE&gt;.
+
+=back
+
+=head2 How to make a class abstract
+
+Put C&lt;Class::Abstract&gt; in the class&#39;s own C&lt;@ISA&gt;.&nbsp;&nbsp;There are two ways:
 
 &nbsp;&nbsp;&nbsp;&nbsp;package Animal;
-&nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;
-
-C&lt;parent.pm&gt; adds C&lt;Class::Abstract&gt; to C&lt;@Animal::ISA&gt;, making
-C&lt;Class::Abstract::new&gt; available via MRO.&nbsp;&nbsp;No C&lt;import()&gt; call is made.
-C&lt;Animal-&gt;new&gt; will croak; C&lt;Dog-&gt;new&gt; (where Dog inherits Animal) will not.
-
-=item Import form
+&nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;&nbsp;&nbsp;&nbsp;&nbsp;# way 1 (recommended)
 
 &nbsp;&nbsp;&nbsp;&nbsp;package Vehicle;
-&nbsp;&nbsp;&nbsp;&nbsp;use Class::Abstract;
+&nbsp;&nbsp;&nbsp;&nbsp;use Class::Abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# way 2
 
-Calls C&lt;import()&gt;, which pushes C&lt;Class::Abstract&gt; onto C&lt;@Vehicle::ISA&gt;
-if not already present.&nbsp;&nbsp;Functionally identical to the inheritance form.
+Both ways have the same result.
 
-=back
+=head2 How the check works
 
-=head2 Multiple abstract levels in a hierarchy
+C&lt;Class::Abstract&gt; gives every class below it a method called C&lt;new()&gt;.
+When C&lt;new()&gt; runs, it looks at the invocant (the class name on the left
+of the arrow).&nbsp;&nbsp;If that class has C&lt;Class::Abstract&gt; in its B&lt;own&gt;
+C&lt;@ISA&gt;, C&lt;new()&gt; dies.&nbsp;&nbsp;If not, C&lt;new()&gt; makes and returns an empty
+object.
 
-Each abstract class must opt in:
+This is why child classes work.&nbsp;&nbsp;When C&lt;Dog&gt; calls
+C&lt;&lt; $class-&gt;SUPER::new &gt;&gt;, the invocant is still C&lt;&#39;Dog&#39;&gt;, not
+C&lt;&#39;Animal&#39;&gt;.&nbsp;&nbsp;C&lt;Dog&gt; does not have C&lt;Class::Abstract&gt; in its own C&lt;@ISA&gt;,
+so the check passes.
 
-&nbsp;&nbsp;&nbsp;&nbsp;package Animal;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# abstract
-&nbsp;&nbsp;&nbsp;&nbsp;package Mammal;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;, &#39;Animal&#39;; # also abstract
-&nbsp;&nbsp;&nbsp;&nbsp;package Dog;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Mammal&#39;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# concrete
+=head2 Only the class that asks is abstract
 
-=head2 Integration with Sub::Abstract
+Being abstract is B&lt;not&gt; passed down to child classes.&nbsp;&nbsp;If you want an
+abstract class below another abstract class, list C&lt;Class::Abstract&gt; in
+that class too:
 
-The two modules complement each other:
+&nbsp;&nbsp;&nbsp;&nbsp;package Animal;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# abstract
+&nbsp;&nbsp;&nbsp;&nbsp;package Mammal;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;, &#39;Animal&#39;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# also abstract
+&nbsp;&nbsp;&nbsp;&nbsp;package Dog;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use parent -norequire, &#39;Mammal&#39;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# concrete
 
-&nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# cannot instantiate directly
-&nbsp;&nbsp;&nbsp;&nbsp;use Sub::Abstract qw(speak eat);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# subclasses must implement speak + eat
+=head2 Turning the check off
 
-=head2 Bypass for testing
-
-Either condition alone (OR logic) suppresses the croak:
+Sometimes a test needs an object of an abstract class.&nbsp;&nbsp;Two settings turn
+the check off.&nbsp;&nbsp;If B&lt;either&gt; one is on, the check is off.
 
 =over 4
 
-=item * C&lt;$Class::Abstract::BYPASS&gt; set to a true value.&nbsp;&nbsp;Use C&lt;local&gt; in tests.
-Checked first; short-circuits the second condition.
+=item 1. The variable C&lt;$Class::Abstract::BYPASS&gt;
 
-=item * C&lt;$ENV{HARNESS_ACTIVE}&gt; set (the convention used by L&lt;Test::Harness&gt;/prove)
-B&lt;and&gt; C&lt;$config{harness_bypass}&gt; is truthy (the default).
+Set it to a true value.&nbsp;&nbsp;Always use C&lt;local&gt;, so the setting ends at the
+end of the block:
+
+&nbsp;&nbsp;&nbsp;&nbsp;my $animal = do { local $Class::Abstract::BYPASS = 1; Animal-&gt;new };
+
+=item 2. The setting C&lt;harness_bypass&gt; together with a test harness
+
+If C&lt;&lt; $Class::Abstract::config{harness_bypass} &gt;&gt; is true B&lt;and&gt; the
+environment variable C&lt;HARNESS_ACTIVE&gt; is true, the check is off.
+C&lt;harness_bypass&gt; is false by default, so the check is B&lt;on&gt; in your
+tests unless you change it.
 
 =back
 
-B&lt;Important:&gt; C&lt;$BYPASS&gt; takes full precedence.&nbsp;&nbsp;Setting
-C&lt;harness_bypass = 0&gt; does not re-enable enforcement when C&lt;$BYPASS&gt; is
-truthy.&nbsp;&nbsp;To test enforcement inside a harness:
+C&lt;$BYPASS&gt; is checked first.&nbsp;&nbsp;If C&lt;$BYPASS&gt; is true, setting
+C&lt;harness_bypass&gt; to 0 does B&lt;not&gt; turn the check back on.
 
-&nbsp;&nbsp;&nbsp;&nbsp;local $Class::Abstract::BYPASS = 0;
-&nbsp;&nbsp;&nbsp;&nbsp;local $Class::Abstract::config{harness_bypass} = 0;
+B&lt;Changed in version 0.03:&gt; before 0.03, C&lt;harness_bypass&gt; was 1 by
+default.&nbsp;&nbsp;That meant the check was B&lt;off&gt; in every test suite.&nbsp;&nbsp;To get
+the old behaviour back, put this near the top of your test files:
 
-=head2 Error message format
+&nbsp;&nbsp;&nbsp;&nbsp;$Class::Abstract::config{harness_bypass} = 1;
 
-&nbsp;&nbsp;&nbsp;&nbsp;Cannot instantiate abstract class Animal directly
-
-=head1 METHODS/SUBROUTINES
+=cut</pre></td></tr>
+<tr><td class="h">219</td><td colspan="6"></td></tr><tr><td class="h">220</td><td></td><td></td><td></td><td></td><td></td><td class="s">our $VERSION = &#39;0.02&#39;;</td></tr>
+<tr><td class="h">221</td><td colspan="6"></td></tr><tr><td class="h">222</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">223</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Constants</td></tr>
+<tr><td class="h">224</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">225</td><td colspan="6"></td></tr><tr><td class="h">226</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Self-referential constant: the canonical name of this package.</td></tr>
+<tr><td class="h">227</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly::Scalar my $SELF =&gt; __PACKAGE__;</td></tr>
+<tr><td class="h">228</td><td colspan="6"></td></tr><tr><td class="h">229</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Return::Set schema for import(): it always hands back the class name.</td></tr>
+<tr><td class="h">230</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly::Scalar my $IMPORT_SCHEMA =&gt; { type =&gt; &#39;string&#39; };</td></tr>
+<tr><td class="h">231</td><td colspan="6"></td></tr><tr><td class="h">232</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Every message this module can raise, in one place.&nbsp;&nbsp;Keys are</td></tr>
+<tr><td class="h">233</td><td></td><td></td><td></td><td></td><td></td><td class="s"># &quot;&lt;routine&gt;:&lt;condition&gt;&quot; so _resolve_class() can build them from the</td></tr>
+<tr><td class="h">234</td><td></td><td></td><td></td><td></td><td></td><td class="s"># routine name.&nbsp;&nbsp;The text is part of the public contract (see MESSAGES):</td></tr>
+<tr><td class="h">235</td><td></td><td></td><td></td><td></td><td></td><td class="s"># callers and tests match on it, so change it only in a major release.</td></tr>
+<tr><td class="h">236</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly::Hash my %MESSAGE =&gt; (</td></tr>
+<tr><td class="h">237</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;abstract&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;Cannot instantiate abstract class %s directly&#39;,</td></tr>
+<tr><td class="h">238</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;new:unblessed&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;new() invocant must be a class name or blessed object, got %s&#39;,</td></tr>
+<tr><td class="h">239</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;new:undef&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;new() requires a defined class name as invocant&#39;,</td></tr>
+<tr><td class="h">240</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;check:unblessed&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;check_abstract() requires a class name or blessed object, got %s&#39;,</td></tr>
+<tr><td class="h">241</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;check:undef&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;check_abstract() requires a defined class name&#39;,</td></tr>
+<tr><td class="h">242</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;is_abstract:unblessed&#39; =&gt; &#39;is_abstract() requires a class name or object invocant, got %s&#39;,</td></tr>
+<tr><td class="h">243</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;is_abstract:undef&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;is_abstract() requires a class name or object invocant&#39;,</td></tr>
+<tr><td class="h">244</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;internal:key&#39;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;Class::Abstract internal error: unknown message key %s&#39;,</td></tr>
+<tr><td class="h">245</td><td></td><td></td><td></td><td></td><td></td><td class="s">);</td></tr>
+<tr><td class="h">246</td><td colspan="6"></td></tr><tr><td class="h">247</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">248</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Public variables</td></tr>
+<tr><td class="h">249</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">250</td><td colspan="6"></td></tr><tr><td class="h">251</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Set to a true value to suppress all abstract-class croaks globally.</td></tr>
+<tr><td class="h">252</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Always use &#39;local&#39; in tests to prevent state from bleeding between cases.</td></tr>
+<tr><td class="h">253</td><td></td><td></td><td></td><td></td><td></td><td class="s">our $BYPASS = 0;</td></tr>
+<tr><td class="h">254</td><td colspan="6"></td></tr><tr><td class="h">255</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Runtime tunables.&nbsp;&nbsp;Modify $config{harness_bypass} to control whether</td></tr>
+<tr><td class="h">256</td><td></td><td></td><td></td><td></td><td></td><td class="s"># HARNESS_ACTIVE suppresses enforcement.</td></tr>
+<tr><td class="h">257</td><td></td><td></td><td></td><td></td><td></td><td class="s">our %config = (</td></tr>
+<tr><td class="h">258</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 1 = suppress croaks when HARNESS_ACTIVE is set.&nbsp;&nbsp;Off by default (since</td></tr>
+<tr><td class="h">259</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 0.03) so that test suites catch accidental abstract instantiation.</td></tr>
+<tr><td class="h">260</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;harness_bypass =&gt; 0,</td></tr>
+<tr><td class="h">261</td><td></td><td></td><td></td><td></td><td></td><td class="s">);</td></tr>
+<tr><td class="h">262</td><td colspan="6"></td></tr><tr><td class="h">263</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">264</td><td></td><td></td><td></td><td></td><td></td><td class="s"># PUBLIC INTERFACE</td></tr>
+<tr><td class="h">265</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">266</td><td colspan="6"></td></tr><tr><td class="h">267 - 346</td><td colspan="5"></td><td class="s"><pre>=head1 METHODS
 
 =head2 import
 
 &nbsp;&nbsp;&nbsp;&nbsp;use Class::Abstract;
 
-Called automatically by C&lt;use Class::Abstract&gt;.&nbsp;&nbsp;Adds C&lt;Class::Abstract&gt;
-to the calling package&#39;s C&lt;@ISA&gt; (if not already present), making the
-calling package abstract in the same way as C&lt;use parent &#39;Class::Abstract&#39;&gt;.
+Perl calls C&lt;import()&gt; for you when you write C&lt;use Class::Abstract;&gt;.
+You do not normally call it yourself.
 
-Has no effect when called on C&lt;Class::Abstract&gt; itself (no self-registration).
+It makes the package that contains the C&lt;use&gt; line abstract.&nbsp;&nbsp;It does
+this by adding C&lt;&#39;Class::Abstract&#39;&gt; to that package&#39;s C&lt;@ISA&gt;.&nbsp;&nbsp;The
+result is the same as C&lt;use parent &#39;Class::Abstract&#39;&gt;.
 
-=head3 Arguments
+=head3 ARGUMENTS
+
+None that you pass yourself.&nbsp;&nbsp;Perl passes the string
+C&lt;&#39;Class::Abstract&#39;&gt; as the first argument.&nbsp;&nbsp;Anything in an import list
+(for example C&lt;use Class::Abstract qw(x y)&gt;) is ignored.
+
+=head3 RETURNS
+
+The string C&lt;&#39;Class::Abstract&#39;&gt;.&nbsp;&nbsp;C&lt;use&gt; throws this value away, so you
+only see it if you call C&lt;&lt; Class::Abstract-&gt;import &gt;&gt; yourself.
+
+=head3 SIDE EFFECTS
+
+Adds C&lt;&#39;Class::Abstract&#39;&gt; to the end of the calling package&#39;s C&lt;@ISA&gt;.
+It does B&lt;nothing&gt; in these cases:
 
 =over 4
 
-=item C&lt;$class&gt; (required, implicit)
+=item * C&lt;&#39;Class::Abstract&#39;&gt; is already in that C&lt;@ISA&gt;.&nbsp;&nbsp;So writing
+C&lt;use Class::Abstract;&gt; twice is safe.
 
-Always C&lt;&#39;Class::Abstract&#39;&gt; in normal usage.
+=item * The calling package is C&lt;Class::Abstract&gt; itself.&nbsp;&nbsp;A class cannot
+be its own parent.
+
+=item * Perl cannot tell which package is calling (this can happen in
+unusual code, such as a C&lt;BEGIN&gt; block inside a string C&lt;eval&gt;).&nbsp;&nbsp;Without
+this rule, the module would change C&lt;@main::ISA&gt; by mistake.
 
 =back
 
-=head3 Returns
-
-The class name (C&lt;&#39;Class::Abstract&#39;&gt;) as a plain string.
-
-=head3 Example
+=head3 EXAMPLE
 
 &nbsp;&nbsp;&nbsp;&nbsp;package Vehicle;
-&nbsp;&nbsp;&nbsp;&nbsp;use Class::Abstract;&nbsp;&nbsp;&nbsp;# Vehicle is now abstract; Class::Abstract in @ISA
+&nbsp;&nbsp;&nbsp;&nbsp;use Class::Abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# @Vehicle::ISA is now (&#39;Class::Abstract&#39;)
+&nbsp;&nbsp;&nbsp;&nbsp;use Class::Abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# no change: it is already there
+
+&nbsp;&nbsp;&nbsp;&nbsp;package Car;
+&nbsp;&nbsp;&nbsp;&nbsp;our @ISA = (&#39;Vehicle&#39;);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Car is concrete
+
+&nbsp;&nbsp;&nbsp;&nbsp;package main;
+&nbsp;&nbsp;&nbsp;&nbsp;my $car = Car-&gt;new;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# works
+&nbsp;&nbsp;&nbsp;&nbsp;Vehicle-&gt;new;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# dies
+
+To load the module B&lt;without&gt; making the current package abstract, pass
+an empty list.&nbsp;&nbsp;Perl then does not call C&lt;import()&gt;:
+
+&nbsp;&nbsp;&nbsp;&nbsp;use Class::Abstract ();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# main is NOT made abstract
 
 =head3 API SPECIFICATION
 
 =head4 Input
 
-&nbsp;&nbsp;&nbsp;&nbsp;# No named-parameter schema: import() takes only the implicit $class.
-
-=head4 Output
-
-&nbsp;&nbsp;&nbsp;&nbsp;{ type =&gt; &#39;string&#39; }&nbsp;&nbsp;&nbsp;&nbsp;# always returns &#39;Class::Abstract&#39;
-
-=cut</pre></td></tr>
-<tr><td class="h">226</td><td colspan="6"></td></tr><tr><td class="h">227</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub import {</td></tr>
-<tr><td class="h">228</td><td><div class="c3">35</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L228">35</a></div></td><td><div>175371</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class) = @_;</td></tr>
-<tr><td class="h">229</td><td><div class="c3">35</div></td><td></td><td></td><td></td><td><div>32</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $caller&nbsp;&nbsp;= caller;</td></tr>
-<tr><td class="h">230</td><td colspan="6"></td></tr><tr><td class="h">231</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Guard: unusual contexts (e.g. BEGIN{} inside string eval) can produce an</td></tr>
-<tr><td class="h">232</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# empty-string caller; pushing onto @{&quot;::ISA&quot;} would silently mutate @main::ISA.</td></tr>
-<tr><td class="h">233</td><td><div class="c3">35</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L233">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L233">100</a></div></td><td></td><td><div>211</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return set_return($class, { type =&gt; &#39;string&#39; })</td></tr>
-<tr><td class="h">234</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unless defined($caller) &amp;&amp; length($caller);</td></tr>
-<tr><td class="h">235</td><td colspan="6"></td></tr><tr><td class="h">236</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Do not modify Class::Abstract&#39;s own @ISA -- that would be circular.</td></tr>
-<tr><td class="h">237</td><td><div class="c3">32</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L237">100</a></div></td><td></td><td></td><td><div>24</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return set_return($class, { type =&gt; &#39;string&#39; }) if $caller eq $SELF;</td></tr>
-<tr><td class="h">238</td><td colspan="6"></td></tr><tr><td class="h">239</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Add Class::Abstract to the caller&#39;s @ISA unless already present.</td></tr>
-<tr><td class="h">240</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# This is the same effect as: use parent &#39;Class::Abstract&#39;;</td></tr>
-<tr><td class="h">241</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</td></tr>
-<tr><td class="h">242</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div><div class="c3">31</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L242">11</a></div></td><td><div>22</div><div>12</div><div>1573</div><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no strict &#39;refs&#39;;</td></tr>
-<tr><td class="h">243</td><td><div class="c3">31</div><div class="c3">25</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L243">100</a></div></td><td></td><td></td><td><div>24</div><div>68</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;push @{&quot;${caller}::ISA&quot;}, $SELF</td></tr>
-<tr><td class="h">244</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unless _is_direct_abstract($caller);</td></tr>
-<tr><td class="h">245</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">246</td><td colspan="6"></td></tr><tr><td class="h">247</td><td><div class="c3">31</div></td><td></td><td></td><td></td><td><div>47</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return set_return($class, { type =&gt; &#39;string&#39; });</td></tr>
-<tr><td class="h">248</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
-<tr><td class="h">249</td><td colspan="6"></td></tr><tr><td class="h">250 - 335</td><td colspan="5"></td><td class="s"><pre>=head2 new
-
-&nbsp;&nbsp;&nbsp;&nbsp;my $obj = ConcreteChild-&gt;new;
-&nbsp;&nbsp;&nbsp;&nbsp;my $obj = ConcreteChild-&gt;new(%initial_attrs);
-
-Base constructor with abstract-class enforcement.&nbsp;&nbsp;When called on an
-abstract class (one with C&lt;Class::Abstract&gt; directly in its C&lt;@ISA&gt;), it
-croaks.&nbsp;&nbsp;When called on a concrete subclass -- including via
-C&lt;$class-E&lt;gt&gt;SUPER::new(...)&gt; from a child&#39;s own C&lt;new()&gt; -- it succeeds
-and returns a blessed empty hashref.
-
-The check is performed on the B&lt;original invocant&gt; (C&lt;$class&gt;), not on
-the package where C&lt;new()&gt; is defined.&nbsp;&nbsp;This means C&lt;SUPER::new&gt; works
-correctly: C&lt;$class&gt; is the concrete subclass, so the abstract-class check
-passes.
-
-=head3 Arguments
-
-=over 4
-
-=item C&lt;$class&gt; (required)
-
-The invocant -- either a class name or a blessed object (to support
-C&lt;ref($obj)-&gt;new&gt;-style calls).
-
-=item C&lt;%initial_attrs&gt; (optional, ignored)
-
-Any additional arguments are accepted but not used by this base constructor.
-They are silently discarded so that subclass C&lt;new()&gt; methods can pass
-arguments through C&lt;SUPER::new&gt; without errors.&nbsp;&nbsp;Subclasses should
-populate object attributes themselves after calling C&lt;SUPER::new&gt;.
-
-=back
-
-=head3 Returns
-
-A new blessed empty hashref of class C&lt;$class&gt;.
-
-=head3 Example
-
-&nbsp;&nbsp;&nbsp;&nbsp;package Dog;
-&nbsp;&nbsp;&nbsp;&nbsp;our @ISA = (&#39;Animal&#39;);&nbsp;&nbsp;&nbsp;# Animal is abstract via Class::Abstract
-
-&nbsp;&nbsp;&nbsp;&nbsp;sub new {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class, %args) = @_;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $self = $class-&gt;SUPER::new;&nbsp;&nbsp;&nbsp;# delegates to Class::Abstract::new
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;{name} = $args{name};&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# populate after SUPER
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self;
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class =&gt; { type =&gt; &#39;string&#39;, optional =&gt; 0 },&nbsp;&nbsp;&nbsp;# always &#39;Class::Abstract&#39;
 &nbsp;&nbsp;&nbsp;&nbsp;}
 
-&nbsp;&nbsp;&nbsp;&nbsp;# Dog-&gt;new(name =&gt; &#39;Rex&#39;) works; Animal-&gt;new croaks.
-
-=head3 API SPECIFICATION
-
-=head4 Input
-
-&nbsp;&nbsp;&nbsp;&nbsp;# Positional: ($class, @ignored_args)
-&nbsp;&nbsp;&nbsp;&nbsp;# $class must be a defined non-reference scalar (package name or blessed ref).
-
 =head4 Output
 
-&nbsp;&nbsp;&nbsp;&nbsp;{ type =&gt; &#39;object&#39;, isa =&gt; $class }&nbsp;&nbsp;&nbsp;&nbsp;# a blessed hashref of the given class
-
-=head3 PSEUDOCODE
-
-&nbsp;&nbsp;&nbsp;&nbsp;new($class, @args):
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class &lt;- ref($class) if blessed, else $class
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNLESS bypass is active
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF class is directly abstract
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CROAK &quot;Cannot instantiate abstract class CLASS directly&quot;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END UNLESS
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN bless({}, class)
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type =&gt; &#39;string&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;}
 
 =head3 MESSAGES
 
-&nbsp;&nbsp;&nbsp;&nbsp;Message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meaning / Action
-&nbsp;&nbsp;&nbsp;&nbsp;-------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;----------------
-&nbsp;&nbsp;&nbsp;&nbsp;Cannot instantiate abstract class CLASS directly&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLASS has Class::Abstract
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;directly in its @ISA (or IS
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract).&nbsp;&nbsp;You are
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;trying to instantiate an
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abstract class.&nbsp;&nbsp;Action:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instantiate a concrete
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subclass of CLASS instead.
+None.&nbsp;&nbsp;C&lt;import()&gt; never dies and never warns.
 
 =cut</pre></td></tr>
-<tr><td class="h">336</td><td colspan="6"></td></tr><tr><td class="h">337</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub new {</td></tr>
-<tr><td class="h">338</td><td><div class="c3">141</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L338">141</a></div></td><td><div>303836</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class) = @_;</td></tr>
-<tr><td class="h">339</td><td colspan="6"></td></tr><tr><td class="h">340</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Accept blessed objects as invocants (e.g. $obj-&gt;new style), but reject</td></tr>
-<tr><td class="h">341</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# plain (unblessed) references such as arrayrefs or coderefs.</td></tr>
-<tr><td class="h">342</td><td><div class="c3">141</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L342">100</a></div></td><td></td><td></td><td><div>107</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (ref $class) {</td></tr>
-<tr><td class="h">343</td><td><div class="c3">21</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L343">100</a></div></td><td></td><td></td><td><div>59</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;croak sprintf(&#39;new() invocant must be a class name or blessed object, got %s&#39;, ref $class)</td></tr>
-<tr><td class="h">344</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unless blessed($class);</td></tr>
-<tr><td class="h">345</td><td><div class="c3">9</div></td><td></td><td></td><td></td><td><div>8</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$class = ref($class);</td></tr>
-<tr><td class="h">346</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">347</td><td colspan="6"></td></tr><tr><td class="h">348</td><td><div class="c3">129</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L348">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L348">100</a></div></td><td></td><td><div>172</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;croak &#39;new() requires a defined class name as invocant&#39;</td></tr>
-<tr><td class="h">349</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unless defined($class) &amp;&amp; length($class);</td></tr>
-<tr><td class="h">350</td><td colspan="6"></td></tr><tr><td class="h">351</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Enforce the abstract-class contract unless bypass is active.</td></tr>
-<tr><td class="h">352</td><td><div class="c3">122</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L352">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L352">100</a></div></td><td></td><td><div>183</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unless ($BYPASS || ($config{harness_bypass} &amp;&amp; $ENV{HARNESS_ACTIVE})) {</td></tr>
-<tr><td class="h">353</td><td><div class="c3">49</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L353">100</a></div></td><td></td><td></td><td><div>38</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;croak sprintf($ERR_ABSTRACT, $class)</td></tr>
-<tr><td class="h">354</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if _is_direct_abstract($class);</td></tr>
-<tr><td class="h">355</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">356</td><td colspan="6"></td></tr><tr><td class="h">357</td><td><div class="c3">96</div></td><td></td><td></td><td></td><td><div>135</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return bless {}, $class;</td></tr>
-<tr><td class="h">358</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
-<tr><td class="h">359</td><td colspan="6"></td></tr><tr><td class="h">360 - 409</td><td colspan="5"></td><td class="s"><pre>=head2 check_abstract
+<tr><td class="h">347</td><td colspan="6"></td></tr><tr><td class="h">348</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub import {</td></tr>
+<tr><td class="h">349</td><td><div class="c3">39</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L349">39</a></div></td><td><div>144831</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class) = @_;</td></tr>
+<tr><td class="h">350</td><td><div class="c3">39</div></td><td></td><td></td><td></td><td><div>34</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $caller&nbsp;&nbsp;= caller;</td></tr>
+<tr><td class="h">351</td><td colspan="6"></td></tr><tr><td class="h">352</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Register the caller only when it is a real package other than this one</td></tr>
+<tr><td class="h">353</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# and is not already registered (keeps repeated &#39;use&#39; idempotent).</td></tr>
+<tr><td class="h">354</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# The defined/length guard stops &#39;&#39; from resolving to @main::ISA.</td></tr>
+<tr><td class="h">355</td><td><div class="c3">39</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L355">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L355">100</a></div></td><td></td><td><div>257</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (defined($caller) &amp;&amp; length($caller) &amp;&amp; ($caller ne $SELF) &amp;&amp; !_is_direct_abstract($caller)) {</td></tr>
+<tr><td class="h">356</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Writing another package&#39;s @ISA needs a symbolic reference.</td></tr>
+<tr><td class="h">357</td><td><div class="c3">15</div><div class="c3">15</div><div class="c3">15</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L357">15</a></div></td><td><div>26</div><div>7</div><div>2925</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no strict &#39;refs&#39;;&nbsp;&nbsp;&nbsp;&nbsp;## no critic (ProhibitNoStrict)</td></tr>
+<tr><td class="h">358</td><td><div class="c3">27</div><div class="c3">27</div></td><td></td><td></td><td></td><td><div>13</div><div>62</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;push @{&quot;${caller}::ISA&quot;}, $SELF;</td></tr>
+<tr><td class="h">359</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">360</td><td colspan="6"></td></tr><tr><td class="h">361</td><td><div class="c3">38</div></td><td></td><td></td><td></td><td><div>40</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return set_return($class, $IMPORT_SCHEMA);</td></tr>
+<tr><td class="h">362</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">363</td><td colspan="6"></td></tr><tr><td class="h">364 - 468</td><td colspan="5"></td><td class="s"><pre>=head2 new
 
-&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract::check_abstract($class);
-&nbsp;&nbsp;&nbsp;&nbsp;$class-&gt;Class::Abstract::check_abstract;
+&nbsp;&nbsp;&nbsp;&nbsp;my $obj&nbsp;&nbsp;= ConcreteClass-&gt;new;
+&nbsp;&nbsp;&nbsp;&nbsp;my $obj&nbsp;&nbsp;= ConcreteClass-&gt;new(name =&gt; &#39;Rex&#39;);&nbsp;&nbsp;&nbsp;# arguments are ignored
+&nbsp;&nbsp;&nbsp;&nbsp;my $copy = $obj-&gt;new;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# new, empty object of the same class
 
-Enforces the abstract-class contract from within a user-defined C&lt;new()&gt;.
-Call this at the top of an abstract class&#39;s own C&lt;new()&gt; when that class
-overrides C&lt;new()&gt; directly rather than delegating to C&lt;SUPER::new()&gt;.
-Croaks if C&lt;$class&gt; is directly abstract and no bypass is active; returns
-normally otherwise.
+Makes a new, empty object, but only for a concrete class.
 
-B&lt;When to use:&gt; If your abstract class defines its own C&lt;new()&gt; and that
-C&lt;new()&gt; creates the object directly (via C&lt;bless&gt;) rather than calling
-C&lt;$class-E&lt;gt&gt;SUPER::new&gt;, you must call C&lt;check_abstract()&gt; first -- otherwise
-the enforcement in C&lt;Class::Abstract::new&gt; is never reached.
+=over 4
+
+=item * If the class is abstract, C&lt;new()&gt; dies with an error message.
+
+=item * If the class is concrete, C&lt;new()&gt; returns an empty hash
+reference blessed into that class.
+
+=back
+
+Child classes usually call this through C&lt;&lt; $class-&gt;SUPER::new &gt;&gt; from
+their own C&lt;new()&gt;.&nbsp;&nbsp;That works because the check looks at the class name
+on the left of the arrow (the child), not at the class where C&lt;new()&gt; is
+written.
+
+=head3 ARGUMENTS
+
+=over 4
+
+=item C&lt;$invocant&gt; (required)
+
+The class name or object on the left of the arrow.&nbsp;&nbsp;In C&lt;&lt; Dog-&gt;new &gt;&gt;
+it is the string C&lt;&#39;Dog&#39;&gt;.&nbsp;&nbsp;If it is an object, the object&#39;s class is
+used.&nbsp;&nbsp;It must not be C&lt;undef&gt;, the empty
+string, or a reference that is not an object (such as C&lt;[]&gt; or C&lt;{}&gt;).
+
+=item C&lt;%args&gt; (optional)
+
+Any other arguments.&nbsp;&nbsp;They are accepted and B&lt;ignored&gt;.&nbsp;&nbsp;This lets a
+child class pass its arguments to C&lt;SUPER::new&gt; without errors.&nbsp;&nbsp;The
+child class must store its own data after C&lt;SUPER::new&gt; returns.
+
+=back
+
+=head3 RETURNS
+
+A new, empty hash reference, blessed into the class.
+
+=head3 SIDE EFFECTS
+
+None, except that C&lt;bless&gt; creates the package in Perl&#39;s symbol table if
+it did not exist yet.&nbsp;&nbsp;(The check itself never creates a package.)
+
+=head3 EXAMPLE
 
 &nbsp;&nbsp;&nbsp;&nbsp;package Animal;
 &nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;
 
+&nbsp;&nbsp;&nbsp;&nbsp;package Dog;
+&nbsp;&nbsp;&nbsp;&nbsp;our @ISA = (&#39;Animal&#39;);
+
 &nbsp;&nbsp;&nbsp;&nbsp;sub new {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $class = shift;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract::check_abstract($class);&nbsp;&nbsp;# croaks if $class is Animal
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return bless { a =&gt; &#39;default&#39; }, $class;&nbsp;&nbsp;# only reaches here for subclasses
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class, %args) = @_;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $self = $class-&gt;SUPER::new;&nbsp;&nbsp;&nbsp;# the check happens here
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;{name} = $args{name};
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self;
 &nbsp;&nbsp;&nbsp;&nbsp;}
 
-=head3 Arguments
+&nbsp;&nbsp;&nbsp;&nbsp;package main;
+&nbsp;&nbsp;&nbsp;&nbsp;my $rex = Dog-&gt;new(name =&gt; &#39;Rex&#39;);&nbsp;&nbsp;&nbsp;# works: Dog is concrete
 
-=over 4
-
-=item C&lt;$class&gt; (required)
-
-A class name string or a blessed object.&nbsp;&nbsp;Unblessed references are rejected.
-
-=back
-
-=head3 Returns
-
-C&lt;undef&gt; on success (i.e. C&lt;$class&gt; is concrete or bypass is active).
-Croaks on failure.
-
-=head3 MESSAGES
-
-&nbsp;&nbsp;&nbsp;&nbsp;Message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meaning / Action
-&nbsp;&nbsp;&nbsp;&nbsp;-------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;----------------
-&nbsp;&nbsp;&nbsp;&nbsp;Cannot instantiate abstract class CLASS directly&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Same as new() -- see above.
-&nbsp;&nbsp;&nbsp;&nbsp;check_abstract() requires a class name or&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invocant was an unblessed ref.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blessed object
-&nbsp;&nbsp;&nbsp;&nbsp;check_abstract() requires a defined class name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invocant was undef or empty string.
-
-=cut</pre></td></tr>
-<tr><td class="h">410</td><td colspan="6"></td></tr><tr><td class="h">411</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub check_abstract {</td></tr>
-<tr><td class="h">412</td><td><div class="c3">43</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L412">43</a></div></td><td><div>79037</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class) = @_;</td></tr>
-<tr><td class="h">413</td><td colspan="6"></td></tr><tr><td class="h">414</td><td><div class="c3">43</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L414">100</a></div></td><td></td><td></td><td><div>39</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (ref $class) {</td></tr>
-<tr><td class="h">415</td><td><div class="c3">10</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L415">100</a></div></td><td></td><td></td><td><div>29</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;croak &#39;check_abstract() requires a class name or blessed object&#39;</td></tr>
-<tr><td class="h">416</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unless blessed($class);</td></tr>
-<tr><td class="h">417</td><td><div class="c3">4</div></td><td></td><td></td><td></td><td><div>4</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$class = ref($class);</td></tr>
-<tr><td class="h">418</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">419</td><td colspan="6"></td></tr><tr><td class="h">420</td><td><div class="c3">37</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L420">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L420">100</a></div></td><td></td><td><div>71</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;croak &#39;check_abstract() requires a defined class name&#39;</td></tr>
-<tr><td class="h">421</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unless defined($class) &amp;&amp; length($class);</td></tr>
-<tr><td class="h">422</td><td colspan="6"></td></tr><tr><td class="h">423</td><td><div class="c3">31</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L423">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L423">100</a></div></td><td></td><td><div>45</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unless ($BYPASS || ($config{harness_bypass} &amp;&amp; $ENV{HARNESS_ACTIVE})) {</td></tr>
-<tr><td class="h">424</td><td><div class="c3">23</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L424">100</a></div></td><td></td><td></td><td><div>16</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;croak sprintf($ERR_ABSTRACT, $class)</td></tr>
-<tr><td class="h">425</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if _is_direct_abstract($class);</td></tr>
-<tr><td class="h">426</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">427</td><td><div class="c3">24</div></td><td></td><td></td><td></td><td><div>36</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
-<tr><td class="h">428</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
-<tr><td class="h">429</td><td colspan="6"></td></tr><tr><td class="h">430 - 484</td><td colspan="5"></td><td class="s"><pre>=head2 is_abstract
-
-&nbsp;&nbsp;&nbsp;&nbsp;my $bool = SomeClass-&gt;is_abstract;
-&nbsp;&nbsp;&nbsp;&nbsp;my $bool = $obj-&gt;is_abstract;
-&nbsp;&nbsp;&nbsp;&nbsp;my $bool = Class::Abstract-&gt;is_abstract(&#39;SomeClass&#39;);
-
-Returns C&lt;1&gt; if the invocant (or named class) is a B&lt;directly&gt; abstract class
-(i.e. has C&lt;Class::Abstract&gt; in its own C&lt;@ISA&gt;, or is C&lt;Class::Abstract&gt;
-itself).&nbsp;&nbsp;Returns C&lt;0&gt; for concrete subclasses even if they transitively
-inherit from an abstract base.
-
-Inheritable via MRO: any class that has C&lt;Class::Abstract&gt; in its ancestry
-can call this as a class method or an instance method.
-
-=head3 Arguments
-
-=over 4
-
-=item C&lt;$self_or_class&gt; (required)
-
-The invocant -- a class name, a blessed object, or C&lt;Class::Abstract&gt;
-itself.&nbsp;&nbsp;When a class name is passed, C&lt;is_abstract&gt; is checked on that
-class.&nbsp;&nbsp;When a blessed object is passed, the object&#39;s class is used.
-
-=item C&lt;$class_name&gt; (optional)
-
-When provided, check this class name instead of resolving from the invocant.
-Intended for the explicit form C&lt;Class::Abstract-&gt;is_abstract(&#39;SomeClass&#39;)&gt;.
-
-=back
-
-=head3 Returns
-
-C&lt;1&gt; if directly abstract, C&lt;0&gt; otherwise, as a plain integer.
-
-=head3 Example
-
-&nbsp;&nbsp;&nbsp;&nbsp;Animal-&gt;is_abstract;&nbsp;&nbsp;&nbsp;&nbsp;# 1 (Animal has Class::Abstract in @ISA)
-&nbsp;&nbsp;&nbsp;&nbsp;Dog-&gt;is_abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 0 (Dog&#39;s @ISA contains Animal, not Class::Abstract)
-
-&nbsp;&nbsp;&nbsp;&nbsp;my $dog = Dog-&gt;new(name =&gt; &#39;Rex&#39;);
-&nbsp;&nbsp;&nbsp;&nbsp;$dog-&gt;is_abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 0 (checks ref($dog) = &#39;Dog&#39;)
+&nbsp;&nbsp;&nbsp;&nbsp;eval { Animal-&gt;new };&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# dies: Animal is abstract
+&nbsp;&nbsp;&nbsp;&nbsp;print $@;&nbsp;&nbsp;&nbsp;# Cannot instantiate abstract class Animal directly at ...
 
 =head3 API SPECIFICATION
 
 =head4 Input
 
-&nbsp;&nbsp;&nbsp;&nbsp;# Positional: ($self_or_class)
-&nbsp;&nbsp;&nbsp;&nbsp;# Must be a defined value (class name string or blessed ref).
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;invocant =&gt; {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;string|object&#39;,&nbsp;&nbsp;&nbsp;# class name, or an object of that class
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;optional =&gt; 0,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; 1,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# a name must not be empty
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;}
 
 =head4 Output
 
-&nbsp;&nbsp;&nbsp;&nbsp;{ type =&gt; &#39;integer&#39;, values =&gt; [0, 1] }
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type =&gt; &#39;object&#39;,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# a hashref blessed into the class
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+=head3 MESSAGES
+
+&nbsp;&nbsp;&nbsp;&nbsp;Message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;What it means / What to do
+&nbsp;&nbsp;&nbsp;&nbsp;-------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--------------------------
+&nbsp;&nbsp;&nbsp;&nbsp;Cannot instantiate abstract class CLASS&nbsp;&nbsp;&nbsp;CLASS is abstract and no bypass is on.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;directly&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make an object of a child class instead.
+
+&nbsp;&nbsp;&nbsp;&nbsp;new() invocant must be a class name or&nbsp;&nbsp;&nbsp;&nbsp;new() was called as a plain function
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blessed object, got TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with a reference that is not an object
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(TYPE is ARRAY, HASH, CODE, ...).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Call it as Class-&gt;new or $obj-&gt;new.
+
+&nbsp;&nbsp;&nbsp;&nbsp;new() requires a defined class name as&nbsp;&nbsp;&nbsp;&nbsp;new() was called as a plain function
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;invocant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with undef or &#39;&#39;.&nbsp;&nbsp;Pass a class name.
 
 =cut</pre></td></tr>
-<tr><td class="h">485</td><td colspan="6"></td></tr><tr><td class="h">486</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub is_abstract {</td></tr>
-<tr><td class="h">487</td><td><div class="c3">58</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L487">58</a></div></td><td><div>77841</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $class_arg) = @_;</td></tr>
-<tr><td class="h">488</td><td colspan="6"></td></tr><tr><td class="h">489</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Three-argument form: Class::Abstract-&gt;is_abstract(&#39;SomeClass&#39;) -- use the arg.</td></tr>
-<tr><td class="h">490</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Two-argument form: SomeClass-&gt;is_abstract or $obj-&gt;is_abstract -- use invocant.</td></tr>
-<tr><td class="h">491</td><td><div class="c3">58</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L491">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L491">100</a></div></td><td></td><td><div>83</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $class = defined($class_arg) ? $class_arg : (ref($self) || $self);</td></tr>
-<tr><td class="h">492</td><td colspan="6"></td></tr><tr><td class="h">493</td><td><div class="c3">58</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L493">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L493">100</a></div></td><td></td><td><div>76</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;croak &#39;is_abstract() requires a class name or object invocant&#39;</td></tr>
-<tr><td class="h">494</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unless defined($class) &amp;&amp; length($class);</td></tr>
-<tr><td class="h">495</td><td colspan="6"></td></tr><tr><td class="h">496</td><td><div class="c3">54</div></td><td></td><td></td><td></td><td><div>42</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return _is_direct_abstract($class);</td></tr>
-<tr><td class="h">497</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
-<tr><td class="h">498</td><td colspan="6"></td></tr><tr><td class="h">499</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
-<tr><td class="h">500</td><td></td><td></td><td></td><td></td><td></td><td class="s"># PRIVATE SUBROUTINES</td></tr>
-<tr><td class="h">501</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
-<tr><td class="h">502</td><td colspan="6"></td></tr><tr><td class="h">503</td><td></td><td></td><td></td><td></td><td></td><td class="s"># _is_direct_abstract</td></tr>
-<tr><td class="h">504</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Determine whether a class is directly abstract, meaning</td></tr>
-<tr><td class="h">505</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract appears in its own @ISA (not transitively).</td></tr>
-<tr><td class="h">506</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: $class -- the package name to check (plain string)</td></tr>
-<tr><td class="h">507</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit status&nbsp;&nbsp;: Returns 1 if directly abstract, 0 (empty string) if not.</td></tr>
-<tr><td class="h">508</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Notes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Class::Abstract itself is treated as abstract (the module</td></tr>
-<tr><td class="h">509</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cannot be instantiated directly).</td></tr>
-<tr><td class="h">510</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This check is intentionally shallow: only the immediate @ISA</td></tr>
-<tr><td class="h">511</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is inspected.&nbsp;&nbsp;Concrete subclasses that inherit transitively</td></tr>
-<tr><td class="h">512</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from an abstract class are NOT considered abstract by this</td></tr>
-<tr><td class="h">513</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;predicate, which is the correct behaviour.</td></tr>
-<tr><td class="h">514</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _is_direct_abstract {</td></tr>
-<tr><td class="h">515</td><td><div class="c3">166</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L515">166</a></div></td><td><div>63610</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class) = @_;</td></tr>
-<tr><td class="h">516</td><td colspan="6"></td></tr><tr><td class="h">517</td><td><div class="c3">166</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L517">100</a></div></td><td></td><td></td><td><div>94</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0 unless defined $class;</td></tr>
-<tr><td class="h">518</td><td colspan="6"></td></tr><tr><td class="h">519</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Class::Abstract itself must not be instantiable.</td></tr>
-<tr><td class="h">520</td><td><div class="c3">162</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L520">100</a></div></td><td></td><td></td><td><div>114</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 1 if $class eq $SELF;</td></tr>
-<tr><td class="h">521</td><td colspan="6"></td></tr><tr><td class="h">522</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Check if Class::Abstract appears directly in the class&#39;s own @ISA.</td></tr>
-<tr><td class="h">523</td><td><div class="c3">11</div><div class="c3">11</div><div class="c3">11</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L523">11</a></div></td><td><div>16</div><div>6</div><div>265</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no strict &#39;refs&#39;;</td></tr>
-<tr><td class="h">524</td><td><div class="c3">151</div><div class="c3">128</div><div class="c3">151</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L524">100</a></div></td><td></td><td></td><td><div>71</div><div>302</div><div>195</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (grep { $_ eq $SELF } @{&quot;${class}::ISA&quot;}) ? 1 : 0;</td></tr>
-<tr><td class="h">525</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
-<tr><td class="h">526</td><td colspan="6"></td></tr><tr><td class="h">527</td><td></td><td></td><td></td><td></td><td></td><td class="s">1;</td></tr>
-<tr><td class="h">528</td><td colspan="6"></td></tr></table>
+<tr><td class="h">469</td><td colspan="6"></td></tr><tr><td class="h">470</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub new {</td></tr>
+<tr><td class="h">471</td><td><div class="c3">177</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L471">177</a></div></td><td><div>399440</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($invocant) = @_;</td></tr>
+<tr><td class="h">472</td><td colspan="6"></td></tr><tr><td class="h">473</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Validate the invocant, then refuse abstract classes; both helpers</td></tr>
+<tr><td class="h">474</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# croak on failure so reaching bless means the class is instantiable.</td></tr>
+<tr><td class="h">475</td><td><div class="c3">177</div></td><td></td><td></td><td></td><td><div>107</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $class = _resolve_class(&#39;new&#39;, $invocant);</td></tr>
+<tr><td class="h">476</td><td><div class="c3">148</div></td><td></td><td></td><td></td><td><div>104</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_enforce($class);</td></tr>
+<tr><td class="h">477</td><td colspan="6"></td></tr><tr><td class="h">478</td><td><div class="c3">111</div></td><td></td><td></td><td></td><td><div>156</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return bless {}, $class;</td></tr>
+<tr><td class="h">479</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">480</td><td colspan="6"></td></tr><tr><td class="h">481 - 566</td><td colspan="5"></td><td class="s"><pre>=head2 check_abstract
+
+&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract::check_abstract($class);
+
+Runs the same check as C&lt;new()&gt;, but does not make an object.
+
+Use it when your abstract class writes its B&lt;own&gt; C&lt;new()&gt; and that
+C&lt;new()&gt; does not call C&lt;&lt; $class-&gt;SUPER::new &gt;&gt;.&nbsp;&nbsp;In that case
+C&lt;Class::Abstract::new()&gt; never runs, so nothing checks the class.&nbsp;&nbsp;Call
+C&lt;check_abstract()&gt; as the first line of your C&lt;new()&gt; to put the check
+back.
+
+=head3 ARGUMENTS
+
+=over 4
+
+=item C&lt;$invocant&gt; (required)
+
+The class to check: a class name (a string) or an object.&nbsp;&nbsp;If it is an
+object, the object&#39;s class is used.&nbsp;&nbsp;In your own C&lt;new()&gt;, pass the
+C&lt;$class&gt; variable.&nbsp;&nbsp;It must not be C&lt;undef&gt;, the empty string, or a reference
+that is not an object.
+
+=back
+
+=head3 RETURNS
+
+Nothing (C&lt;undef&gt;) if the class is concrete or a bypass is on.&nbsp;&nbsp;Otherwise
+it dies.
+
+=head3 SIDE EFFECTS
+
+None.&nbsp;&nbsp;It obeys C&lt;$BYPASS&gt; and C&lt;harness_bypass&gt; in exactly the same way
+as C&lt;new()&gt;.
+
+=head3 EXAMPLE
+
+&nbsp;&nbsp;&nbsp;&nbsp;package Shape;
+&nbsp;&nbsp;&nbsp;&nbsp;use parent &#39;Class::Abstract&#39;;
+
+&nbsp;&nbsp;&nbsp;&nbsp;sub new {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class, %args) = @_;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract::check_abstract($class);&nbsp;&nbsp;&nbsp;# dies if $class is Shape
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return bless { sides =&gt; $args{sides} }, $class;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;package Square;
+&nbsp;&nbsp;&nbsp;&nbsp;our @ISA = (&#39;Shape&#39;);
+
+&nbsp;&nbsp;&nbsp;&nbsp;package main;
+&nbsp;&nbsp;&nbsp;&nbsp;my $sq = Square-&gt;new(sides =&gt; 4);&nbsp;&nbsp;&nbsp;&nbsp;# works
+&nbsp;&nbsp;&nbsp;&nbsp;Shape-&gt;new(sides =&gt; 4);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# dies: Shape is abstract
+
+=head3 API SPECIFICATION
+
+=head4 Input
+
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;invocant =&gt; {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; &#39;string|object&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;optional =&gt; 0,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; 1,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+=head4 Output
+
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type =&gt; &#39;undef&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+=head3 MESSAGES
+
+&nbsp;&nbsp;&nbsp;&nbsp;Message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;What it means / What to do
+&nbsp;&nbsp;&nbsp;&nbsp;-------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--------------------------
+&nbsp;&nbsp;&nbsp;&nbsp;Cannot instantiate abstract class CLASS&nbsp;&nbsp;&nbsp;The same as for new().
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;directly
+
+&nbsp;&nbsp;&nbsp;&nbsp;check_abstract() requires a class name&nbsp;&nbsp;&nbsp;&nbsp;The argument was a reference that is
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or blessed object, got TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;not an object.&nbsp;&nbsp;Pass $class or $self.
+
+&nbsp;&nbsp;&nbsp;&nbsp;check_abstract() requires a defined&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The argument was undef or &#39;&#39;.&nbsp;&nbsp;This
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;usually means &quot;my $class = shift;&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is missing from your new().
+
+=cut</pre></td></tr>
+<tr><td class="h">567</td><td colspan="6"></td></tr><tr><td class="h">568</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub check_abstract {</td></tr>
+<tr><td class="h">569</td><td><div class="c3">57</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L569">57</a></div></td><td><div>68247</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($invocant) = @_;</td></tr>
+<tr><td class="h">570</td><td colspan="6"></td></tr><tr><td class="h">571</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Same rules as new(), minus the bless: the caller builds the object.</td></tr>
+<tr><td class="h">572</td><td><div class="c3">57</div></td><td></td><td></td><td></td><td><div>43</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_enforce(_resolve_class(&#39;check&#39;, $invocant));</td></tr>
+<tr><td class="h">573</td><td colspan="6"></td></tr><tr><td class="h">574</td><td><div class="c3">29</div></td><td></td><td></td><td></td><td><div>32</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;</td></tr>
+<tr><td class="h">575</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">576</td><td colspan="6"></td></tr><tr><td class="h">577 - 661</td><td colspan="5"></td><td class="s"><pre>=head2 is_abstract
+
+&nbsp;&nbsp;&nbsp;&nbsp;my $yes_or_no = SomeClass-&gt;is_abstract;
+&nbsp;&nbsp;&nbsp;&nbsp;my $yes_or_no = $obj-&gt;is_abstract;
+&nbsp;&nbsp;&nbsp;&nbsp;my $yes_or_no = Class::Abstract-&gt;is_abstract(&#39;SomeClass&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;my $yes_or_no = Class::Abstract-&gt;is_abstract($obj);
+
+Tells you whether a class is abstract.&nbsp;&nbsp;It returns C&lt;1&gt; (yes) or C&lt;0&gt;
+(no).
+
+A class is abstract only when C&lt;Class::Abstract&gt; is in its B&lt;own&gt;
+C&lt;@ISA&gt;, or when the class B&lt;is&gt; C&lt;Class::Abstract&gt;.&nbsp;&nbsp;A child of an
+abstract class is B&lt;not&gt; abstract, so C&lt;is_abstract()&gt; returns C&lt;0&gt; for
+it.
+
+Every class below C&lt;Class::Abstract&gt; can call this method.
+
+=head3 ARGUMENTS
+
+=over 4
+
+=item C&lt;$self&gt;
+
+Required.&nbsp;&nbsp;The class name or object on the left of the arrow.&nbsp;&nbsp;If no target is given (see
+below), this is the class that is checked.
+
+=item C&lt;$target&gt; (optional)
+
+A class name or an object to check B&lt;instead of&gt; the invocant.&nbsp;&nbsp;This is
+how you ask about any class: C&lt;&lt; Class::Abstract-&gt;is_abstract(&#39;Dog&#39;) &gt;&gt;.
+If C&lt;$target&gt; is C&lt;undef&gt;, it is treated as &quot;not given&quot;.
+
+=back
+
+=head3 RETURNS
+
+The integer C&lt;1&gt; if the class is abstract, otherwise the integer C&lt;0&gt;.
+
+A class name that does not exist (for example, a spelling mistake) gives
+C&lt;0&gt;, not an error.
+
+=head3 SIDE EFFECTS
+
+None.&nbsp;&nbsp;Asking about a class that does not exist does B&lt;not&gt; create it.
+
+=head3 EXAMPLE
+
+&nbsp;&nbsp;&nbsp;&nbsp;Animal-&gt;is_abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 1
+&nbsp;&nbsp;&nbsp;&nbsp;Dog-&gt;is_abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 0
+
+&nbsp;&nbsp;&nbsp;&nbsp;my $rex = Dog-&gt;new(name =&gt; &#39;Rex&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;$rex-&gt;is_abstract;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 0 (asks about Dog)
+
+&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract-&gt;is_abstract(&#39;Animal&#39;);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 1
+&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract-&gt;is_abstract($rex);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 0 (asks about Dog)
+&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract-&gt;is_abstract(&#39;Anmial&#39;);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 0 (spelling mistake: no such class)
+
+=head3 API SPECIFICATION
+
+=head4 Input
+
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self&nbsp;&nbsp;&nbsp;=&gt; { type =&gt; &#39;string|object&#39;, optional =&gt; 0, min =&gt; 1 },
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target =&gt; { type =&gt; &#39;string|object&#39;, optional =&gt; 1, min =&gt; 1 },
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+=head4 Output
+
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type =&gt; &#39;integer&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min&nbsp;&nbsp;=&gt; 0,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max&nbsp;&nbsp;=&gt; 1,
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+=head3 MESSAGES
+
+&nbsp;&nbsp;&nbsp;&nbsp;Message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;What it means / What to do
+&nbsp;&nbsp;&nbsp;&nbsp;-------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--------------------------
+&nbsp;&nbsp;&nbsp;&nbsp;is_abstract() requires a class name or&nbsp;&nbsp;&nbsp;&nbsp;The class to check was a reference
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object invocant, got TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;that is not an object.
+
+&nbsp;&nbsp;&nbsp;&nbsp;is_abstract() requires a class name or&nbsp;&nbsp;&nbsp;&nbsp;The class to check was undef or &#39;&#39;.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object invocant
+
+=cut</pre></td></tr>
+<tr><td class="h">662</td><td colspan="6"></td></tr><tr><td class="h">663</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub is_abstract {</td></tr>
+<tr><td class="h">664</td><td><div class="c3">87</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L664">87</a></div></td><td><div>77579</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $target) = @_;</td></tr>
+<tr><td class="h">665</td><td colspan="6"></td></tr><tr><td class="h">666</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# An explicit target (Class::Abstract-&gt;is_abstract(&#39;Foo&#39;) or ($obj))</td></tr>
+<tr><td class="h">667</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# wins; otherwise check the invocant itself.&nbsp;&nbsp;Both go through the same</td></tr>
+<tr><td class="h">668</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# resolver, so an object argument is checked by its class, not by its</td></tr>
+<tr><td class="h">669</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# stringification (&#39;Foo=HASH(0x...)&#39;).</td></tr>
+<tr><td class="h">670</td><td><div class="c3">87</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L670">100</a></div></td><td></td><td></td><td><div>65</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $class = _resolve_class(&#39;is_abstract&#39;, defined($target) ? $target : $self);</td></tr>
+<tr><td class="h">671</td><td colspan="6"></td></tr><tr><td class="h">672</td><td><div class="c3">73</div></td><td></td><td></td><td></td><td><div>47</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return _is_direct_abstract($class);</td></tr>
+<tr><td class="h">673</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">674</td><td colspan="6"></td></tr><tr><td class="h">675</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">676</td><td></td><td></td><td></td><td></td><td></td><td class="s"># PRIVATE SUBROUTINES</td></tr>
+<tr><td class="h">677</td><td></td><td></td><td></td><td></td><td></td><td class="s">#</td></tr>
+<tr><td class="h">678</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Not exported and not part of the API.&nbsp;&nbsp;The white-box tests (t/function.t,</td></tr>
+<tr><td class="h">679</td><td></td><td></td><td></td><td></td><td></td><td class="s"># t/edge_cases.t, t/mutant_killers.t) call and spy on them directly, which</td></tr>
+<tr><td class="h">680</td><td></td><td></td><td></td><td></td><td></td><td class="s"># is why they are plain named subs called by name: a spy installed on the</td></tr>
+<tr><td class="h">681</td><td></td><td></td><td></td><td></td><td></td><td class="s"># glob is then seen by every caller.</td></tr>
+<tr><td class="h">682</td><td></td><td></td><td></td><td></td><td></td><td class="s"># ---------------------------------------------------------------------------</td></tr>
+<tr><td class="h">683</td><td colspan="6"></td></tr><tr><td class="h">684</td><td></td><td></td><td></td><td></td><td></td><td class="s"># _fail</td></tr>
+<tr><td class="h">685</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: The single place this module raises an error, so message</td></tr>
+<tr><td class="h">686</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text lives only in %MESSAGE.</td></tr>
+<tr><td class="h">687</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: $key&nbsp;&nbsp;-- a key of %MESSAGE.</td></tr>
+<tr><td class="h">688</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@args -- sprintf arguments for that message.</td></tr>
+<tr><td class="h">689</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit status&nbsp;&nbsp;: Never returns.</td></tr>
+<tr><td class="h">690</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects : Throws via croak.&nbsp;&nbsp;Every frame between here and the user</td></tr>
+<tr><td class="h">691</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is in this package (or a subclass), so Carp reports the</td></tr>
+<tr><td class="h">692</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user&#39;s line, not ours.</td></tr>
+<tr><td class="h">693</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Notes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: A Readonly hash returns undef for a missing key rather</td></tr>
+<tr><td class="h">694</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;than dying, so a mistyped key would croak with an empty</td></tr>
+<tr><td class="h">695</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message.&nbsp;&nbsp;Report the bad key instead.</td></tr>
+<tr><td class="h">696</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _fail {</td></tr>
+<tr><td class="h">697</td><td><div class="c3">142</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L697">142</a></div></td><td><div>46266</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($key, @args) = @_;</td></tr>
+<tr><td class="h">698</td><td colspan="6"></td></tr><tr><td class="h">699</td><td><div class="c3">142</div></td><td></td><td></td><td></td><td><div>156</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $template = $MESSAGE{$key};</td></tr>
+<tr><td class="h">700</td><td><div class="c3">142</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L700">100</a></div></td><td></td><td></td><td><div>349</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;($template, @args) = ($MESSAGE{&#39;internal:key&#39;}, $key) unless defined $template;</td></tr>
+<tr><td class="h">701</td><td colspan="6"></td></tr><tr><td class="h">702</td><td><div class="c3">142</div></td><td></td><td></td><td></td><td><div>696</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;croak sprintf($template, @args);</td></tr>
+<tr><td class="h">703</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">704</td><td colspan="6"></td></tr><tr><td class="h">705</td><td></td><td></td><td></td><td></td><td></td><td class="s"># _resolve_class</td></tr>
+<tr><td class="h">706</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Turn an invocant into a validated class name, applying one</td></tr>
+<tr><td class="h">707</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set of rules for every public routine.</td></tr>
+<tr><td class="h">708</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: $routine&nbsp;&nbsp;-- message-key prefix: &#39;new&#39;, &#39;check&#39; or</td></tr>
+<tr><td class="h">709</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;is_abstract&#39;.</td></tr>
+<tr><td class="h">710</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$invocant -- class name, blessed object, or junk.</td></tr>
+<tr><td class="h">711</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit status&nbsp;&nbsp;: Returns a defined, non-empty class-name string.</td></tr>
+<tr><td class="h">712</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Croaks if $invocant is an unblessed reference, undef or &#39;&#39;.</td></tr>
+<tr><td class="h">713</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects : None.</td></tr>
+<tr><td class="h">714</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Notes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: blessed() is tested with defined(), not truth, because an</td></tr>
+<tr><td class="h">715</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object blessed into package &#39;0&#39; has blessed() eq &#39;0&#39;</td></tr>
+<tr><td class="h">716</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(and ref() eq &#39;0&#39;), which plain truth tests misread.</td></tr>
+<tr><td class="h">717</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _resolve_class {</td></tr>
+<tr><td class="h">718</td><td><div class="c3">354</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L718">354</a></div></td><td><div>10410</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($routine, $invocant) = @_;</td></tr>
+<tr><td class="h">719</td><td colspan="6"></td></tr><tr><td class="h">720</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# An object stands in for its class.&nbsp;&nbsp;Any other reference is a caller</td></tr>
+<tr><td class="h">721</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# error, never a class name.</td></tr>
+<tr><td class="h">722</td><td><div class="c3">354</div></td><td></td><td></td><td></td><td><div>189</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $pkg = blessed($invocant);</td></tr>
+<tr><td class="h">723</td><td><div class="c3">354</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L723">100</a></div><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L723">100</a></div></td><td></td><td></td><td><div>352</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (defined $pkg) {</td></tr>
+<tr><td class="h">724</td><td><div class="c3">32</div></td><td></td><td></td><td></td><td><div>20</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$invocant = $pkg;</td></tr>
+<tr><td class="h">725</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif (ref $invocant) {</td></tr>
+<tr><td class="h">726</td><td><div class="c3">51</div></td><td></td><td></td><td></td><td><div>36</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_fail(&quot;${routine}:unblessed&quot;, ref $invocant);</td></tr>
+<tr><td class="h">727</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">728</td><td colspan="6"></td></tr><tr><td class="h">729</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# undef cannot name a package, and &#39;&#39; would silently mean main::.</td></tr>
+<tr><td class="h">730</td><td><div class="c3">303</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L730">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L730">100</a></div></td><td></td><td><div>346</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_fail(&quot;${routine}:undef&quot;) unless defined($invocant) &amp;&amp; length($invocant);</td></tr>
+<tr><td class="h">731</td><td colspan="6"></td></tr><tr><td class="h">732</td><td><div class="c3">267</div></td><td></td><td></td><td></td><td><div>148</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $invocant;</td></tr>
+<tr><td class="h">733</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">734</td><td colspan="6"></td></tr><tr><td class="h">735</td><td></td><td></td><td></td><td></td><td></td><td class="s"># _bypass_active</td></tr>
+<tr><td class="h">736</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Decide whether enforcement is switched off.</td></tr>
+<tr><td class="h">737</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: None (reads $BYPASS, %config, $ENV{HARNESS_ACTIVE}).</td></tr>
+<tr><td class="h">738</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit status&nbsp;&nbsp;: 1 if any bypass applies, else 0.</td></tr>
+<tr><td class="h">739</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects : None.</td></tr>
+<tr><td class="h">740</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Notes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: $BYPASS is checked first and short-circuits, so it wins</td></tr>
+<tr><td class="h">741</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;over harness_bypass (documented under LIMITATIONS).</td></tr>
+<tr><td class="h">742</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _bypass_active {</td></tr>
+<tr><td class="h">743</td><td><div class="c3">206</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L743">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L743">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L743">206</a></div></td><td><div>5956</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ($BYPASS || ($config{harness_bypass} &amp;&amp; $ENV{HARNESS_ACTIVE})) ? 1 : 0;</td></tr>
+<tr><td class="h">744</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">745</td><td colspan="6"></td></tr><tr><td class="h">746</td><td></td><td></td><td></td><td></td><td></td><td class="s"># _enforce</td></tr>
+<tr><td class="h">747</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Croak if $class is directly abstract and no bypass is on.</td></tr>
+<tr><td class="h">748</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: $class -- an already-validated class name.</td></tr>
+<tr><td class="h">749</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit status&nbsp;&nbsp;: Returns $class on success; croaks otherwise.</td></tr>
+<tr><td class="h">750</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects : None.</td></tr>
+<tr><td class="h">751</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Notes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: The bypass test runs first so that, with a bypass on,</td></tr>
+<tr><td class="h">752</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_is_direct_abstract() is never called.&nbsp;&nbsp;t/function.t</td></tr>
+<tr><td class="h">753</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;counts those calls, so keep this order.</td></tr>
+<tr><td class="h">754</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _enforce {</td></tr>
+<tr><td class="h">755</td><td><div class="c3">190</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L755">190</a></div></td><td><div>4822</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class) = @_;</td></tr>
+<tr><td class="h">756</td><td><div class="c3">190</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L756">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L756">100</a></div></td><td></td><td><div>96</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_fail(&#39;abstract&#39;, $class) if !_bypass_active() &amp;&amp; _is_direct_abstract($class);</td></tr>
+<tr><td class="h">757</td><td><div class="c3">144</div></td><td></td><td></td><td></td><td><div>62</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $class;</td></tr>
+<tr><td class="h">758</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">759</td><td colspan="6"></td></tr><tr><td class="h">760</td><td></td><td></td><td></td><td></td><td></td><td class="s"># _direct_isa</td></tr>
+<tr><td class="h">761</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Return a package&#39;s own @ISA without creating the package.</td></tr>
+<tr><td class="h">762</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The obvious @{&quot;${class}::ISA&quot;} autovivifies the stash, so a</td></tr>
+<tr><td class="h">763</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mere is_abstract(&#39;Typo::Name&#39;) would conjure an empty</td></tr>
+<tr><td class="h">764</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;package into existence.</td></tr>
+<tr><td class="h">765</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: $class -- package name string.&nbsp;&nbsp;&#39;&#39; means main::.</td></tr>
+<tr><td class="h">766</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit status&nbsp;&nbsp;: An arrayref.&nbsp;&nbsp;It is the live @ISA if the package and its</td></tr>
+<tr><td class="h">767</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@ISA exist, otherwise a new empty arrayref.</td></tr>
+<tr><td class="h">768</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects : None.&nbsp;&nbsp;The symbol table is only read, never written.</td></tr>
+<tr><td class="h">769</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Notes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: The old &quot;&#39;&quot; package separator (Foo&#39;Bar) is not recognised.</td></tr>
+<tr><td class="h">770</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _direct_isa {</td></tr>
+<tr><td class="h">771</td><td><div class="c3">278</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L771">278</a></div></td><td><div>7426</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class) = @_;</td></tr>
+<tr><td class="h">772</td><td colspan="6"></td></tr><tr><td class="h">773</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Walk the stash tree one &#39;::&#39; segment at a time from main::.&nbsp;&nbsp;Empty</td></tr>
+<tr><td class="h">774</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# segments (from &#39;::Foo&#39; or &#39;Foo::&#39;) are skipped, as Perl skips them.</td></tr>
+<tr><td class="h">775</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# A stash entry may hold a non-glob (e.g. an optimised constant), so</td></tr>
+<tr><td class="h">776</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# check that each entry really is a glob before dereferencing it.</td></tr>
+<tr><td class="h">777</td><td><div class="c3">278</div></td><td></td><td></td><td></td><td><div>140</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $stash = \%main::;</td></tr>
+<tr><td class="h">778</td><td><div class="c3">278</div><div class="c3">2528</div></td><td></td><td></td><td></td><td><div>292</div><div>870</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach my $segment (grep { length } split /::/, $class) {</td></tr>
+<tr><td class="h">779</td><td><div class="c3">522</div></td><td></td><td></td><td></td><td><div>429</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $glob = $stash-&gt;{&quot;${segment}::&quot;};</td></tr>
+<tr><td class="h">780</td><td><div class="c3">522</div><div class="c3">504</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L780">100</a></div></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L780">100</a></div></td><td></td><td><div>387</div><div>287</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$stash = (defined($glob) &amp;&amp; ref(\$glob) eq &#39;GLOB&#39;) ? *{$glob}{HASH} : undef;</td></tr>
+<tr><td class="h">781</td><td><div class="c3">522</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L781">100</a></div></td><td></td><td></td><td><div>382</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;last unless $stash;</td></tr>
+<tr><td class="h">782</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">783</td><td colspan="6"></td></tr><tr><td class="h">784</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# The package exists only if every segment resolved.&nbsp;&nbsp;*ISA{ARRAY} is</td></tr>
+<tr><td class="h">785</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# undef until @ISA is first used, so fall back to an empty list.</td></tr>
+<tr><td class="h">786</td><td><div class="c3">278</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L786">100</a></div></td><td></td><td></td><td><div>283</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $isa = $stash ? $stash-&gt;{ISA} : undef;</td></tr>
+<tr><td class="h">787</td><td><div class="c3">278</div></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--condition.html#L787">100</a></div></td><td></td><td><div>302</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (defined($isa) &amp;&amp; ref(\$isa) eq &#39;GLOB&#39; &amp;&amp; *{$isa}{ARRAY}) || [];</td></tr>
+<tr><td class="h">788</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">789</td><td colspan="6"></td></tr><tr><td class="h">790</td><td></td><td></td><td></td><td></td><td></td><td class="s"># _is_direct_abstract</td></tr>
+<tr><td class="h">791</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Decide whether a class is directly abstract: it is</td></tr>
+<tr><td class="h">792</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class::Abstract, or Class::Abstract is in its own @ISA.</td></tr>
+<tr><td class="h">793</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: $class -- package name string, or undef.</td></tr>
+<tr><td class="h">794</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit status&nbsp;&nbsp;: Exactly 1 or 0 (never undef or &#39;&#39;); the mutation tests in</td></tr>
+<tr><td class="h">795</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t/mutant_killers.t rely on these exact integers.</td></tr>
+<tr><td class="h">796</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects : None.&nbsp;&nbsp;$_ is localised by grep.</td></tr>
+<tr><td class="h">797</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Notes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Intentionally shallow: a subclass of an abstract class is</td></tr>
+<tr><td class="h">798</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;concrete unless it opts in too.&nbsp;&nbsp;Undefined @ISA elements</td></tr>
+<tr><td class="h">799</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are skipped so that they do not warn.</td></tr>
+<tr><td class="h">800</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _is_direct_abstract {</td></tr>
+<tr><td class="h">801</td><td><div class="c3">279</div></td><td></td><td></td><td><div class="c3"><a href="lib-Class-Abstract-pm--subroutine.html#L801">279</a></div></td><td><div>52606</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($class) = @_;</td></tr>
+<tr><td class="h">802</td><td colspan="6"></td></tr><tr><td class="h">803</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# undef names nothing; Class::Abstract itself must never be built;</td></tr>
+<tr><td class="h">804</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# anything else is abstract iff we sit directly in its @ISA.</td></tr>
+<tr><td class="h">805</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $abstract = !defined($class)&nbsp;&nbsp;? 0</td></tr>
+<tr><td class="h">806</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ($class eq $SELF)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? 1</td></tr>
+<tr><td class="h">807</td><td><div class="c3">279</div><div class="c3">100230</div><div class="c3">264</div></td><td><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L807">100</a></div><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L807">100</a></div><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L807">100</a></div><div class="c3" title="T/F"><a href="lib-Class-Abstract-pm--branch.html#L807">100</a></div></td><td></td><td></td><td><div>208</div><div>49285</div><div>131</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: (grep { defined($_) &amp;&amp; ($_ eq $SELF) } @{ _direct_isa($class) }) ? 1</td></tr>
+<tr><td class="h">808</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 0;</td></tr>
+<tr><td class="h">809</td><td colspan="6"></td></tr><tr><td class="h">810</td><td><div class="c3">278</div></td><td></td><td></td><td></td><td><div>280</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $abstract;</td></tr>
+<tr><td class="h">811</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">812</td><td colspan="6"></td></tr><tr><td class="h">813</td><td></td><td></td><td></td><td></td><td></td><td class="s">1;</td></tr>
+<tr><td class="h">814</td><td colspan="6"></td></tr></table>
 </body>
 </html>
