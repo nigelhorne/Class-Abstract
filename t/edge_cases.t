@@ -825,4 +825,46 @@ subtest 'odd package names are inert and not autovivified' => sub {
 	ok !exists $EC::{'Evil; system("false")::'}, 'no stash created for odd name';
 };
 
+
+# Purpose: back the POD's ENCODING section -- non-ASCII and emoji class
+# names work when they are character strings; raw UTF-8 bytes do not match
+subtest 'non-ASCII and emoji class names (POD: ENCODING)' => sub {
+	plan skip_all => 'Unicode package names need Perl 5.16' if $] < 5.016;
+	plan tests => 6;
+
+	use utf8;    # lexical: only the literals in this block are characters
+
+	my %names = (
+		latin => "EC::Caf\x{e9}",
+		cjk   => "EC::\x{65e5}\x{672c}",
+		emoji => "EC::\x{1F436}",
+	);
+	{
+		no strict 'refs';
+		@{"$names{$_}::ISA"} = ($CLASS_ABSTRACT) for keys %names;
+	}
+
+	# Each name is abstract and new() croaks with the name in the message
+	foreach my $key (sort keys %names) {
+		is( Class::Abstract->is_abstract($names{$key}), $TRUE, "$key name is abstract" );
+	}
+	throws_ok { enforcement_on { Class::Abstract::new($names{emoji}) } }
+		qr/Cannot instantiate abstract class \Q$names{emoji}\E directly/,
+		'error message contains the emoji class name';
+
+	# The same name as undecoded UTF-8 bytes is a different package
+	my $bytes = $names{latin};
+	utf8::encode($bytes);
+	is( Class::Abstract->is_abstract($bytes), $FALSE,
+		'raw UTF-8 bytes do not match the character-string name' );
+
+	# A concrete child with a non-ASCII name can be built
+	{
+		no strict 'refs';
+		@{"$names{latin}::Chat::ISA"} = ($names{latin});
+	}
+	my $obj = enforcement_on { "$names{latin}::Chat"->new };
+	is( ref($obj), "$names{latin}::Chat", 'concrete non-ASCII child is built' );
+};
+
 done_testing;
