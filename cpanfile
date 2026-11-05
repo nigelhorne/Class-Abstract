@@ -12,7 +12,9 @@ on 'test' => sub {
 	requires 'Test::Memory::Cycle';
 	requires 'Test::Mockingbird', '0.14';
 	requires 'Test::Most';
+	requires 'Test::Permissions';
 	requires 'Test::Returns';
+	requires 'Test::Without::Module';
 };
 
 on 'develop' => sub {
