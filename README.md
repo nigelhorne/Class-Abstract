@@ -4,7 +4,7 @@ Class::Abstract - Stop code from making objects of a class that is only a templa
 
 ## Version
 
-Version 0.02
+Version 0.03
 
 ## Synopsis
 
@@ -255,6 +255,10 @@ be its own parent.
 unusual code, such as a `BEGIN` block inside a string `eval`).  Without
 this rule, the module would change `@main::ISA` by mistake.
 
+It does not change the global variables `$_`, `$@` or `$!`, and it
+does not touch an `alarm()` timer.  (Before version 0.03 it cleared
+`$@`.)
+
 #### Example
 
 ```perl
@@ -341,6 +345,9 @@ A new, empty hash reference, blessed into the class.
 
 None, except that `bless` creates the package in Perl's symbol table if
 it did not exist yet.  (The check itself never creates a package.)
+
+It does not change the global variables `$_`, `$@` or `$!`, and it
+does not touch an `alarm()` timer.
 
 #### Example
 
@@ -429,13 +436,16 @@ back.
 
 #### Returns
 
-Nothing (`undef`) if the class is concrete or a bypass is on.  Otherwise
-it dies.
+Nothing if the class is concrete or a bypass is on: `undef` in scalar
+context, or an empty list in list context.  Otherwise it dies.
 
 #### Side Effects
 
 None.  It obeys `$BYPASS` and `harness_bypass` in exactly the same way
 as `new()`.
+
+It does not change the global variables `$_`, `$@` or `$!`, and it
+does not touch an `alarm()` timer.
 
 #### Example
 
@@ -537,6 +547,9 @@ A class name that does not exist (for example, a spelling mistake) gives
 #### Side Effects
 
 None.  Asking about a class that does not exist does **not** create it.
+
+It does not change the global variables `$_`, `$@` or `$!`, and it
+does not touch an `alarm()` timer.
 
 #### Example
 

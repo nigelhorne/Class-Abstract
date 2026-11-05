@@ -9,15 +9,13 @@ use Readonly;
 use Scalar::Util qw(blessed);
 use Return::Set  qw(set_return);
 
-=encoding utf8
-
 =head1 NAME
 
 Class::Abstract - Stop code from making objects of a class that is only a template
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =head1 SYNOPSIS
 
@@ -217,7 +215,7 @@ the old behaviour back, put this near the top of your test files:
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -1103,6 +1101,8 @@ Makes a method callable only from its own class and its child classes.
 =head1 AUTHOR
 
 Nigel Horne, C<< <njh at nigelhorne.com> >>
+
+=encoding utf8
 
 =head1 FORMAL SPECIFICATION
 

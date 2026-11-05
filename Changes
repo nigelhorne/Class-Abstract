@@ -1,6 +1,6 @@
 Revision history for Class-Abstract
 
-0.03
+0.03	Thu Nov  5 09:51:37 AM EST 2026
 	[ Incompatible Changes ]
 	- $config{harness_bypass} now defaults to 0: enforcement is no longer
 	  switched off when HARNESS_ACTIVE is set, so test suites catch
