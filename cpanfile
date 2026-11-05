@@ -10,7 +10,7 @@ requires 'Scalar::Util';
 on 'test' => sub {
 	requires 'IPC::System::Simple';
 	requires 'Test::Memory::Cycle';
-	requires 'Test::Mockingbird';
+	requires 'Test::Mockingbird', '0.14';
 	requires 'Test::Most';
 	requires 'Test::Returns';
 };
