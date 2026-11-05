@@ -307,6 +307,10 @@ this rule, the module would change C<@main::ISA> by mistake.
 
 =back
 
+It does not change the global variables C<$_>, C<$@> or C<$!>, and it
+does not touch an C<alarm()> timer.  (Before version 0.03 it cleared
+C<$@>.)
+
 =head3 EXAMPLE
 
     package Vehicle;
@@ -358,7 +362,14 @@ sub import {
 		push @{"${caller}::ISA"}, $SELF;
 	}
 
-	return set_return($class, $IMPORT_SCHEMA);
+	# set_return() validates through code that clears $@, which would wipe
+	# an error the caller has not looked at yet.  Restore it afterwards.
+	# (Not "local $@": on Perl < 5.14 that can lose a propagating die.)
+	my $saved_error = $@;
+	my $result      = set_return($class, $IMPORT_SCHEMA);
+	$@ = $saved_error;    ## no critic (RequireLocalizedPunctuationVars)
+
+	return $result;
 }
 
 =head2 new
@@ -410,6 +421,9 @@ A new, empty hash reference, blessed into the class.
 
 None, except that C<bless> creates the package in Perl's symbol table if
 it did not exist yet.  (The check itself never creates a package.)
+
+It does not change the global variables C<$_>, C<$@> or C<$!>, and it
+does not touch an C<alarm()> timer.
 
 =head3 EXAMPLE
 
@@ -505,13 +519,16 @@ that is not an object.
 
 =head3 RETURNS
 
-Nothing (C<undef>) if the class is concrete or a bypass is on.  Otherwise
-it dies.
+Nothing if the class is concrete or a bypass is on: C<undef> in scalar
+context, or an empty list in list context.  Otherwise it dies.
 
 =head3 SIDE EFFECTS
 
 None.  It obeys C<$BYPASS> and C<harness_bypass> in exactly the same way
 as C<new()>.
+
+It does not change the global variables C<$_>, C<$@> or C<$!>, and it
+does not touch an C<alarm()> timer.
 
 =head3 EXAMPLE
 
@@ -618,6 +635,9 @@ C<0>, not an error.
 =head3 SIDE EFFECTS
 
 None.  Asking about a class that does not exist does B<not> create it.
+
+It does not change the global variables C<$_>, C<$@> or C<$!>, and it
+does not touch an C<alarm()> timer.
 
 =head3 EXAMPLE
 
