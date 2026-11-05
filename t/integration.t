@@ -673,7 +673,7 @@ subtest 'end-to-end: blessed abstract instance as new() invocant causes croak' =
 subtest 'end-to-end: enforcement in production context (no harness, default settings)' => sub {
 	plan tests => 3;
 
-	# Production: BYPASS=0, harness_bypass=1 (default), HARNESS_ACTIVE='' (no harness)
+	# Production: BYPASS=0, harness_bypass=1 (pre-0.03 default), HARNESS_ACTIVE='' (no harness)
 	{
 		local $Class::Abstract::BYPASS                 = 0;
 		local $Class::Abstract::config{harness_bypass} = 1;

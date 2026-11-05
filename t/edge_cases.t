@@ -782,4 +782,47 @@ subtest '$_ not clobbered by any public method under varied inputs' => sub {
 	}
 };
 
+# ===========================================================================
+# SECTION 15: Boundaries fixed in the 0.03 refactor
+# ===========================================================================
+
+# Purpose: an object blessed into package '0' has ref() eq blessed() eq '0'
+# (both false).  Truth-based checks used to misread it as a plain string and
+# then try to bless into a reference.
+subtest 'object blessed into package "0" is a valid invocant' => sub {
+	plan tests => 3;
+
+	my $obj = bless {}, $config{str_zero};
+
+	my $copy;
+	lives_ok { $copy = Class::Abstract::new($obj) } 'new($obj_in_0) lives';
+	is ref($copy), $config{str_zero}, 'new($obj_in_0) blesses into "0"';
+	is( Class::Abstract->is_abstract($obj), $FALSE, 'is_abstract($obj_in_0) = 0' );
+};
+
+# Purpose: an undef element in @ISA must not emit "uninitialized" warnings
+subtest 'undef element in @ISA is skipped silently' => sub {
+	plan tests => 2;
+
+	# Perl's own @ISA magic warns while storing undef; that is not under test
+	no warnings qw(once uninitialized);
+	local @EC::HoleyISA::ISA = (undef, $CLASS_ABSTRACT);
+
+	my @warnings;
+	local $SIG{__WARN__} = sub { push @warnings, @_ };
+	is( Class::Abstract->is_abstract('EC::HoleyISA'), $TRUE,
+		'Class::Abstract found after an undef @ISA entry' );
+	is scalar(@warnings), 0, 'no warnings emitted';
+};
+
+# Purpose: hostile-looking names are looked up, never evaluated or created
+subtest 'odd package names are inert and not autovivified' => sub {
+	plan tests => 4;
+
+	foreach my $name ($config{str_spaces}, 'EC::Evil; system("false")', "EC::Nul\0Byte") {
+		is( Class::Abstract->is_abstract($name), $FALSE, 'is_abstract(odd name) = 0' );
+	}
+	ok !exists $EC::{'Evil; system("false")::'}, 'no stash created for odd name';
+};
+
 done_testing;

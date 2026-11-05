@@ -682,4 +682,102 @@ subtest 'module state -- $BYPASS and %config contain no memory cycles' => sub {
 		'%Class::Abstract::config has no memory cycles';
 };
 
+# ===========================================================================
+# Private helpers introduced by the 0.03 refactor
+# ===========================================================================
+
+# Purpose: _direct_isa returns the live @ISA for existing packages and an
+# empty arrayref otherwise, resolving nested, leading-'::' and 'main::' names
+subtest '_direct_isa -- name resolution without autovivification' => sub {
+	plan tests => 7;
+
+	is_deeply Class::Abstract::_direct_isa($config{pkg_abstract}), [$CLASS_ABSTRACT],
+		'_direct_isa("FT::Abstract") is its @ISA';
+	is_deeply Class::Abstract::_direct_isa("::$config{pkg_abstract}"), [$CLASS_ABSTRACT],
+		'leading "::" is ignored';
+	is_deeply Class::Abstract::_direct_isa("main::$config{pkg_abstract}"), [$CLASS_ABSTRACT],
+		'"main::" prefix resolves to the same package';
+
+	# The returned ref is the live array, not a copy
+	ok \@FT::Abstract::ISA == Class::Abstract::_direct_isa($config{pkg_abstract}),
+		'returns a reference to the live @ISA';
+
+	{
+		local @main::ISA = ('Some::Base');
+		is_deeply Class::Abstract::_direct_isa(''), ['Some::Base'],
+			'"" resolves to @main::ISA';
+	}
+
+	is_deeply Class::Abstract::_direct_isa('FT::Nope::Deeper'), [],
+		'unknown package gives []';
+	ok !exists $FT::{'Nope::'}, 'unknown package stash was not created';
+};
+
+# Purpose: _resolve_class returns the class for names and objects, and
+# croaks with routine-specific messages for junk
+subtest '_resolve_class -- accepts names and objects, rejects junk' => sub {
+	plan tests => 5;
+
+	is Class::Abstract::_resolve_class('new', $config{pkg_concrete}), $config{pkg_concrete},
+		'class name is returned unchanged';
+	is Class::Abstract::_resolve_class('new', bless({}, $config{pkg_concrete})), $config{pkg_concrete},
+		'object resolves to its class';
+	throws_ok { Class::Abstract::_resolve_class('new', []) }
+		$config{err_new_unblessed}, 'unblessed ref croaks with the routine\'s message';
+	throws_ok { Class::Abstract::_resolve_class('check', undef) }
+		$config{err_chk_undef}, 'undef croaks with the routine\'s message';
+	throws_ok { Class::Abstract::_resolve_class('is_abstract', '') }
+		$config{err_isabs_undef}, '"" croaks with the routine\'s message';
+};
+
+# Purpose: _bypass_active returns exact integers for every combination,
+# and $BYPASS wins over harness_bypass
+subtest '_bypass_active -- truth table' => sub {
+	plan tests => 4;
+
+	local $Class::Abstract::BYPASS                 = 0;
+	local $Class::Abstract::config{harness_bypass} = 0;
+	local $ENV{HARNESS_ACTIVE}                     = 1;
+	is Class::Abstract::_bypass_active(), $FALSE, 'no bypass when both off';
+
+	local $Class::Abstract::config{harness_bypass} = 1;
+	is Class::Abstract::_bypass_active(), $TRUE, 'harness bypass when harness_bypass && HARNESS_ACTIVE';
+
+	local $ENV{HARNESS_ACTIVE} = '';
+	is Class::Abstract::_bypass_active(), $FALSE, 'no bypass outside a harness';
+
+	local $Class::Abstract::BYPASS = 1;
+	local $Class::Abstract::config{harness_bypass} = 0;
+	is Class::Abstract::_bypass_active(), $TRUE, '$BYPASS wins regardless of harness_bypass';
+};
+
+# Purpose: _enforce returns its argument (chainable) and skips the
+# abstract check entirely when bypassed
+subtest '_enforce -- returns class; bypass skips _is_direct_abstract' => sub {
+	plan tests => 3;
+
+	is enforcement_on { Class::Abstract::_enforce($config{pkg_concrete}) }, $config{pkg_concrete},
+		'_enforce returns the class for a concrete class';
+
+	my $spy = spy 'Class::Abstract::_is_direct_abstract';
+	{
+		local $Class::Abstract::BYPASS = 1;
+		Class::Abstract::_enforce($config{pkg_abstract});
+	}
+	is scalar(@{ [ $spy->() ] }), $ZERO_CALLS, 'no _is_direct_abstract call under bypass';
+	restore_all();
+
+	throws_ok { enforcement_on { Class::Abstract::_enforce($config{pkg_abstract}) } }
+		$config{err_abstract}, '_enforce croaks for an abstract class';
+};
+
+# Purpose: _fail rejects unknown message keys (the Readonly hash croaks)
+subtest '_fail -- unknown message key names the key instead of an empty message' => sub {
+	plan tests => 1;
+
+	throws_ok { Class::Abstract::_fail('no_such_key') }
+		qr/internal error: unknown message key no_such_key/,
+		'_fail with an unknown key reports the bad key';
+};
+
 done_testing;

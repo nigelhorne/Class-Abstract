@@ -584,4 +584,67 @@ subtest 'is_abstract() -- croaks for undef or empty-string invocant' => sub {
 		'is_abstract("") croaks with documented message';
 };
 
+# ---------------------------------------------------------------------------
+# Regression tests for bugs fixed in the 0.03 refactor
+# ---------------------------------------------------------------------------
+
+# Purpose: an object passed as the explicit target is checked by its class.
+# Previously Class::Abstract->is_abstract($obj) checked the stringified
+# reference 'UT::Abstract=HASH(0x...)' and always returned 0.
+subtest 'is_abstract() -- object target is resolved to its class' => sub {
+	plan tests => 2;
+
+	# Build an abstract instance under bypass so we have one to ask about
+	my $abstract_obj = do { local $Class::Abstract::BYPASS = 1; UT::Abstract->new };
+	my $concrete_obj = UT::Concrete->new;
+
+	is( Class::Abstract->is_abstract($abstract_obj), $TRUE,
+		'Class::Abstract->is_abstract($abstract_obj) = 1' );
+	is( Class::Abstract->is_abstract($concrete_obj), $FALSE,
+		'Class::Abstract->is_abstract($concrete_obj) = 0' );
+};
+
+# Purpose: unblessed references are rejected, as new() and check_abstract()
+# already did.  Previously is_abstract([]) quietly checked class 'ARRAY'.
+subtest 'is_abstract() -- croaks for unblessed reference invocant or target' => sub {
+	plan tests => 3;
+
+	throws_ok { Class::Abstract::is_abstract([]) }
+		qr/is_abstract\(\) requires a class name or object invocant, got ARRAY/,
+		'is_abstract([]) croaks and names the reftype';
+
+	throws_ok { Class::Abstract->is_abstract({}) }
+		qr/is_abstract\(\) requires a class name or object invocant, got HASH/,
+		'Class::Abstract->is_abstract({}) croaks and names the reftype';
+
+	# undef target still means "check the invocant", not an error
+	is( UT::Abstract->is_abstract(undef), $TRUE,
+		'undef target falls back to the invocant' );
+};
+
+# Purpose: check_abstract() now reports the offending reftype, like new()
+subtest 'check_abstract() -- unblessed-ref message names the reftype' => sub {
+	plan tests => 1;
+
+	throws_ok { Class::Abstract::check_abstract(sub { 1 }) }
+		qr/check_abstract\(\) requires a class name or blessed object, got CODE/,
+		'check_abstract(sub {}) croaks with ", got CODE"';
+};
+
+# Purpose: asking about a package that does not exist must not create it.
+# Previously @{"${class}::ISA"} autovivified the stash.
+subtest 'is_abstract()/check_abstract() -- unknown package is not created' => sub {
+	plan tests => 4;
+
+	is( Class::Abstract->is_abstract('UT::Ghost::One'), $FALSE,
+		'is_abstract on an unknown package returns 0' );
+	ok( !exists $UT::{'Ghost::'},
+		'is_abstract did not create the UT::Ghost:: stash' );
+
+	lives_ok { enforcement_on { Class::Abstract::check_abstract('UT::Phantom') } }
+		'check_abstract on an unknown package does not croak';
+	ok( !exists $UT::{'Phantom::'},
+		'check_abstract did not create the UT::Phantom:: stash' );
+};
+
 done_testing();
