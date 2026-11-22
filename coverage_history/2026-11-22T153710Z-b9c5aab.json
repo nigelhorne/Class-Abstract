@@ -1,0 +1,259 @@
+{
+   "runs" : [
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361920.55075,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "-e",
+         "start" : 1795361914.32767,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361914.43761,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "-e",
+         "start" : 1795361914.43751,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361914.65656,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "t/00-load.t",
+         "start" : 1795361914.63472,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361914.91569,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "t/basic.t",
+         "start" : 1795361914.90485,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361915.18096,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "t/bypass.t",
+         "start" : 1795361915.17083,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361915.48408,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "t/edge_cases.t",
+         "start" : 1795361915.44065,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361915.81251,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "t/extended_tests.t",
+         "start" : 1795361915.78909,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361916.33808,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "t/function.t",
+         "start" : 1795361916.09341,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361918.4479,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "t/integration.t",
+         "start" : 1795361916.75375,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361918.79006,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "t/is_abstract.t",
+         "start" : 1795361918.78305,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361919.588,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "t/locales.t",
+         "start" : 1795361919.03703,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361919.18476,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "-e",
+         "start" : 1795361919.18454,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361919.36433,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "-e",
+         "start" : 1795361919.36412,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361919.54513,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "-e",
+         "start" : 1795361919.54491,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361919.86118,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "t/mutant_killers.t",
+         "start" : 1795361919.84758,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361920.12988,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "t/override_new.t",
+         "start" : 1795361920.12215,
+         "version" : "0.04"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Stop code from making objects of a class that is only a template",
+         "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
+         "finish" : 1795361920.43314,
+         "name" : "Class-Abstract",
+         "perl" : "5.40.5",
+         "run" : "t/unit.t",
+         "start" : 1795361920.38325,
+         "version" : "0.04"
+      }
+   ],
+   "summary" : {
+      "Total" : {
+         "branch" : {
+            "covered" : 30,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 30,
+            "uncoverable" : 0
+         },
+         "condition" : {
+            "covered" : 26,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 26,
+            "uncoverable" : 0
+         },
+         "statement" : {
+            "covered" : 72,
+            "percentage" : 100,
+            "total" : 72
+         },
+         "subroutine" : {
+            "covered" : 18,
+            "percentage" : 100,
+            "total" : 18
+         },
+         "total" : {
+            "covered" : 146,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 146,
+            "uncoverable" : 0
+         }
+      },
+      "lib/Class/Abstract.pm" : {
+         "branch" : {
+            "covered" : 30,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 30,
+            "uncoverable" : 0
+         },
+         "condition" : {
+            "covered" : 26,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 26,
+            "uncoverable" : 0
+         },
+         "statement" : {
+            "covered" : 72,
+            "percentage" : 100,
+            "total" : 72
+         },
+         "subroutine" : {
+            "covered" : 18,
+            "percentage" : 100,
+            "total" : 18
+         },
+         "total" : {
+            "covered" : 146,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 146,
+            "uncoverable" : 0
+         }
+      }
+   }
+}
