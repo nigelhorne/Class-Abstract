@@ -42,7 +42,7 @@
 		/* Show cursor points on the headers to show that they are clickable */
 		th { background-color: #f2f2f2; cursor: pointer; }
 		th.sortable {
-			cursor: pointer;
+			cursor: grab;
 			user-select: none;
 			white-space: nowrap;
 		}
@@ -54,6 +54,11 @@
 			color: #000;	/* dark for active */
 			font-weight: bold;
 		}
+		/* Prevent child spans intercepting drag events so enter/leave fire only on the th */
+		th.sortable .label,
+		th.sortable .arrow { pointer-events: none; }
+		th.col-dragging { opacity: 0.4; cursor: grabbing; }
+		th.col-drag-over { outline: 2px dashed #555; background-color: #d8eaff !important; }
 		.sparkline {
 			display: inline-block;
 			vertical-align: middle;
@@ -137,7 +142,7 @@
 	<img src="https://img.shields.io/badge/coverage-100%25-brightgreen" alt="Coverage badge">
 </div>
 <h1>Class::Abstract</h1><h2>Coverage Report</h2>
-<table data-sort-col="0" data-sort-order="asc">
+<table data-sort-col="0" data-sort-order="asc" data-table-id="coverage">
 <!-- Make the column headers clickable -->
 <thead>
 <tr>
@@ -153,7 +158,7 @@
 
 <tbody>
 
-<tr class="high"><td><a href="lib-Class-Abstract-pm.html" title="View coverage line by line" target="_blank">lib/Class/Abstract.pm</a> <a href="https://github.com/nigelhorne/Class-Abstract/blob/631da26cc18fe1135ed0ce3b0566f6be14715086/lib/Class/Abstract.pm" class="icon-link" title="View source on GitHub">&#128269;</a><canvas class="sparkline" width="80" height="20" data-points="100.0,94.9,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0"></canvas></td><td>100.0</td><td>100.0</td><td>100.0</td><td>100.0</td><td><span class="coverage-badge badge-good" title="Excellent coverage">100.0%</span></td><td class="neutral" title="Previous: 100.0%">&#9679; 0.0%</td></tr>
+<tr class="high"><td><a href="lib-Class-Abstract-pm.html" title="View coverage line by line" target="_blank">lib/Class/Abstract.pm</a> <a href="https://github.com/nigelhorne/Class-Abstract/blob/0dfb7f9993bd1a0aef1e1f408383d7636c6b243c/lib/Class/Abstract.pm" class="icon-link" title="View source on GitHub">&#128269;</a><canvas class="sparkline" width="80" height="20" data-points="94.9,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0"></canvas></td><td>100.0</td><td>100.0</td><td>100.0</td><td>100.0</td><td><span class="coverage-badge badge-good" title="Excellent coverage">100.0%</span></td><td class="neutral" title="Previous: 100.0%">&#9679; 0.0%</td></tr>
 <tr class="summary-row nosort"><td colspan="2"><strong>Summary</strong></td><td colspan="2">1 files</td><td colspan="3">Avg: 100%, Low: 0</td></tr>
 <tr class="high nosort"><td><strong>Total</strong></td><td>100.0</td><td>100.0</td><td>100.0</td><td>100.0</td><td colspan="2"><strong>100.0</strong></td></tr>
 </tbody></table>
@@ -202,8 +207,7 @@ function linearRegression(data) {
 }
 
 
-const dataPoints = [ { x: "2026-06-11T01:06:31+00:00", y: 93.4306569343066, delta: 0, url: "https://github.com/nigelhorne/Class-Abstract/commit/73e6595ce87edb271d2a284f80a707eec7235e8d", label: "2026-06-11T01:06:31+00:00", pointBackgroundColor: "gray", comment: "Update mutation results (2026-06-11 6a75bf7)" },
-{ x: "2026-06-11T11:44:16+00:00", y: 94.8905109489051, delta: 1.5, url: "https://github.com/nigelhorne/Class-Abstract/commit/ceec29741bfc302ad0062d46b1ff17c7dfc8a7b9", label: "2026-06-11T11:44:16+00:00", pointBackgroundColor: "green", comment: "Update mutation results (2026-06-11 491804c)" },
+const dataPoints = [ { x: "2026-06-11T11:44:16+00:00", y: 94.8905109489051, delta: 0, url: "https://github.com/nigelhorne/Class-Abstract/commit/ceec29741bfc302ad0062d46b1ff17c7dfc8a7b9", label: "2026-06-11T11:44:16+00:00", pointBackgroundColor: "gray", comment: "Update mutation results (2026-06-11 491804c)" },
 { x: "2026-06-11T12:19:57+00:00", y: 100, delta: 5.1, url: "https://github.com/nigelhorne/Class-Abstract/commit/ebac522a26081ed1a8fcba940e52c752f96c4a30", label: "2026-06-11T12:19:57+00:00", pointBackgroundColor: "green", comment: "Update mutation results (2026-06-11 ab461e2)" },
 { x: "2026-06-11T13:58:35+00:00", y: 100, delta: 0.0, url: "https://github.com/nigelhorne/Class-Abstract/commit/c23bede5ff4ef9ceb417b595bb07a88bf0aca626", label: "2026-06-11T13:58:35+00:00", pointBackgroundColor: "gray", comment: "Update mutation results (2026-06-11 d84f8bf)" },
 { x: "2026-06-26T02:07:10+00:00", y: 100, delta: 0.0, url: "https://github.com/nigelhorne/Class-Abstract/commit/c3e879bd935895e1bdb02e4af797721efec12c0a", label: "2026-06-26T02:07:10+00:00", pointBackgroundColor: "gray", comment: "Update mutation results (2026-06-26 42b94b9)" },
@@ -211,7 +215,9 @@ const dataPoints = [ { x: "2026-06-11T01:06:31+00:00", y: 93.4306569343066, delt
 { x: "2026-08-27T21:45:38-04:00", y: 100, delta: 0.0, url: "https://github.com/nigelhorne/Class-Abstract/commit/57bdc79f15a717a0ff46a7e3d173b4335fc534d7", label: "2026-08-27T21:45:38-04:00", pointBackgroundColor: "gray", comment: "Merge pull request #1 from nigelhorne/dependabot/github_actions/actions/cache-6" },
 { x: "2026-08-28T12:44:17-04:00", y: 100, delta: 0.0, url: "https://github.com/nigelhorne/Class-Abstract/commit/6567444405734795ac03ac6cbfce4e1d0b5c8934", label: "2026-08-28T12:44:17-04:00", pointBackgroundColor: "gray", comment: "Fix CI" },
 { x: "2026-09-27T01:56:01+00:00", y: 100, delta: 0.0, url: "https://github.com/nigelhorne/Class-Abstract/commit/578bdb8b927dab9403b5a2a85904f7ebe9d465e9", label: "2026-09-27T01:56:01+00:00", pointBackgroundColor: "gray", comment: "Update mutation results (2026-09-27 52927d1)" },
-{ x: "2026-10-27T02:59:22+00:00", y: 100, delta: 0.0, url: "https://github.com/nigelhorne/Class-Abstract/commit/cfe6f2f3c9e2ce90853f2bcf4192b1fad22d9a9b", label: "2026-10-27T02:59:22+00:00", pointBackgroundColor: "gray", comment: "Update mutation results (2026-10-27 bcf5304)" } ];
+{ x: "2026-10-27T02:59:22+00:00", y: 100, delta: 0.0, url: "https://github.com/nigelhorne/Class-Abstract/commit/cfe6f2f3c9e2ce90853f2bcf4192b1fad22d9a9b", label: "2026-10-27T02:59:22+00:00", pointBackgroundColor: "gray", comment: "Update mutation results (2026-10-27 bcf5304)" },
+{ x: "2026-11-05T09:02:45-05:00", y: 100, delta: 0.0, url: "https://github.com/nigelhorne/Class-Abstract/commit/631da26cc18fe1135ed0ce3b0566f6be14715086", label: "2026-11-05T09:02:45-05:00", pointBackgroundColor: "gray", comment: "More function tests" },
+{ x: "2026-11-22T14:26:24+00:00", y: 100, delta: 0.0, url: "https://github.com/nigelhorne/Class-Abstract/commit/0dfb7f9993bd1a0aef1e1f408383d7636c6b243c", label: "2026-11-22T14:26:24+00:00", pointBackgroundColor: "gray", comment: "Fix dashboard CI" } ];
 const regressionPoints = linearRegression(dataPoints);
 // Try to register the zoom plugin (handles different UMD builds)
 (function registerZoomPlugin(){
@@ -334,7 +340,10 @@ if(resetBtn) {
 	});
 }
 
-function sortTable(th, colIndex) {
+function sortTable(th) {
+	// Always recompute colIndex from DOM so it stays correct after drag-reordering.
+	// The historic onclick="sortTable(this, N)" calls still work; the N is ignored.
+	const colIndex = Array.from(th.parentElement.cells).indexOf(th);
 	const table = th.closest("table");
 	if(!table || !table.tBodies.length) return;
 
@@ -345,21 +354,30 @@ function sortTable(th, colIndex) {
 	const prevOrder = table.getAttribute("data-sort-order") || "desc";
 	const asc = (prevCol != colIndex) ? true : (prevOrder === "desc");
 
-	const isNumeric = colIndex === 0; // Date column
+	const isDate = th.dataset.sortType === 'date';
 
 	const normalRows = rows.filter(r => !r.classList.contains("nosort"));
 	const fixedRows = rows.filter(r => r.classList.contains("nosort"));
 
 	normalRows.sort((a, b) => {
-		let x = a.cells[colIndex]?.innerText.trim() || "";
-		let y = b.cells[colIndex]?.innerText.trim() || "";
+		const cellA = a.cells[colIndex];
+		const cellB = b.cells[colIndex];
+		let x = (cellA?.dataset.value ?? cellA?.innerText ?? "").trim();
+		let y = (cellB?.dataset.value ?? cellB?.innerText ?? "").trim();
 
-		if(isNumeric) {
+		if(isDate) {
 			x = Date.parse(x) || 0;
 			y = Date.parse(y) || 0;
 		} else {
-			x = x.toLowerCase();
-			y = y.toLowerCase();
+			const nx = parseFloat(x);
+			const ny = parseFloat(y);
+			if(!isNaN(nx) && !isNaN(ny)) {
+				x = nx;
+				y = ny;
+			} else {
+				x = x.toLowerCase();
+				y = y.toLowerCase();
+			}
 		}
 
 		if(x < y) return asc ? -1 : 1;
@@ -387,28 +405,235 @@ function sortTable(th, colIndex) {
 
 	table.setAttribute("data-sort-col", colIndex);
 	table.setAttribute("data-sort-order", asc ? "asc" : "desc");
+	saveSortState(table);
 }
 
+// ---------------------------------------------------------
+// Column drag-to-reorder
+// ---------------------------------------------------------
+let _dragSrcTh = null;
+let _initializingTables = false;
+
+// ---------------------------------------------------------
+// localStorage persistence for sort state and column order
+// ---------------------------------------------------------
+function _tableId(table) {
+	return table ? table.dataset.tableId : null;
+}
+
+function saveColOrder(table) {
+	const id = _tableId(table);
+	if(!id) return;
+	const headerRow = table.tHead && table.tHead.rows[0];
+	if(!headerRow) return;
+	const order = Array.from(headerRow.cells).map(th => parseInt(th.dataset.colId, 10));
+	try { localStorage.setItem('atg_col_order_' + id, JSON.stringify(order)); } catch(e) {}
+}
+
+function saveSortState(table) {
+	if(_initializingTables) return;
+	const id = _tableId(table);
+	if(!id) return;
+	const colIdx = parseInt(table.getAttribute('data-sort-col'), 10);
+	const order  = table.getAttribute('data-sort-order') || 'asc';
+	const headerRow = table.tHead && table.tHead.rows[0];
+	if(!headerRow) return;
+	const th = headerRow.cells[colIdx];
+	const colId = th ? parseInt(th.dataset.colId, 10) : colIdx;
+	try { localStorage.setItem('atg_sort_' + id, JSON.stringify({colId, order})); } catch(e) {}
+}
+
+function _restoreColOrder(table, savedOrder) {
+	const headerRow = table.tHead && table.tHead.rows[0];
+	if(!headerRow) return;
+	const placed = new Set();
+	savedOrder.forEach((wantedId, dstPos) => {
+		const srcTh = Array.from(headerRow.cells).find(
+			th => parseInt(th.dataset.colId, 10) === wantedId && !placed.has(th)
+		);
+		if(!srcTh) return;
+		const srcIdx = Array.from(headerRow.cells).indexOf(srcTh);
+		const dstIdx = dstPos < headerRow.cells.length ? dstPos : headerRow.cells.length - 1;
+		if(srcIdx === dstIdx) { placed.add(srcTh); return; }
+		Array.from(table.rows).forEach(row => {
+			if(row.cells.length <= Math.max(srcIdx, dstIdx)) return;
+			const moved = row.cells[srcIdx];
+			const ref = row.cells[dstIdx];
+			if(srcIdx < dstIdx) row.insertBefore(moved, ref ? ref.nextSibling : null);
+			else row.insertBefore(moved, ref);
+		});
+		placed.add(srcTh);
+	});
+}
+
+function _applySort(table, th, order) {
+	// Force the desired direction then call sortTable
+	const colIndex = Array.from(th.parentElement.cells).indexOf(th);
+	// Preset state so sortTable's toggle logic lands on `order`
+	table.setAttribute('data-sort-col', colIndex === 0 ? -1 : 0); // make it differ
+	table.setAttribute('data-sort-order', order === 'asc' ? 'desc' : 'asc');
+	sortTable(th);
+}
+
+function _colDragStart(e) {
+	_dragSrcTh = this;
+	e.dataTransfer.effectAllowed = 'move';
+	e.dataTransfer.setData('text/plain', ''); // required by Firefox
+	this.classList.add('col-dragging');
+}
+
+function _colDragOver(e) {
+	if(!_dragSrcTh || _dragSrcTh === this) return;
+	e.preventDefault();
+	e.dataTransfer.dropEffect = 'move';
+}
+
+function _colDragEnter(e) {
+	if(!_dragSrcTh || _dragSrcTh === this) return;
+	// Clear previous drag-over highlight before setting the new one
+	document.querySelectorAll('th.col-drag-over').forEach(t => t.classList.remove('col-drag-over'));
+	this.classList.add('col-drag-over');
+}
+
+function _colDragLeave(e) {
+	// Only clear when leaving to something truly outside this th
+	if(!this.contains(e.relatedTarget)) {
+		this.classList.remove('col-drag-over');
+	}
+}
+
+function _colDrop(e) {
+	e.preventDefault();
+	e.stopPropagation();
+	if(!_dragSrcTh || _dragSrcTh === this) return false;
+
+	const table = this.closest('table');
+	const srcIdx = Array.from(_dragSrcTh.parentElement.cells).indexOf(_dragSrcTh);
+	const dstIdx = Array.from(this.parentElement.cells).indexOf(this);
+
+	// Move the cell at srcIdx to dstIdx in every row (thead + tbody)
+	Array.from(table.rows).forEach(row => {
+		const cells = row.cells;
+		if(cells.length <= Math.max(srcIdx, dstIdx)) return;
+		const moved = cells[srcIdx];
+		if(srcIdx < dstIdx) {
+			row.insertBefore(moved, cells[dstIdx].nextSibling);
+		} else {
+			row.insertBefore(moved, cells[dstIdx]);
+		}
+	});
+
+	// Update data-sort-col so the next sort-click knows the active column's new position
+	const activeArrow = table.querySelector('thead .arrow.active');
+	if(activeArrow) {
+		const activeTh = activeArrow.closest('th');
+		const newIdx = Array.from(activeTh.parentElement.cells).indexOf(activeTh);
+		table.setAttribute('data-sort-col', newIdx);
+	}
+
+	saveColOrder(table);
+	return false;
+}
+
+function _colDragEnd(e) {
+	this.classList.remove('col-dragging');
+	document.querySelectorAll('th.col-drag-over').forEach(t => t.classList.remove('col-drag-over'));
+	_dragSrcTh = null;
+}
 
 // Initial display.
-// The table has been set up sorted in ascending order on the filename; reflect that in the GUI
+// The coverage table is pre-sorted ascending by filename from Perl; reflect that in the GUI.
+// The mutation and duplication tables are sorted by JS on load so the arrows always match data.
+// Saved column order and sort state are restored from localStorage when present.
 document.addEventListener("DOMContentLoaded", () => {
-	const table = document.querySelector("table");
-	if(!table) return;
+	_initializingTables = true;
 
-	const headers = table.tHead.rows[0].cells;
-	for(let i = 0; i < headers.length; i++) {
-		const arrow = headers[i].querySelector(".arrow");
-		if(!arrow) continue;
+	// Assign original column indices as data-col-id (must be done before any reordering)
+	document.querySelectorAll('table[data-table-id]').forEach(table => {
+		const headerRow = table.tHead && table.tHead.rows[0];
+		if(!headerRow) return;
+		Array.from(headerRow.cells).forEach((th, i) => { th.dataset.colId = i; });
+	});
 
-		if(i === 0) {
-			arrow.textContent = "▲";
-			arrow.classList.add("active");
-		} else {
-			arrow.textContent = "▲";
-			arrow.classList.remove("active");
+	// Restore saved column order, then sort state, for every identified table
+	document.querySelectorAll('table[data-table-id]').forEach(table => {
+		const id = _tableId(table);
+		// --- column order ---
+		let savedOrder = null;
+		try { savedOrder = JSON.parse(localStorage.getItem('atg_col_order_' + id)); } catch(e) {}
+		if(Array.isArray(savedOrder) && savedOrder.length) {
+			_restoreColOrder(table, savedOrder);
+		}
+
+		// --- sort state ---
+		let savedSort = null;
+		try { savedSort = JSON.parse(localStorage.getItem('atg_sort_' + id)); } catch(e) {}
+		if(savedSort && typeof savedSort.colId === 'number') {
+			const headerRow = table.tHead && table.tHead.rows[0];
+			const th = headerRow && Array.from(headerRow.cells).find(
+				c => parseInt(c.dataset.colId, 10) === savedSort.colId
+			);
+			if(th) {
+				_applySort(table, th, savedSort.order || 'asc');
+				return; // done with this table
+			}
+		}
+
+		// No saved sort — apply defaults
+		if(table.classList.contains('mut-table')) {
+			// Score% column (original col 5)
+			const headerRow = table.tHead && table.tHead.rows[0];
+			const th = headerRow && Array.from(headerRow.cells).find(
+				c => parseInt(c.dataset.colId, 10) === 5
+			);
+			if(th) _applySort(table, th, 'asc');
+		} else if(table.classList.contains('dup-table')) {
+			// File column (original col 0)
+			const headerRow = table.tHead && table.tHead.rows[0];
+			const th = headerRow && Array.from(headerRow.cells).find(
+				c => parseInt(c.dataset.colId, 10) === 0
+			);
+			if(th) _applySort(table, th, 'asc');
+		} else if(table.classList.contains('sortable-table') && !table.classList.contains('mut-table') && !table.classList.contains('dup-table')) {
+			// CPAN Testers: sort by Date (original col 0) ascending
+			const headerRow = table.tHead && table.tHead.rows[0];
+			const th = headerRow && Array.from(headerRow.cells).find(
+				c => parseInt(c.dataset.colId, 10) === 0
+			);
+			if(th) _applySort(table, th, 'asc');
+		}
+	});
+
+	// Coverage table: pre-sorted ascending by File (col 0) from Perl — just update arrows
+	const covTable = document.querySelector("table[data-table-id='coverage']");
+	if(covTable && covTable.tHead) {
+		const id = _tableId(covTable);
+		let savedSort = null;
+		try { savedSort = JSON.parse(localStorage.getItem('atg_sort_' + id)); } catch(e) {}
+		if(!savedSort) {
+			const headers = covTable.tHead.rows[0].cells;
+			for(let i = 0; i < headers.length; i++) {
+				const arrow = headers[i].querySelector(".arrow");
+				if(!arrow) continue;
+				arrow.textContent = "▲";
+				arrow.classList.toggle("active", i === 0);
+			}
 		}
 	}
+
+	_initializingTables = false;
+
+	// Wire up drag-to-reorder on every sortable column header
+	document.querySelectorAll('th.sortable').forEach(th => {
+		th.setAttribute('draggable', 'true');
+		th.title = (th.title ? th.title + ' · ' : '') + 'Drag to reorder columns';
+		th.addEventListener('dragstart',  _colDragStart);
+		th.addEventListener('dragover',   _colDragOver);
+		th.addEventListener('dragenter',  _colDragEnter);
+		th.addEventListener('dragleave',  _colDragLeave);
+		th.addEventListener('drop',       _colDrop);
+		th.addEventListener('dragend',    _colDragEnd);
+	});
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -463,39 +688,7 @@ function refresh(){
 
 <p><center>Use mouse wheel or pinch to zoom; drag to pan</center></p>
 <p>No issues active on <a href="https://rt.cpan.org/Public/Dist/Display.html?Name=Class-Abstract">RT</a></p>
-<h2>CPAN Testers Failures for Class-Abstract 0.02</h2>
-<h3>Failure Summary (all reports)</h3>
-<ul>
-<li><b>Perl 5.12.x</b>: 2 failures</li>
-<li><b>linux</b>: 8 failures</li>
-<li><b>5.12 / linux</b>: 2 failures</li>
-</ul>
-<h3>Likely Root Causes</h3>
-<table class="root-causes">
-<thead>
-<tr>
-	<th>Cause</th>
-	<th>Confidence</th>
-	<th>Evidence</th>
-</tr>
-</thead>
-<tbody>
-
-<tr class="high">
-	<td halign="center"><strong>OS-specific behavior (linux)</strong></td>
-	<td halign="center">Strong (100%)</td>
-	<td halign="center"><ul><li>8/8 failures on linux</li><li>Passes observed on other operating systems</li></ul></td>
-</tr>
-
-<tr class="low">
-	<td halign="center"><strong>Scattered failures (no clear version or OS pattern)</strong></td>
-	<td halign="center">Weak (40%)</td>
-	<td halign="center"><ul><li>Failures and passes both seen on 6 common Perl series</li><li>Possible causes: flaky tests, optional dependency differences, or CGI environment assumptions</li><li>Review test output from failing reports for specific error messages</li></ul></td>
-</tr>
-
-</tbody>
-</table>
-
+<h2>CPAN Testers Failures for Class-Abstract 0.03</h2>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 	const toggleFail = document.getElementById('toggleFail');
@@ -532,11 +725,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	update();
 });
-document.addEventListener("DOMContentLoaded", () => {
-	const th = document.querySelector("table.sortable-table th");
-	if(th) sortTable(th, 0);
-});
 </script>
+
 
 <p><em>Showing one failure per OS/Perl combination.</em></p>
 <div style="margin-bottom: 0.5em;">
@@ -558,10 +748,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	</label>
 </div>
 
-<table class="sortable-table" data-sort-col="0" data-sort-order="asc">
+<table class="sortable-table" data-sort-col="0" data-sort-order="asc" data-table-id="cpan">
 <thead>
 <tr>
-	<th class="sortable" onclick="sortTable(this, 0)">
+	<th class="sortable" onclick="sortTable(this, 0)" data-sort-type="date">
 		<span class="label">Date</span> <span class="arrow">&#x25B2;</span>
 	</th>
 	<th class="sortable" onclick="sortTable(this, 1)">
@@ -577,26 +767,65 @@ document.addEventListener("DOMContentLoaded", () => {
 		<span class="label">New</span> <span class="arrow">&#x25B2;</span>
 	</th>
 	<th>Report</th>
+	<th>Repro</th>
 </tr>
 </thead>
 <tbody>
 
-<tr class="cpan-fail"><td>2026-06-11T18:49:00Z</td><td>linux</td><td>5.14.4</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
-				<td><a href="https://www.cpantesters.org/cpan/report/44d3aeba-65c6-11f1-b5aa-deaafcb20259" target="_blank">View</a></td></tr>
-<tr class="cpan-fail"><td>2026-11-03T21:59:00Z</td><td>linux</td><td>5.12.1</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
-				<td><a href="https://www.cpantesters.org/cpan/report/d68f133a-d7d1-11f1-b502-a132454fc1ad" target="_blank">View</a></td></tr>
-<tr class="cpan-fail"><td>2026-06-11T18:48:00Z</td><td>linux</td><td>5.16.1</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
-				<td><a href="https://www.cpantesters.org/cpan/report/30334b50-65c6-11f1-a19a-d6c7d9f533cd" target="_blank">View</a></td></tr>
-<tr class="cpan-fail"><td>2026-10-13T13:10:00Z</td><td>linux</td><td>5.24.1</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
-				<td><a href="https://www.cpantesters.org/cpan/report/69588d58-c707-11f1-8d94-ea0e836ff8f9" target="_blank">View</a></td></tr>
-<tr class="cpan-fail"><td>2026-06-11T18:39:00Z</td><td>linux</td><td>5.28.2</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
-				<td><a href="https://www.cpantesters.org/cpan/report/f1f30a2a-65c4-11f1-86f5-e0a5bb5e3c64" target="_blank">View</a></td></tr>
-<tr class="cpan-fail"><td>2026-08-12T06:51:00Z</td><td>linux</td><td>5.12.5</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
-				<td><a href="https://www.cpantesters.org/cpan/report/4abd57de-961a-11f1-a730-80ab3c6d6568" target="_blank">View</a></td></tr>
-<tr class="cpan-fail"><td>2026-06-11T18:46:00Z</td><td>linux</td><td>5.16.3</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
-				<td><a href="https://www.cpantesters.org/cpan/report/eb584a8a-65c5-11f1-8ac3-e112201169e6" target="_blank">View</a></td></tr>
-<tr class="cpan-fail"><td>2026-06-11T18:08:00Z</td><td>linux</td><td>5.32.1</td><td>David Solimano</td><td></td>
-				<td><a href="https://www.cpantesters.org/cpan/report/83560b20-65c0-11f1-bbad-f7b420522cbc" target="_blank">View</a></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T20:27:00Z</td><td>linux</td><td>5.42.2</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/8c588c00-da20-11f1-9766-df9767d2f33e" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T23:00:00Z</td><td>linux</td><td>5.30.3</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/e40b6ec6-da35-11f1-8dff-a70bf002a458" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-08T06:57:00Z</td><td>linux</td><td>5.36.3</td><td>Slaven Rezi&#x107;</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/9de222f2-db41-11f1-8e8c-b0ec6d8775ea" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T20:37:00Z</td><td>linux</td><td>5.42.0</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/e1c9c5e0-da21-11f1-acd6-98bce86a4a86" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-20T23:09:00Z</td><td>linux</td><td>5.34.1</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/7845f352-e537-11f1-b812-de2a474eaecc" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-08T06:49:00Z</td><td>linux</td><td>5.38.2</td><td>Slaven Rezi&#x107;</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/7cafedcc-db40-11f1-8e8c-b0ec6d8775ea" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-17T12:45:00Z</td><td>linux</td><td>5.40.0</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/c7a1ddd6-e284-11f1-bbf6-aa1d5b04a43e" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-08T06:52:00Z</td><td>linux</td><td>5.40.0</td><td>Slaven Rezi&#x107;</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/061679c8-db41-11f1-8e8c-b0ec6d8775ea" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-20T22:47:00Z</td><td>linux</td><td>5.42.0</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/5ce8b796-e534-11f1-bc57-f6f79a097196" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-07T16:36:00Z</td><td>linux</td><td>5.36.3</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/729b4254-dac9-11f1-bf2d-c9ccbcc6ab8a" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T20:25:00Z</td><td>linux</td><td>5.44.0</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/38f62cac-da20-11f1-9ae7-c41537639274" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T12:54:00Z</td><td>linux</td><td>5.28.2</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/2913ba32-d9e1-11f1-9a89-f1a71f2a3bec" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T20:24:00Z</td><td>linux</td><td>5.45.3</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/149a9334-da20-11f1-8df1-d273263ab335" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T12:47:00Z</td><td>linux</td><td>5.38.5</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/396a492e-d9e0-11f1-b3f2-ee36dd759281" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-14T19:39:00Z</td><td>linux</td><td>5.36.1</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/1b6e6778-e063-11f1-b39e-cb07c49f2d3a" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T12:51:00Z</td><td>linux</td><td>5.34.1</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/bab14cb2-d9e0-11f1-a241-84e3267aad93" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T02:10:00Z</td><td>MSWin32</td><td>5.42.3</td><td>Chad 'Exodist' Granum</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/3e718e0e-d987-11f1-a3e1-c5ca966362ce" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-18T17:30:00Z</td><td>linux</td><td>5.28.0</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/cd1716b8-e375-11f1-b5b6-c9fdcd9f9438" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-07T16:09:00Z</td><td>linux</td><td>5.40.4</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/a0c0de04-dac5-11f1-891a-91a13ac49322" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T12:54:00Z</td><td>linux</td><td>5.28.2</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/3c6fe556-d9e1-11f1-adb4-d590910f0209" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T12:52:00Z</td><td>linux</td><td>5.32.0</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/ded509bc-d9e0-11f1-94b0-eed0792221b0" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T12:48:00Z</td><td>linux</td><td>5.38.4</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/4e7e3f5a-d9e0-11f1-9327-9fcfae9c1ffa" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T20:33:00Z</td><td>linux</td><td>5.42.1</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/44dd4b26-da21-11f1-8078-9f405673ebf9" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T20:30:00Z</td><td>linux</td><td>5.42.3</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/e9357186-da20-11f1-9e0d-9666aed1ccd0" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T12:45:00Z</td><td>linux</td><td>5.40.5</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/f535fbe0-d9df-11f1-9f71-bfdd6316b0f7" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T20:30:00Z</td><td>linux</td><td>5.34.3</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/e4407392-da20-11f1-9111-a1e062605561" target="_blank">View</a></td><td></td></tr>
+<tr class="cpan-fail"><td>2026-11-06T12:49:00Z</td><td>linux</td><td>5.34.3</td><td>Andreas J. K&ouml;nig (ANDK)</td><td></td>
+				<td><a href="https://www.cpantesters.org/cpan/report/7d84c206-d9e0-11f1-b50b-e6ecee923e6b" target="_blank">View</a></td><td></td></tr>
 </tbody></table>
 <h2>Mutation Report</h2>
 <h3>Mutation Summary</h3>
@@ -609,19 +838,36 @@ document.addEventListener("DOMContentLoaded", () => {
 <li><b>Survived</b>: 
 0
 </li>
+<li><b>Skipped (compile)</b>: 
+0
+ <em>(mutants that did not compile; not run and not in the score)</em></li>
+<li><b>Duplication</b>: no duplicate code blocks detected</li>
 </ul>
 <h3>Mutation Files</h3>
 
-<table border='1' cellpadding='5'>
+<table border='1' cellpadding='5' class="sortable-table mut-table" data-sort-col="5" data-sort-order="asc" data-table-id="mut">
 
-<tr><th>File</th><th>Total</th><th>Killed</th><th>Survivors</th><th>Skipped</th><th>Score%</th><th>Complexity</th><th title="TER1=Statement, TER2=Branch, TER3=LCSAJ Path">TER1 / TER2 / TER3</th></tr>
+<thead>
+<tr>
+<th class="sortable" onclick="sortTable(this, 0)"><span class="label">File</span> <span class="arrow">&#x25B2;</span></th>
+<th class="sortable" onclick="sortTable(this, 1)"><span class="label">Total</span> <span class="arrow">&#x25B2;</span></th>
+<th class="sortable" onclick="sortTable(this, 2)"><span class="label">Killed</span> <span class="arrow">&#x25B2;</span></th>
+<th class="sortable" onclick="sortTable(this, 3)"><span class="label">Survivors</span> <span class="arrow">&#x25B2;</span></th>
+<th class="sortable" onclick="sortTable(this, 4)"><span class="label">Skipped</span> <span class="arrow">&#x25B2;</span></th>
+<th class="sortable" onclick="sortTable(this, 5)"><span class="label">Score%</span> <span class="arrow active">&#x25B2;</span></th>
+<th class="sortable" onclick="sortTable(this, 6)"><span class="label">Complexity</span> <span class="arrow">&#x25B2;</span></th>
+<th class="sortable" onclick="sortTable(this, 7)" title="TER1=Statement, TER2=Branch, TER3=LCSAJ Path"><span class="label">TER1 / TER2 / TER3</span> <span class="arrow">&#x25B2;</span></th>
+<th class="sortable" onclick="sortTable(this, 8)"><span class="label">Dup%</span> <span class="arrow">&#x25B2;</span></th>
+</tr>
+</thead>
+<tbody>
 
-<tr class="high"><td><a href="mutation_html/lib/Class/Abstract.pm.html" title="View mutation line by line" target="_blank">lib/Class/Abstract.pm</a> <a href="https://github.com/nigelhorne/Class-Abstract/blob/631da26cc18fe1135ed0ce3b0566f6be14715086/lib/Class/Abstract.pm" class="icon-link" title="View source on GitHub">&#128269;</a></td><td>8</td><td>8</td><td>0</td><td>0</td><td><span class="coverage-badge badge-good" title="Excellent">100.0%</span></td><td><span class="coverage-badge badge-good" title="Good">28</span></td><td><span class="coverage-badge badge-good" title="Excellent">100.0%</span> / <span class="coverage-badge badge-good" title="Excellent">100.0%</span> / <span class="coverage-badge badge-good" title="Excellent">100.0%</span></td></tr>
-</table>
+<tr class="high"><td><a href="mutation_html/lib/Class/Abstract.pm.html" title="View mutation line by line" target="_blank">lib/Class/Abstract.pm</a> <a href="https://github.com/nigelhorne/Class-Abstract/blob/0dfb7f9993bd1a0aef1e1f408383d7636c6b243c/lib/Class/Abstract.pm" class="icon-link" title="View source on GitHub">&#128269;</a></td><td>8</td><td>8</td><td>0</td><td>0</td><td><span class="coverage-badge badge-good" title="Excellent">100.0%</span></td><td><span class="coverage-badge badge-good" title="Good">28</span></td><td><span class="coverage-badge badge-good" title="Excellent">100.0%</span> / <span class="coverage-badge badge-good" title="Excellent">100.0%</span> / <span class="coverage-badge badge-good" title="Excellent">100.0%</span></td><td><span class="coverage-badge badge-good" title="Low duplication">0.0%</span></td></tr>
+</tbody></table>
 
 <h2>Structural Coverage (Approximate)</h2>
 <div class='summary'>
-Statement Coverage: 100.00% (69 / 69)<br>
+Statement Coverage: 100.00% (72 / 72)<br>
 Branch Coverage: 100.00% (30 / 30)<br>
 <em>Approximate LCSAJ derived from branch and statement coverage.</em>
 </div>
@@ -631,8 +877,8 @@ Tests execute 100.00% of the code and detect 100.00% of injected faults.
 </div>
 <footer>
 	<p>Project: <a href="https://github.com/nigelhorne/Class-Abstract">Class-Abstract</a></p>
-	<p><em>Last updated: 2026-11-05 14:04:59 - <a href="https://github.com/nigelhorne/Class-Abstract/commit/631da26cc18fe1135ed0ce3b0566f6be14715086">commit <code>631da26</code></a></em></p>
-	<p style="float: right; font-size: 0.85em; color: #999;">Powered by <a href="https://metacpan.org/dist/App-Test-Generator">App::Test::Generator 0.38</a></p>
+	<p><em>Last updated: 2026-11-22 14:26:16 - <a href="https://github.com/nigelhorne/Class-Abstract/commit/0dfb7f9993bd1a0aef1e1f408383d7636c6b243c">commit <code>0dfb7f9</code></a></em></p>
+	<p style="float: right; font-size: 0.85em; color: #999;">Powered by <a href="https://metacpan.org/dist/App-Test-Generator">App::Test::Generator 0.51</a></p>
 </footer>
 </body>
 </html>
