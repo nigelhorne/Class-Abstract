@@ -259,6 +259,12 @@ sub run_child {
 	# still default to switching their checks off under HARNESS_ACTIVE.
 	my %env = (HARNESS_ACTIVE => '', %{ $opt{env} || {} });
 	local @ENV{ keys %env } = values %env;
+
+	# prove passes HARNESS_PERL_SWITCHES (e.g. -MDevel::Cover) on in PERL5OPT.
+	# Instrumenting the child is useless (its script is gone before the report
+	# runs) and breaks under the permission tests, where Devel::Cover cannot
+	# search the unreadable cwd that '.' in @INC points at.
+	local $ENV{PERL5OPT} = '';
 	open(my $fh, '-|', $^X, (map { "-I$_" } @CHILD_INC), $script)
 		or die "Cannot run $^X: $!";
 	my $output = do { local $/; <$fh> };
