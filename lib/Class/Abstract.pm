@@ -15,7 +15,7 @@ Class::Abstract - Stop code from making objects of a class that is only a templa
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =head1 SYNOPSIS
 
@@ -215,7 +215,7 @@ the old behaviour back, put this near the top of your test files:
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 # ---------------------------------------------------------------------------
 # Constants

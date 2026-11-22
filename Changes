@@ -1,6 +1,6 @@
 Revision history for Class-Abstract
 
-0.04
+0.04	Sun Nov 22 10:35:57 AM EST 2026
 	[ Bug Fixes ]
 	- "use Animal;" (or "use Dog;") no longer makes the using package
 	  abstract: subclasses inherit import(), which now registers a caller
