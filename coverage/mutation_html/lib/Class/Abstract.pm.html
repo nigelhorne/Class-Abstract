@@ -637,1011 +637,1017 @@ Approximate LCSAJ segments: 31<br>
 </span><span class="">  296: =item * C&lt;&#39;Class::Abstract&#39;&gt; is already in that C&lt;@ISA&gt;.  So writing
 </span><span class="">  297: C&lt;use Class::Abstract;&gt; twice is safe.
 </span><span class="">  298: 
-</span><span class="">  299: =item * The calling package is C&lt;Class::Abstract&gt; itself.  A class cannot
-</span><span class="">  300: be its own parent.
-</span><span class="">  301: 
-</span><span class="">  302: =item * Perl cannot tell which package is calling (this can happen in
-</span><span class="">  303: unusual code, such as a C&lt;BEGIN&gt; block inside a string C&lt;eval&gt;).  Without
-</span><span class="">  304: this rule, the module would change C&lt;@main::ISA&gt; by mistake.
+</span><span class="">  299: =item * C&lt;import()&gt; was reached through a subclass, for example
+</span><span class="">  300: C&lt;use Animal;&gt; where C&lt;Animal&gt; is abstract.  Subclasses inherit
+</span><span class="">  301: C&lt;import()&gt;, and only C&lt;use Class::Abstract;&gt; may make a package abstract.
+</span><span class="">  302: 
+</span><span class="">  303: =item * The calling package is C&lt;Class::Abstract&gt; itself.  A class cannot
+</span><span class="">  304: be its own parent.
 </span><span class="">  305: 
-</span><span class="">  306: =back
-</span><span class="">  307: 
-</span><span class="">  308: It does not change the global variables C&lt;$_&gt;, C&lt;$@&gt; or C&lt;$!&gt;, and it
-</span><span class="">  309: does not touch an C&lt;alarm()&gt; timer.  (Before version 0.03 it cleared
-</span><span class="">  310: C&lt;$@&gt;.)
+</span><span class="">  306: =item * Perl cannot tell which package is calling (this can happen in
+</span><span class="">  307: unusual code, such as a C&lt;BEGIN&gt; block inside a string C&lt;eval&gt;).  Without
+</span><span class="">  308: this rule, the module would change C&lt;@main::ISA&gt; by mistake.
+</span><span class="">  309: 
+</span><span class="">  310: =back
 </span><span class="">  311: 
-</span><span class="">  312: =head3 EXAMPLE
-</span><span class="">  313: 
-</span><span class="">  314:     package Vehicle;
-</span><span class="">  315:     use Class::Abstract;          # @Vehicle::ISA is now (&#39;Class::Abstract&#39;)
-</span><span class="">  316:     use Class::Abstract;          # no change: it is already there
+</span><span class="">  312: It does not change the global variables C&lt;$_&gt;, C&lt;$@&gt; or C&lt;$!&gt;, and it
+</span><span class="">  313: does not touch an C&lt;alarm()&gt; timer.  (Before version 0.03 it cleared
+</span><span class="">  314: C&lt;$@&gt;.)
+</span><span class="">  315: 
+</span><span class="">  316: =head3 EXAMPLE
 </span><span class="">  317: 
-</span><span class="">  318:     package Car;
-</span><span class="">  319:     our @ISA = (&#39;Vehicle&#39;);       # Car is concrete
-</span><span class="">  320: 
-</span><span class="">  321:     package main;
-</span><span class="">  322:     my $car = Car-&gt;new;           # works
-</span><span class="">  323:     Vehicle-&gt;new;                 # dies
+</span><span class="">  318:     package Vehicle;
+</span><span class="">  319:     use Class::Abstract;          # @Vehicle::ISA is now (&#39;Class::Abstract&#39;)
+</span><span class="">  320:     use Class::Abstract;          # no change: it is already there
+</span><span class="">  321: 
+</span><span class="">  322:     package Car;
+</span><span class="">  323:     our @ISA = (&#39;Vehicle&#39;);       # Car is concrete
 </span><span class="">  324: 
-</span><span class="">  325: To load the module B&lt;without&gt; making the current package abstract, pass
-</span><span class="">  326: an empty list.  Perl then does not call C&lt;import()&gt;:
-</span><span class="">  327: 
-</span><span class="">  328:     use Class::Abstract ();       # main is NOT made abstract
-</span><span class="">  329: 
-</span><span class="">  330: =head3 API SPECIFICATION
+</span><span class="">  325:     package main;
+</span><span class="">  326:     my $car = Car-&gt;new;           # works
+</span><span class="">  327:     Vehicle-&gt;new;                 # dies
+</span><span class="">  328: 
+</span><span class="">  329: To load the module B&lt;without&gt; making the current package abstract, pass
+</span><span class="">  330: an empty list.  Perl then does not call C&lt;import()&gt;:
 </span><span class="">  331: 
-</span><span class="">  332: =head4 Input
+</span><span class="">  332:     use Class::Abstract ();       # main is NOT made abstract
 </span><span class="">  333: 
-</span><span class="">  334:     {
-</span><span class="">  335:         class =&gt; { type =&gt; &#39;string&#39;, optional =&gt; 0 },   # always &#39;Class::Abstract&#39;
-</span><span class="">  336:     }
+</span><span class="">  334: =head3 API SPECIFICATION
+</span><span class="">  335: 
+</span><span class="">  336: =head4 Input
 </span><span class="">  337: 
-</span><span class="">  338: =head4 Output
-</span><span class="">  339: 
-</span><span class="">  340:     {
-</span><span class="">  341:         type =&gt; &#39;string&#39;,
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  342:     }
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  343: 
-</span><span class="">  344: =head3 MESSAGES
-</span><span class="">  345: 
-</span><span class="">  346: None.  C&lt;import()&gt; never dies and never warns.
+</span><span class="">  338:     {
+</span><span class="">  339:         class =&gt; { type =&gt; &#39;string&#39;, optional =&gt; 0 },   # always &#39;Class::Abstract&#39;
+</span><span class="">  340:     }
+</span><span class="">  341: 
+</span><span class="">  342: =head4 Output
+</span><span class="">  343: 
+</span><span class="">  344:     {
+</span><span class="">  345:         type =&gt; &#39;string&#39;,
+</span><span class="">  346:     }
 </span><span class="">  347: 
-</span><span class="">  348: =cut
+</span><span class="">  348: =head3 MESSAGES
 </span><span class="">  349: 
-</span><span class="">  350: sub import {
-</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">351 → 357 → 366</span></span>  351: 	my ($class) = @_;
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  352: 	my $caller  = caller;
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  353: 
-</span><span class="">  354: 	# Register the caller only when it is a real package other than this one
-</span><span class="">  355: 	# and is not already registered (keeps repeated &#39;use&#39; idempotent).
-</span><span class="">  356: 	# The defined/length guard stops &#39;&#39; from resolving to @main::ISA.
-</span><span class="">  357: 	if (defined($caller) &amp;&amp; length($caller) &amp;&amp; ($caller ne $SELF) &amp;&amp; !_is_direct_abstract($caller)) {
-</span><span class="">  358: 		# Writing another package&#39;s @ISA needs a symbolic reference.
-</span><span class="">  359: 		no strict &#39;refs&#39;;    ## no critic (ProhibitNoStrict)
-</span><span class="">  360: 		push @{&quot;${caller}::ISA&quot;}, $SELF;
-</span><span class="">  361: 	}
-</span><span class="">  362: 
-</span><span class="">  363: 	# set_return() validates through code that clears $@, which would wipe
-</span><span class="">  364: 	# an error the caller has not looked at yet.  Restore it afterwards.
-</span><span class="">  365: 	# (Not &quot;local $@&quot;: on Perl &lt; 5.14 that can lose a propagating die.)
-</span><span class="">  366: 	my $saved_error = $@;
-</span><span class="">  367: 	my $result      = set_return($class, $IMPORT_SCHEMA);
-</span><span class="">  368: 	$@ = $saved_error;    ## no critic (RequireLocalizedPunctuationVars)
-</span><span class="">  369: 
-</span><span class="">  370: 	return $result;
-</span><span class="">  371: }
-</span><span class="">  372: 
-</span><span class="">  373: =head2 new
-</span><span class="">  374: 
-</span><span class="">  375:     my $obj  = ConcreteClass-&gt;new;
-</span><span class="">  376:     my $obj  = ConcreteClass-&gt;new(name =&gt; &#39;Rex&#39;);   # arguments are ignored
-</span><span class="">  377:     my $copy = $obj-&gt;new;                           # new, empty object of the same class
+</span><span class="">  350: None.  C&lt;import()&gt; never dies and never warns.
+</span><span class="">  351: 
+</span><span class="">  352: =cut
+</span><span class="">  353: 
+</span><span class="">  354: sub import {
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">355 → 363 → 372</span></span>  355: 	my ($class) = @_;
+</span><span class="">  356: 	my $caller  = caller;
+</span><span class="">  357: 
+</span><span class="">  358: 	# Register the caller only when it is a real package other than this one
+</span><span class="">  359: 	# and is not already registered (keeps repeated &#39;use&#39; idempotent).
+</span><span class="">  360: 	# The defined/length guard stops &#39;&#39; from resolving to @main::ISA.
+</span><span class="">  361: 	# Subclasses inherit import(), so &quot;use Animal;&quot; would otherwise make the
+</span><span class="">  362: 	# *user* of Animal abstract.  Only &quot;use Class::Abstract&quot; may register.
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  363: 	if (($class eq $SELF) &amp;&amp; defined($caller) &amp;&amp; length($caller) &amp;&amp; ($caller ne $SELF) &amp;&amp; !_is_direct_abstract($caller)) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  364: 		# Writing another package&#39;s @ISA needs a symbolic reference.
+</span><span class="">  365: 		no strict &#39;refs&#39;;    ## no critic (ProhibitNoStrict)
+</span><span class="">  366: 		push @{&quot;${caller}::ISA&quot;}, $SELF;
+</span><span class="">  367: 	}
+</span><span class="">  368: 
+</span><span class="">  369: 	# set_return() validates through code that clears $@, which would wipe
+</span><span class="">  370: 	# an error the caller has not looked at yet.  Restore it afterwards.
+</span><span class="">  371: 	# (Not &quot;local $@&quot;: on Perl &lt; 5.14 that can lose a propagating die.)
+</span><span class="">  372: 	my $saved_error = $@;
+</span><span class="">  373: 	my $result      = set_return($class, $IMPORT_SCHEMA);
+</span><span class="">  374: 	$@ = $saved_error;    ## no critic (RequireLocalizedPunctuationVars)
+</span><span class="">  375: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  376: 	return $result;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  377: }
 </span><span class="">  378: 
-</span><span class="">  379: Makes a new, empty object, but only for a concrete class.
+</span><span class="">  379: =head2 new
 </span><span class="">  380: 
-</span><span class="">  381: =over 4
-</span><span class="">  382: 
-</span><span class="">  383: =item * If the class is abstract, C&lt;new()&gt; dies with an error message.
+</span><span class="">  381:     my $obj  = ConcreteClass-&gt;new;
+</span><span class="">  382:     my $obj  = ConcreteClass-&gt;new(name =&gt; &#39;Rex&#39;);   # arguments are ignored
+</span><span class="">  383:     my $copy = $obj-&gt;new;                           # new, empty object of the same class
 </span><span class="">  384: 
-</span><span class="">  385: =item * If the class is concrete, C&lt;new()&gt; returns an empty hash
-</span><span class="">  386: reference blessed into that class.
-</span><span class="">  387: 
-</span><span class="">  388: =back
-</span><span class="">  389: 
-</span><span class="">  390: Child classes usually call this through C&lt;&lt; $class-&gt;SUPER::new &gt;&gt; from
-</span><span class="">  391: their own C&lt;new()&gt;.  That works because the check looks at the class name
-</span><span class="">  392: on the left of the arrow (the child), not at the class where C&lt;new()&gt; is
-</span><span class="">  393: written.
-</span><span class="">  394: 
-</span><span class="">  395: =head3 ARGUMENTS
-</span><span class="">  396: 
-</span><span class="">  397: =over 4
-</span><span class="">  398: 
-</span><span class="">  399: =item C&lt;$invocant&gt; (required)
+</span><span class="">  385: Makes a new, empty object, but only for a concrete class.
+</span><span class="">  386: 
+</span><span class="">  387: =over 4
+</span><span class="">  388: 
+</span><span class="">  389: =item * If the class is abstract, C&lt;new()&gt; dies with an error message.
+</span><span class="">  390: 
+</span><span class="">  391: =item * If the class is concrete, C&lt;new()&gt; returns an empty hash
+</span><span class="">  392: reference blessed into that class.
+</span><span class="">  393: 
+</span><span class="">  394: =back
+</span><span class="">  395: 
+</span><span class="">  396: Child classes usually call this through C&lt;&lt; $class-&gt;SUPER::new &gt;&gt; from
+</span><span class="">  397: their own C&lt;new()&gt;.  That works because the check looks at the class name
+</span><span class="">  398: on the left of the arrow (the child), not at the class where C&lt;new()&gt; is
+</span><span class="">  399: written.
 </span><span class="">  400: 
-</span><span class="">  401: The class name or object on the left of the arrow.  In C&lt;&lt; Dog-&gt;new &gt;&gt;
-</span><span class="">  402: it is the string C&lt;&#39;Dog&#39;&gt;.  If it is an object, the object&#39;s class is
-</span><span class="">  403: used.  It must not be C&lt;undef&gt;, the empty
-</span><span class="">  404: string, or a reference that is not an object (such as C&lt;[]&gt; or C&lt;{}&gt;).
-</span><span class="">  405: 
-</span><span class="">  406: =item C&lt;%args&gt; (optional)
-</span><span class="">  407: 
-</span><span class="">  408: Any other arguments.  They are accepted and B&lt;ignored&gt;.  This lets a
-</span><span class="">  409: child class pass its arguments to C&lt;SUPER::new&gt; without errors.  The
-</span><span class="">  410: child class must store its own data after C&lt;SUPER::new&gt; returns.
+</span><span class="">  401: =head3 ARGUMENTS
+</span><span class="">  402: 
+</span><span class="">  403: =over 4
+</span><span class="">  404: 
+</span><span class="">  405: =item C&lt;$invocant&gt; (required)
+</span><span class="">  406: 
+</span><span class="">  407: The class name or object on the left of the arrow.  In C&lt;&lt; Dog-&gt;new &gt;&gt;
+</span><span class="">  408: it is the string C&lt;&#39;Dog&#39;&gt;.  If it is an object, the object&#39;s class is
+</span><span class="">  409: used.  It must not be C&lt;undef&gt;, the empty
+</span><span class="">  410: string, or a reference that is not an object (such as C&lt;[]&gt; or C&lt;{}&gt;).
 </span><span class="">  411: 
-</span><span class="">  412: =back
+</span><span class="">  412: =item C&lt;%args&gt; (optional)
 </span><span class="">  413: 
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  414: =head3 RETURNS
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  415: 
-</span><span class="">  416: A new, empty hash reference, blessed into the class.
+</span><span class="">  414: Any other arguments.  They are accepted and B&lt;ignored&gt;.  This lets a
+</span><span class="">  415: child class pass its arguments to C&lt;SUPER::new&gt; without errors.  The
+</span><span class="">  416: child class must store its own data after C&lt;SUPER::new&gt; returns.
 </span><span class="">  417: 
-</span><span class="">  418: =head3 SIDE EFFECTS
+</span><span class="">  418: =back
 </span><span class="">  419: 
-</span><span class="">  420: None, except that C&lt;bless&gt; creates the package in Perl&#39;s symbol table if
-</span><span class="">  421: it did not exist yet.  (The check itself never creates a package.)
-</span><span class="">  422: 
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  423: It does not change the global variables C&lt;$_&gt;, C&lt;$@&gt; or C&lt;$!&gt;, and it
-</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  424: does not touch an C&lt;alarm()&gt; timer.
+</span><span class="">  420: =head3 RETURNS
+</span><span class="">  421: 
+</span><span class="">  422: A new, empty hash reference, blessed into the class.
+</span><span class="">  423: 
+</span><span class="">  424: =head3 SIDE EFFECTS
 </span><span class="">  425: 
-</span><span class="">  426: =head3 EXAMPLE
-</span><span class="">  427: 
-</span><span class="">  428:     package Animal;
-</span><span class="">  429:     use parent &#39;Class::Abstract&#39;;
-</span><span class="">  430: 
-</span><span class="">  431:     package Dog;
-</span><span class="">  432:     our @ISA = (&#39;Animal&#39;);
+</span><span class="">  426: None, except that C&lt;bless&gt; creates the package in Perl&#39;s symbol table if
+</span><span class="">  427: it did not exist yet.  (The check itself never creates a package.)
+</span><span class="">  428: 
+</span><span class="">  429: It does not change the global variables C&lt;$_&gt;, C&lt;$@&gt; or C&lt;$!&gt;, and it
+</span><span class="">  430: does not touch an C&lt;alarm()&gt; timer.
+</span><span class="">  431: 
+</span><span class="">  432: =head3 EXAMPLE
 </span><span class="">  433: 
-</span><span class="">  434:     sub new {
-</span><span class="">  435:         my ($class, %args) = @_;
-</span><span class="">  436:         my $self = $class-&gt;SUPER::new;   # the check happens here
-</span><span class="">  437:         $self-&gt;{name} = $args{name};
-</span><span class="">  438:         return $self;
-</span><span class="">  439:     }
-</span><span class="">  440: 
-</span><span class="">  441:     package main;
-</span><span class="">  442:     my $rex = Dog-&gt;new(name =&gt; &#39;Rex&#39;);   # works: Dog is concrete
-</span><span class="">  443: 
-</span><span class="">  444:     eval { Animal-&gt;new };                # dies: Animal is abstract
-</span><span class="">  445:     print $@;   # Cannot instantiate abstract class Animal directly at ...
+</span><span class="">  434:     package Animal;
+</span><span class="">  435:     use parent &#39;Class::Abstract&#39;;
+</span><span class="">  436: 
+</span><span class="">  437:     package Dog;
+</span><span class="">  438:     our @ISA = (&#39;Animal&#39;);
+</span><span class="">  439: 
+</span><span class="">  440:     sub new {
+</span><span class="">  441:         my ($class, %args) = @_;
+</span><span class="">  442:         my $self = $class-&gt;SUPER::new;   # the check happens here
+</span><span class="">  443:         $self-&gt;{name} = $args{name};
+</span><span class="">  444:         return $self;
+</span><span class="">  445:     }
 </span><span class="">  446: 
-</span><span class="">  447: =head3 API SPECIFICATION
-</span><span class="">  448: 
-</span><span class="">  449: =head4 Input
-</span><span class="">  450: 
-</span><span class="">  451:     {
-</span><span class="">  452:         invocant =&gt; {
-</span><span class="">  453:             type     =&gt; &#39;string|object&#39;,   # class name, or an object of that class
-</span><span class="">  454:             optional =&gt; 0,
-</span><span class="">  455:             min      =&gt; 1,                 # a name must not be empty
-</span><span class="">  456:         },
-</span><span class="">  457:     }
-</span><span class="">  458: 
-</span><span class="">  459: =head4 Output
-</span><span class="">  460: 
-</span><span class="">  461:     {
-</span><span class="">  462:         type =&gt; &#39;object&#39;,                  # a hashref blessed into the class
+</span><span class="">  447:     package main;
+</span><span class="">  448:     my $rex = Dog-&gt;new(name =&gt; &#39;Rex&#39;);   # works: Dog is concrete
+</span><span class="">  449: 
+</span><span class="">  450:     eval { Animal-&gt;new };                # dies: Animal is abstract
+</span><span class="">  451:     print $@;   # Cannot instantiate abstract class Animal directly at ...
+</span><span class="">  452: 
+</span><span class="">  453: =head3 API SPECIFICATION
+</span><span class="">  454: 
+</span><span class="">  455: =head4 Input
+</span><span class="">  456: 
+</span><span class="">  457:     {
+</span><span class="">  458:         invocant =&gt; {
+</span><span class="">  459:             type     =&gt; &#39;string|object&#39;,   # class name, or an object of that class
+</span><span class="">  460:             optional =&gt; 0,
+</span><span class="">  461:             min      =&gt; 1,                 # a name must not be empty
+</span><span class="">  462:         },
 </span><span class="">  463:     }
 </span><span class="">  464: 
-</span><span class="">  465: =head3 MESSAGES
+</span><span class="">  465: =head4 Output
 </span><span class="">  466: 
-</span><span class="">  467:     Message                                   What it means / What to do
-</span><span class="">  468:     -------                                   --------------------------
-</span><span class="">  469:     Cannot instantiate abstract class CLASS   CLASS is abstract and no bypass is on.
-</span><span class="">  470:       directly                                Make an object of a child class instead.
-</span><span class="">  471: 
-</span><span class="">  472:     new() invocant must be a class name or    new() was called as a plain function
-</span><span class="">  473:       blessed object, got TYPE                with a reference that is not an object
-</span><span class="">  474:                                               (TYPE is ARRAY, HASH, CODE, ...).
-</span><span class="">  475:                                               Call it as Class-&gt;new or $obj-&gt;new.
-</span><span class="">  476: 
-</span><span class="">  477:     new() requires a defined class name as    new() was called as a plain function
-</span><span class="">  478:       invocant                                with undef or &#39;&#39;.  Pass a class name.
-</span><span class="">  479: 
-</span><span class="">  480: =cut
-</span><span class="">  481: 
-</span><span class="">  482: sub new {
-</span><span class="">  483: 	my ($invocant) = @_;
-</span><span class="">  484: 
-</span><span class="">  485: 	# Validate the invocant, then refuse abstract classes; both helpers
-</span><span class="">  486: 	# croak on failure so reaching bless means the class is instantiable.
-</span><span class="">  487: 	my $class = _resolve_class(&#39;new&#39;, $invocant);
-</span><span class="">  488: 	_enforce($class);
-</span><span class="">  489: 
-</span><span class="">  490: 	return bless {}, $class;
-</span><span class="">  491: }
-</span><span class="">  492: 
-</span><span class="">  493: =head2 check_abstract
-</span><span class="">  494: 
-</span><span class="">  495:     Class::Abstract::check_abstract($class);
-</span><span class="">  496: 
-</span><span class="">  497: Runs the same check as C&lt;new()&gt;, but does not make an object.
+</span><span class="">  467:     {
+</span><span class="">  468:         type =&gt; &#39;object&#39;,                  # a hashref blessed into the class
+</span><span class="">  469:     }
+</span><span class="">  470: 
+</span><span class="">  471: =head3 MESSAGES
+</span><span class="">  472: 
+</span><span class="">  473:     Message                                   What it means / What to do
+</span><span class="">  474:     -------                                   --------------------------
+</span><span class="">  475:     Cannot instantiate abstract class CLASS   CLASS is abstract and no bypass is on.
+</span><span class="">  476:       directly                                Make an object of a child class instead.
+</span><span class="">  477: 
+</span><span class="">  478:     new() invocant must be a class name or    new() was called as a plain function
+</span><span class="">  479:       blessed object, got TYPE                with a reference that is not an object
+</span><span class="">  480:                                               (TYPE is ARRAY, HASH, CODE, ...).
+</span><span class="">  481:                                               Call it as Class-&gt;new or $obj-&gt;new.
+</span><span class="">  482: 
+</span><span class="">  483:     new() requires a defined class name as    new() was called as a plain function
+</span><span class="">  484:       invocant                                with undef or &#39;&#39;.  Pass a class name.
+</span><span class="">  485: 
+</span><span class="">  486: =cut
+</span><span class="">  487: 
+</span><span class="">  488: sub new {
+</span><span class="">  489: 	my ($invocant) = @_;
+</span><span class="">  490: 
+</span><span class="">  491: 	# Validate the invocant, then refuse abstract classes; both helpers
+</span><span class="">  492: 	# croak on failure so reaching bless means the class is instantiable.
+</span><span class="">  493: 	my $class = _resolve_class(&#39;new&#39;, $invocant);
+</span><span class="">  494: 	_enforce($class);
+</span><span class="">  495: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  496: 	return bless {}, $class;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  497: }
 </span><span class="">  498: 
-</span><span class="">  499: Use it when your abstract class writes its B&lt;own&gt; C&lt;new()&gt; and that
-</span><span class="">  500: C&lt;new()&gt; does not call C&lt;&lt; $class-&gt;SUPER::new &gt;&gt;.  In that case
-</span><span class="">  501: C&lt;Class::Abstract::new()&gt; never runs, so nothing checks the class.  Call
-</span><span class="">  502: C&lt;check_abstract()&gt; as the first line of your C&lt;new()&gt; to put the check
-</span><span class="">  503: back.
+</span><span class="">  499: =head2 check_abstract
+</span><span class="">  500: 
+</span><span class="">  501:     Class::Abstract::check_abstract($class);
+</span><span class="">  502: 
+</span><span class="">  503: Runs the same check as C&lt;new()&gt;, but does not make an object.
 </span><span class="">  504: 
-</span><span class="">  505: =head3 ARGUMENTS
-</span><span class="">  506: 
-</span><span class="">  507: =over 4
-</span><span class="">  508: 
-</span><span class="">  509: =item C&lt;$invocant&gt; (required)
+</span><span class="">  505: Use it when your abstract class writes its B&lt;own&gt; C&lt;new()&gt; and that
+</span><span class="">  506: C&lt;new()&gt; does not call C&lt;&lt; $class-&gt;SUPER::new &gt;&gt;.  In that case
+</span><span class="">  507: C&lt;Class::Abstract::new()&gt; never runs, so nothing checks the class.  Call
+</span><span class="">  508: C&lt;check_abstract()&gt; as the first line of your C&lt;new()&gt; to put the check
+</span><span class="">  509: back.
 </span><span class="">  510: 
-</span><span class="">  511: The class to check: a class name (a string) or an object.  If it is an
-</span><span class="">  512: object, the object&#39;s class is used.  In your own C&lt;new()&gt;, pass the
-</span><span class="">  513: C&lt;$class&gt; variable.  It must not be C&lt;undef&gt;, the empty string, or a reference
-</span><span class="">  514: that is not an object.
-</span><span class="">  515: 
-</span><span class="">  516: =back
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  517: 
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  518: =head3 RETURNS
-</span><span class="">  519: 
-</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  520: Nothing if the class is concrete or a bypass is on: C&lt;undef&gt; in scalar
-</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  521: context, or an empty list in list context.  Otherwise it dies.
-</span><span class="">  522: 
-</span><span class="">  523: =head3 SIDE EFFECTS
-</span><span class="">  524: 
-</span><span class="">  525: None.  It obeys C&lt;$BYPASS&gt; and C&lt;harness_bypass&gt; in exactly the same way
-</span><span class="">  526: as C&lt;new()&gt;.
-</span><span class="">  527: 
-</span><span class="">  528: It does not change the global variables C&lt;$_&gt;, C&lt;$@&gt; or C&lt;$!&gt;, and it
-</span><span class="">  529: does not touch an C&lt;alarm()&gt; timer.
+</span><span class="">  511: =head3 ARGUMENTS
+</span><span class="">  512: 
+</span><span class="">  513: =over 4
+</span><span class="">  514: 
+</span><span class="">  515: =item C&lt;$invocant&gt; (required)
+</span><span class="">  516: 
+</span><span class="">  517: The class to check: a class name (a string) or an object.  If it is an
+</span><span class="">  518: object, the object&#39;s class is used.  In your own C&lt;new()&gt;, pass the
+</span><span class="">  519: C&lt;$class&gt; variable.  It must not be C&lt;undef&gt;, the empty string, or a reference
+</span><span class="">  520: that is not an object.
+</span><span class="">  521: 
+</span><span class="">  522: =back
+</span><span class="">  523: 
+</span><span class="">  524: =head3 RETURNS
+</span><span class="">  525: 
+</span><span class="">  526: Nothing if the class is concrete or a bypass is on: C&lt;undef&gt; in scalar
+</span><span class="">  527: context, or an empty list in list context.  Otherwise it dies.
+</span><span class="">  528: 
+</span><span class="">  529: =head3 SIDE EFFECTS
 </span><span class="">  530: 
-</span><span class="">  531: =head3 EXAMPLE
-</span><span class="">  532: 
-</span><span class="">  533:     package Shape;
-</span><span class="">  534:     use parent &#39;Class::Abstract&#39;;
-</span><span class="">  535: 
-</span><span class="">  536:     sub new {
-</span><span class="">  537:         my ($class, %args) = @_;
-</span><span class="">  538:         Class::Abstract::check_abstract($class);   # dies if $class is Shape
-</span><span class="">  539:         return bless { sides =&gt; $args{sides} }, $class;
-</span><span class="">  540:     }
+</span><span class="">  531: None.  It obeys C&lt;$BYPASS&gt; and C&lt;harness_bypass&gt; in exactly the same way
+</span><span class="">  532: as C&lt;new()&gt;.
+</span><span class="">  533: 
+</span><span class="">  534: It does not change the global variables C&lt;$_&gt;, C&lt;$@&gt; or C&lt;$!&gt;, and it
+</span><span class="">  535: does not touch an C&lt;alarm()&gt; timer.
+</span><span class="">  536: 
+</span><span class="">  537: =head3 EXAMPLE
+</span><span class="">  538: 
+</span><span class="">  539:     package Shape;
+</span><span class="">  540:     use parent &#39;Class::Abstract&#39;;
 </span><span class="">  541: 
-</span><span class="">  542:     package Square;
-</span><span class="">  543:     our @ISA = (&#39;Shape&#39;);
-</span><span class="">  544: 
-</span><span class="">  545:     package main;
-</span><span class="">  546:     my $sq = Square-&gt;new(sides =&gt; 4);    # works
-</span><span class="">  547:     Shape-&gt;new(sides =&gt; 4);              # dies: Shape is abstract
-</span><span class="">  548: 
-</span><span class="">  549: =head3 API SPECIFICATION
+</span><span class="">  542:     sub new {
+</span><span class="">  543:         my ($class, %args) = @_;
+</span><span class="">  544:         Class::Abstract::check_abstract($class);   # dies if $class is Shape
+</span><span class="">  545:         return bless { sides =&gt; $args{sides} }, $class;
+</span><span class="">  546:     }
+</span><span class="">  547: 
+</span><span class="">  548:     package Square;
+</span><span class="">  549:     our @ISA = (&#39;Shape&#39;);
 </span><span class="">  550: 
-</span><span class="">  551: =head4 Input
-</span><span class="">  552: 
-</span><span class="">  553:     {
-</span><span class="">  554:         invocant =&gt; {
-</span><span class="">  555:             type     =&gt; &#39;string|object&#39;,
-</span><span class="">  556:             optional =&gt; 0,
-</span><span class="">  557:             min      =&gt; 1,
-</span><span class="">  558:         },
-</span><span class="">  559:     }
-</span><span class="">  560: 
-</span><span class="">  561: =head4 Output
-</span><span class="">  562: 
-</span><span class="">  563:     {
-</span><span class="">  564:         type =&gt; &#39;undef&#39;,
+</span><span class="">  551:     package main;
+</span><span class="">  552:     my $sq = Square-&gt;new(sides =&gt; 4);    # works
+</span><span class="">  553:     Shape-&gt;new(sides =&gt; 4);              # dies: Shape is abstract
+</span><span class="">  554: 
+</span><span class="">  555: =head3 API SPECIFICATION
+</span><span class="">  556: 
+</span><span class="">  557: =head4 Input
+</span><span class="">  558: 
+</span><span class="">  559:     {
+</span><span class="">  560:         invocant =&gt; {
+</span><span class="">  561:             type     =&gt; &#39;string|object&#39;,
+</span><span class="">  562:             optional =&gt; 0,
+</span><span class="">  563:             min      =&gt; 1,
+</span><span class="">  564:         },
 </span><span class="">  565:     }
 </span><span class="">  566: 
-</span><span class="">  567: =head3 MESSAGES
+</span><span class="">  567: =head4 Output
 </span><span class="">  568: 
-</span><span class="">  569:     Message                                   What it means / What to do
-</span><span class="">  570:     -------                                   --------------------------
-</span><span class="">  571:     Cannot instantiate abstract class CLASS   The same as for new().
-</span><span class="">  572:       directly
-</span><span class="">  573: 
-</span><span class="">  574:     check_abstract() requires a class name    The argument was a reference that is
-</span><span class="">  575:       or blessed object, got TYPE             not an object.  Pass $class or $self.
-</span><span class="">  576: 
-</span><span class="">  577:     check_abstract() requires a defined       The argument was undef or &#39;&#39;.  This
-</span><span class="">  578:       class name                              usually means &quot;my $class = shift;&quot;
-</span><span class="">  579:                                               is missing from your new().
-</span><span class="">  580: 
-</span><span class="">  581: =cut
+</span><span class="">  569:     {
+</span><span class="">  570:         type =&gt; &#39;undef&#39;,
+</span><span class="">  571:     }
+</span><span class="">  572: 
+</span><span class="">  573: =head3 MESSAGES
+</span><span class="">  574: 
+</span><span class="">  575:     Message                                   What it means / What to do
+</span><span class="">  576:     -------                                   --------------------------
+</span><span class="">  577:     Cannot instantiate abstract class CLASS   The same as for new().
+</span><span class="">  578:       directly
+</span><span class="">  579: 
+</span><span class="">  580:     check_abstract() requires a class name    The argument was a reference that is
+</span><span class="">  581:       or blessed object, got TYPE             not an object.  Pass $class or $self.
 </span><span class="">  582: 
-</span><span class="">  583: sub check_abstract {
-</span><span class="">  584: 	my ($invocant) = @_;
-</span><span class="">  585: 
-</span><span class="">  586: 	# Same rules as new(), minus the bless: the caller builds the object.
-</span><span class="">  587: 	_enforce(_resolve_class(&#39;check&#39;, $invocant));
+</span><span class="">  583:     check_abstract() requires a defined       The argument was undef or &#39;&#39;.  This
+</span><span class="">  584:       class name                              usually means &quot;my $class = shift;&quot;
+</span><span class="">  585:                                               is missing from your new().
+</span><span class="">  586: 
+</span><span class="">  587: =cut
 </span><span class="">  588: 
-</span><span class="">  589: 	return;
-</span><span class="">  590: }
+</span><span class="">  589: sub check_abstract {
+</span><span class="">  590: 	my ($invocant) = @_;
 </span><span class="">  591: 
-</span><span class="">  592: =head2 is_abstract
-</span><span class="">  593: 
-</span><span class="">  594:     my $yes_or_no = SomeClass-&gt;is_abstract;
-</span><span class="">  595:     my $yes_or_no = $obj-&gt;is_abstract;
-</span><span class="">  596:     my $yes_or_no = Class::Abstract-&gt;is_abstract(&#39;SomeClass&#39;);
-</span><span class="">  597:     my $yes_or_no = Class::Abstract-&gt;is_abstract($obj);
-</span><span class="">  598: 
-</span><span class="">  599: Tells you whether a class is abstract.  It returns C&lt;1&gt; (yes) or C&lt;0&gt;
-</span><span class="">  600: (no).
-</span><span class="">  601: 
-</span><span class="">  602: A class is abstract only when C&lt;Class::Abstract&gt; is in its B&lt;own&gt;
-</span><span class="">  603: C&lt;@ISA&gt;, or when the class B&lt;is&gt; C&lt;Class::Abstract&gt;.  A child of an
-</span><span class="">  604: abstract class is B&lt;not&gt; abstract, so C&lt;is_abstract()&gt; returns C&lt;0&gt; for
-</span><span class="">  605: it.
-</span><span class="">  606: 
-</span><span class="">  607: Every class below C&lt;Class::Abstract&gt; can call this method.
-</span><span class="">  608: 
-</span><span class="">  609: =head3 ARGUMENTS
-</span><span class="">  610: 
-</span><span class="">  611: =over 4
+</span><span class="">  592: 	# Same rules as new(), minus the bless: the caller builds the object.
+</span><span class="">  593: 	_enforce(_resolve_class(&#39;check&#39;, $invocant));
+</span><span class="">  594: 
+</span><span class="">  595: 	return;
+</span><span class="">  596: }
+</span><span class="">  597: 
+</span><span class="">  598: =head2 is_abstract
+</span><span class="">  599: 
+</span><span class="">  600:     my $yes_or_no = SomeClass-&gt;is_abstract;
+</span><span class="">  601:     my $yes_or_no = $obj-&gt;is_abstract;
+</span><span class="">  602:     my $yes_or_no = Class::Abstract-&gt;is_abstract(&#39;SomeClass&#39;);
+</span><span class="">  603:     my $yes_or_no = Class::Abstract-&gt;is_abstract($obj);
+</span><span class="">  604: 
+</span><span class="">  605: Tells you whether a class is abstract.  It returns C&lt;1&gt; (yes) or C&lt;0&gt;
+</span><span class="">  606: (no).
+</span><span class="">  607: 
+</span><span class="">  608: A class is abstract only when C&lt;Class::Abstract&gt; is in its B&lt;own&gt;
+</span><span class="">  609: C&lt;@ISA&gt;, or when the class B&lt;is&gt; C&lt;Class::Abstract&gt;.  A child of an
+</span><span class="">  610: abstract class is B&lt;not&gt; abstract, so C&lt;is_abstract()&gt; returns C&lt;0&gt; for
+</span><span class="">  611: it.
 </span><span class="">  612: 
-</span><span class="">  613: =item C&lt;$self&gt;
+</span><span class="">  613: Every class below C&lt;Class::Abstract&gt; can call this method.
 </span><span class="">  614: 
-</span><span class="">  615: Required.  The class name or object on the left of the arrow.  If no target is given (see
-</span><span class="">  616: below), this is the class that is checked.
-</span><span class="">  617: 
-</span><span class="">  618: =item C&lt;$target&gt; (optional)
-</span><span class="">  619: 
-</span><span class="">  620: A class name or an object to check B&lt;instead of&gt; the invocant.  This is
-</span><span class="">  621: how you ask about any class: C&lt;&lt; Class::Abstract-&gt;is_abstract(&#39;Dog&#39;) &gt;&gt;.
-</span><span class="">  622: If C&lt;$target&gt; is C&lt;undef&gt;, it is treated as &quot;not given&quot;.
+</span><span class="">  615: =head3 ARGUMENTS
+</span><span class="">  616: 
+</span><span class="">  617: =over 4
+</span><span class="">  618: 
+</span><span class="">  619: =item C&lt;$self&gt;
+</span><span class="">  620: 
+</span><span class="">  621: Required.  The class name or object on the left of the arrow.  If no target is given (see
+</span><span class="">  622: below), this is the class that is checked.
 </span><span class="">  623: 
-</span><span class="">  624: =back
+</span><span class="">  624: =item C&lt;$target&gt; (optional)
 </span><span class="">  625: 
-</span><span class="">  626: =head3 RETURNS
-</span><span class="">  627: 
-</span><span class="">  628: The integer C&lt;1&gt; if the class is abstract, otherwise the integer C&lt;0&gt;.
+</span><span class="">  626: A class name or an object to check B&lt;instead of&gt; the invocant.  This is
+</span><span class="">  627: how you ask about any class: C&lt;&lt; Class::Abstract-&gt;is_abstract(&#39;Dog&#39;) &gt;&gt;.
+</span><span class="">  628: If C&lt;$target&gt; is C&lt;undef&gt;, it is treated as &quot;not given&quot;.
 </span><span class="">  629: 
-</span><span class="">  630: A class name that does not exist (for example, a spelling mistake) gives
-</span><span class="">  631: C&lt;0&gt;, not an error.
-</span><span class="">  632: 
-</span><span class="">  633: =head3 SIDE EFFECTS
-</span><span class="">  634: 
-</span><span class="">  635: None.  Asking about a class that does not exist does B&lt;not&gt; create it.
-</span><span class="">  636: 
-</span><span class="">  637: It does not change the global variables C&lt;$_&gt;, C&lt;$@&gt; or C&lt;$!&gt;, and it
-</span><span class="">  638: does not touch an C&lt;alarm()&gt; timer.
-</span><span class="">  639: 
-</span><span class="">  640: =head3 EXAMPLE
-</span><span class="">  641: 
-</span><span class="">  642:     Animal-&gt;is_abstract;                         # 1
-</span><span class="">  643:     Dog-&gt;is_abstract;                            # 0
-</span><span class="">  644: 
-</span><span class="">  645:     my $rex = Dog-&gt;new(name =&gt; &#39;Rex&#39;);
-</span><span class="">  646:     $rex-&gt;is_abstract;                           # 0 (asks about Dog)
+</span><span class="">  630: =back
+</span><span class="">  631: 
+</span><span class="">  632: =head3 RETURNS
+</span><span class="">  633: 
+</span><span class="">  634: The integer C&lt;1&gt; if the class is abstract, otherwise the integer C&lt;0&gt;.
+</span><span class="">  635: 
+</span><span class="">  636: A class name that does not exist (for example, a spelling mistake) gives
+</span><span class="">  637: C&lt;0&gt;, not an error.
+</span><span class="">  638: 
+</span><span class="">  639: =head3 SIDE EFFECTS
+</span><span class="">  640: 
+</span><span class="">  641: None.  Asking about a class that does not exist does B&lt;not&gt; create it.
+</span><span class="">  642: 
+</span><span class="">  643: It does not change the global variables C&lt;$_&gt;, C&lt;$@&gt; or C&lt;$!&gt;, and it
+</span><span class="">  644: does not touch an C&lt;alarm()&gt; timer.
+</span><span class="">  645: 
+</span><span class="">  646: =head3 EXAMPLE
 </span><span class="">  647: 
-</span><span class="">  648:     Class::Abstract-&gt;is_abstract(&#39;Animal&#39;);      # 1
-</span><span class="">  649:     Class::Abstract-&gt;is_abstract($rex);          # 0 (asks about Dog)
-</span><span class="">  650:     Class::Abstract-&gt;is_abstract(&#39;Anmial&#39;);      # 0 (spelling mistake: no such class)
-</span><span class="">  651: 
-</span><span class="">  652: =head3 API SPECIFICATION
+</span><span class="">  648:     Animal-&gt;is_abstract;                         # 1
+</span><span class="">  649:     Dog-&gt;is_abstract;                            # 0
+</span><span class="">  650: 
+</span><span class="">  651:     my $rex = Dog-&gt;new(name =&gt; &#39;Rex&#39;);
+</span><span class="">  652:     $rex-&gt;is_abstract;                           # 0 (asks about Dog)
 </span><span class="">  653: 
-</span><span class="">  654: =head4 Input
-</span><span class="">  655: 
-</span><span class="">  656:     {
-</span><span class="">  657:         self   =&gt; { type =&gt; &#39;string|object&#39;, optional =&gt; 0, min =&gt; 1 },
-</span><span class="">  658:         target =&gt; { type =&gt; &#39;string|object&#39;, optional =&gt; 1, min =&gt; 1 },
-</span><span class="">  659:     }
-</span><span class="">  660: 
-</span><span class="">  661: =head4 Output
-</span><span class="">  662: 
-</span><span class="">  663:     {
-</span><span class="">  664:         type =&gt; &#39;integer&#39;,
-</span><span class="">  665:         min  =&gt; 0,
-</span><span class="">  666:         max  =&gt; 1,
-</span><span class="">  667:     }
+</span><span class="">  654:     Class::Abstract-&gt;is_abstract(&#39;Animal&#39;);      # 1
+</span><span class="">  655:     Class::Abstract-&gt;is_abstract($rex);          # 0 (asks about Dog)
+</span><span class="">  656:     Class::Abstract-&gt;is_abstract(&#39;Anmial&#39;);      # 0 (spelling mistake: no such class)
+</span><span class="">  657: 
+</span><span class="">  658: =head3 API SPECIFICATION
+</span><span class="">  659: 
+</span><span class="">  660: =head4 Input
+</span><span class="">  661: 
+</span><span class="">  662:     {
+</span><span class="">  663:         self   =&gt; { type =&gt; &#39;string|object&#39;, optional =&gt; 0, min =&gt; 1 },
+</span><span class="">  664:         target =&gt; { type =&gt; &#39;string|object&#39;, optional =&gt; 1, min =&gt; 1 },
+</span><span class="">  665:     }
+</span><span class="">  666: 
+</span><span class="">  667: =head4 Output
 </span><span class="">  668: 
-</span><span class="">  669: =head3 MESSAGES
-</span><span class="">  670: 
-</span><span class="">  671:     Message                                   What it means / What to do
-</span><span class="">  672:     -------                                   --------------------------
-</span><span class="">  673:     is_abstract() requires a class name or    The class to check was a reference
-</span><span class="">  674:       object invocant, got TYPE               that is not an object.
-</span><span class="">  675: 
-</span><span class="">  676:     is_abstract() requires a class name or    The class to check was undef or &#39;&#39;.
-</span><span class="">  677:       object invocant
-</span><span class="">  678: 
-</span><span class="">  679: =cut
-</span><span class="">  680: 
-</span><span class="">  681: sub is_abstract {
-</span><span class="">  682: 	my ($self, $target) = @_;
-</span><span class="">  683: 
-</span><span class="">  684: 	# An explicit target (Class::Abstract-&gt;is_abstract(&#39;Foo&#39;) or ($obj))
-</span><span class="">  685: 	# wins; otherwise check the invocant itself.  Both go through the same
-</span><span class="">  686: 	# resolver, so an object argument is checked by its class, not by its
-</span><span class="">  687: 	# stringification (&#39;Foo=HASH(0x...)&#39;).
-</span><span class="">  688: 	my $class = _resolve_class(&#39;is_abstract&#39;, defined($target) ? $target : $self);
+</span><span class="">  669:     {
+</span><span class="">  670:         type =&gt; &#39;integer&#39;,
+</span><span class="">  671:         min  =&gt; 0,
+</span><span class="">  672:         max  =&gt; 1,
+</span><span class="">  673:     }
+</span><span class="">  674: 
+</span><span class="">  675: =head3 MESSAGES
+</span><span class="">  676: 
+</span><span class="">  677:     Message                                   What it means / What to do
+</span><span class="">  678:     -------                                   --------------------------
+</span><span class="">  679:     is_abstract() requires a class name or    The class to check was a reference
+</span><span class="">  680:       object invocant, got TYPE               that is not an object.
+</span><span class="">  681: 
+</span><span class="">  682:     is_abstract() requires a class name or    The class to check was undef or &#39;&#39;.
+</span><span class="">  683:       object invocant
+</span><span class="">  684: 
+</span><span class="">  685: =cut
+</span><span class="">  686: 
+</span><span class="">  687: sub is_abstract {
+</span><span class="">  688: 	my ($self, $target) = @_;
 </span><span class="">  689: 
-</span><span class="">  690: 	return _is_direct_abstract($class);
-</span><span class="">  691: }
-</span><span class="">  692: 
-</span><span class="">  693: # ---------------------------------------------------------------------------
-</span><span class="">  694: # PRIVATE SUBROUTINES
-</span><span class="">  695: #
-</span><span class="">  696: # Not exported and not part of the API.  The white-box tests (t/function.t,
-</span><span class="">  697: # t/edge_cases.t, t/mutant_killers.t) call and spy on them directly, which
-</span><span class="">  698: # is why they are plain named subs called by name: a spy installed on the
-</span><span class="">  699: # glob is then seen by every caller.
-</span><span class="">  700: # ---------------------------------------------------------------------------
-</span><span class="">  701: 
-</span><span class="">  702: # _fail
-</span><span class="">  703: # Purpose      : The single place this module raises an error, so message
-</span><span class="">  704: #                text lives only in %MESSAGE.
-</span><span class="">  705: # Entry        : $key  -- a key of %MESSAGE.
-</span><span class="">  706: #                @args -- sprintf arguments for that message.
-</span><span class="">  707: # Exit status  : Never returns.
-</span><span class="">  708: # Side effects : Throws via croak.  Every frame between here and the user
-</span><span class="">  709: #                is in this package (or a subclass), so Carp reports the
-</span><span class="">  710: #                user&#39;s line, not ours.
-</span><span class="">  711: # Notes        : A Readonly hash returns undef for a missing key rather
-</span><span class="">  712: #                than dying, so a mistyped key would croak with an empty
-</span><span class="">  713: #                message.  Report the bad key instead.
-</span><span class="">  714: sub _fail {
-</span><span class="">  715: 	my ($key, @args) = @_;
-</span><span class="">  716: 
-</span><span class="">  717: 	my $template = $MESSAGE{$key};
-</span><span class="">  718: 	($template, @args) = ($MESSAGE{&#39;internal:key&#39;}, $key) unless defined $template;
-</span><span class="">  719: 
-</span><span class="">  720: 	croak sprintf($template, @args);
-</span><span class="">  721: }
+</span><span class="">  690: 	# An explicit target (Class::Abstract-&gt;is_abstract(&#39;Foo&#39;) or ($obj))
+</span><span class="">  691: 	# wins; otherwise check the invocant itself.  Both go through the same
+</span><span class="">  692: 	# resolver, so an object argument is checked by its class, not by its
+</span><span class="">  693: 	# stringification (&#39;Foo=HASH(0x...)&#39;).
+</span><span class="">  694: 	my $class = _resolve_class(&#39;is_abstract&#39;, defined($target) ? $target : $self);
+</span><span class="">  695: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  696: 	return _is_direct_abstract($class);
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  697: }
+</span><span class="">  698: 
+</span><span class="">  699: # ---------------------------------------------------------------------------
+</span><span class="">  700: # PRIVATE SUBROUTINES
+</span><span class="">  701: #
+</span><span class="">  702: # Not exported and not part of the API.  The white-box tests (t/function.t,
+</span><span class="">  703: # t/edge_cases.t, t/mutant_killers.t) call and spy on them directly, which
+</span><span class="">  704: # is why they are plain named subs called by name: a spy installed on the
+</span><span class="">  705: # glob is then seen by every caller.
+</span><span class="">  706: # ---------------------------------------------------------------------------
+</span><span class="">  707: 
+</span><span class="">  708: # _fail
+</span><span class="">  709: # Purpose      : The single place this module raises an error, so message
+</span><span class="">  710: #                text lives only in %MESSAGE.
+</span><span class="">  711: # Entry        : $key  -- a key of %MESSAGE.
+</span><span class="">  712: #                @args -- sprintf arguments for that message.
+</span><span class="">  713: # Exit status  : Never returns.
+</span><span class="">  714: # Side effects : Throws via croak.  Every frame between here and the user
+</span><span class="">  715: #                is in this package (or a subclass), so Carp reports the
+</span><span class="">  716: #                user&#39;s line, not ours.
+</span><span class="">  717: # Notes        : A Readonly hash returns undef for a missing key rather
+</span><span class="">  718: #                than dying, so a mistyped key would croak with an empty
+</span><span class="">  719: #                message.  Report the bad key instead.
+</span><span class="">  720: sub _fail {
+</span><span class="">  721: 	my ($key, @args) = @_;
 </span><span class="">  722: 
-</span><span class="">  723: # _resolve_class
-</span><span class="">  724: # Purpose      : Turn an invocant into a validated class name, applying one
-</span><span class="">  725: #                set of rules for every public routine.
-</span><span class="">  726: # Entry        : $routine  -- message-key prefix: &#39;new&#39;, &#39;check&#39; or
-</span><span class="">  727: #                             &#39;is_abstract&#39;.
-</span><span class="">  728: #                $invocant -- class name, blessed object, or junk.
-</span><span class="">  729: # Exit status  : Returns a defined, non-empty class-name string.
-</span><span class="">  730: #                Croaks if $invocant is an unblessed reference, undef or &#39;&#39;.
-</span><span class="">  731: # Side effects : None.
-</span><span class="">  732: # Notes        : blessed() is tested with defined(), not truth, because an
-</span><span class="">  733: #                object blessed into package &#39;0&#39; has blessed() eq &#39;0&#39;
-</span><span class="">  734: #                (and ref() eq &#39;0&#39;), which plain truth tests misread.
-</span><span class="">  735: sub _resolve_class {
-</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">736 → 741 → 748</span></span>  736: 	my ($routine, $invocant) = @_;
-</span><span class="">  737: 
-</span><span class="">  738: 	# An object stands in for its class.  Any other reference is a caller
-</span><span class="">  739: 	# error, never a class name.
-</span><span class="">  740: 	my $pkg = blessed($invocant);
-</span><span class="">  741: 	if (defined $pkg) {
-</span><span class="">  742: 		$invocant = $pkg;
-</span><span class="">  743: 	} elsif (ref $invocant) {
-</span><span class="">  744: 		_fail(&quot;${routine}:unblessed&quot;, ref $invocant);
-</span><span class="">  745: 	}
-</span><span class="">  746: 
-</span><span class="">  747: 	# undef cannot name a package, and &#39;&#39; would silently mean main::.
-</span><span class="">  748: 	_fail(&quot;${routine}:undef&quot;) unless defined($invocant) &amp;&amp; length($invocant);
-</span><span class="">  749: 
-</span><span class="">  750: 	return $invocant;
-</span><span class="">  751: }
+</span><span class="">  723: 	my $template = $MESSAGE{$key};
+</span><span class="">  724: 	($template, @args) = ($MESSAGE{&#39;internal:key&#39;}, $key) unless defined $template;
+</span><span class="">  725: 
+</span><span class="">  726: 	croak sprintf($template, @args);
+</span><span class="">  727: }
+</span><span class="">  728: 
+</span><span class="">  729: # _resolve_class
+</span><span class="">  730: # Purpose      : Turn an invocant into a validated class name, applying one
+</span><span class="">  731: #                set of rules for every public routine.
+</span><span class="">  732: # Entry        : $routine  -- message-key prefix: &#39;new&#39;, &#39;check&#39; or
+</span><span class="">  733: #                             &#39;is_abstract&#39;.
+</span><span class="">  734: #                $invocant -- class name, blessed object, or junk.
+</span><span class="">  735: # Exit status  : Returns a defined, non-empty class-name string.
+</span><span class="">  736: #                Croaks if $invocant is an unblessed reference, undef or &#39;&#39;.
+</span><span class="">  737: # Side effects : None.
+</span><span class="">  738: # Notes        : blessed() is tested with defined(), not truth, because an
+</span><span class="">  739: #                object blessed into package &#39;0&#39; has blessed() eq &#39;0&#39;
+</span><span class="">  740: #                (and ref() eq &#39;0&#39;), which plain truth tests misread.
+</span><span class="">  741: sub _resolve_class {
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">742 → 747 → 754</span></span>  742: 	my ($routine, $invocant) = @_;
+</span><span class="">  743: 
+</span><span class="">  744: 	# An object stands in for its class.  Any other reference is a caller
+</span><span class="">  745: 	# error, never a class name.
+</span><span class="">  746: 	my $pkg = blessed($invocant);
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  747: 	if (defined $pkg) {
+</span><p> <b> Mutants (Total: 1, Killed: 1, Survived: 0)</b><p><span class="">  748: 		$invocant = $pkg;
+</span><span class="">  749: 	} elsif (ref $invocant) {
+</span><span class="">  750: 		_fail(&quot;${routine}:unblessed&quot;, ref $invocant);
+</span><span class="">  751: 	}
 </span><span class="">  752: 
-</span><span class="">  753: # _bypass_active
-</span><span class="">  754: # Purpose      : Decide whether enforcement is switched off.
-</span><span class="">  755: # Entry        : None (reads $BYPASS, %config, $ENV{HARNESS_ACTIVE}).
-</span><span class="">  756: # Exit status  : 1 if any bypass applies, else 0.
-</span><span class="">  757: # Side effects : None.
-</span><span class="">  758: # Notes        : $BYPASS is checked first and short-circuits, so it wins
-</span><span class="">  759: #                over harness_bypass (documented under LIMITATIONS).
-</span><span class="">  760: sub _bypass_active {
-</span><span class="">  761: 	return ($BYPASS || ($config{harness_bypass} &amp;&amp; $ENV{HARNESS_ACTIVE})) ? 1 : 0;
-</span><span class="">  762: }
-</span><span class="">  763: 
-</span><span class="">  764: # _enforce
-</span><span class="">  765: # Purpose      : Croak if $class is directly abstract and no bypass is on.
-</span><span class="">  766: # Entry        : $class -- an already-validated class name.
-</span><span class="">  767: # Exit status  : Returns $class on success; croaks otherwise.
-</span><span class="">  768: # Side effects : None.
-</span><span class="">  769: # Notes        : The bypass test runs first so that, with a bypass on,
-</span><span class="">  770: #                _is_direct_abstract() is never called.  t/function.t
-</span><span class="">  771: #                counts those calls, so keep this order.
-</span><span class="">  772: sub _enforce {
-</span><span class="">  773: 	my ($class) = @_;
-</span><span class="">  774: 	_fail(&#39;abstract&#39;, $class) if !_bypass_active() &amp;&amp; _is_direct_abstract($class);
-</span><span class="">  775: 	return $class;
-</span><span class="">  776: }
-</span><span class="">  777: 
-</span><span class="">  778: # _direct_isa
-</span><span class="">  779: # Purpose      : Return a package&#39;s own @ISA without creating the package.
-</span><span class="">  780: #                The obvious @{&quot;${class}::ISA&quot;} autovivifies the stash, so a
-</span><span class="">  781: #                mere is_abstract(&#39;Typo::Name&#39;) would conjure an empty
-</span><span class="">  782: #                package into existence.
-</span><span class="">  783: # Entry        : $class -- package name string.  &#39;&#39; means main::.
-</span><span class="">  784: # Exit status  : An arrayref.  It is the live @ISA if the package and its
-</span><span class="">  785: #                @ISA exist, otherwise a new empty arrayref.
-</span><span class="">  786: # Side effects : None.  The symbol table is only read, never written.
-</span><span class="">  787: # Notes        : The old &quot;&#39;&quot; package separator (Foo&#39;Bar) is not recognised.
-</span><span class="">  788: sub _direct_isa {
-</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">789 → 796 → 804</span></span>  789: 	my ($class) = @_;
-</span><span class="">  790: 
-</span><span class="">  791: 	# Walk the stash tree one &#39;::&#39; segment at a time from main::.  Empty
-</span><span class="">  792: 	# segments (from &#39;::Foo&#39; or &#39;Foo::&#39;) are skipped, as Perl skips them.
-</span><span class="">  793: 	# A stash entry may hold a non-glob (e.g. an optimised constant), so
-</span><span class="">  794: 	# check that each entry really is a glob before dereferencing it.
-</span><span class="">  795: 	my $stash = \%main::;
-</span><span class="">  796: 	foreach my $segment (grep { length } split /::/, $class) {
-</span><span class="">  797: 		my $glob = $stash-&gt;{&quot;${segment}::&quot;};
-</span><span class="">  798: 		$stash = (defined($glob) &amp;&amp; ref(\$glob) eq &#39;GLOB&#39;) ? *{$glob}{HASH} : undef;
-</span><span class="">  799: 		last unless $stash;
-</span><span class="">  800: 	}
-</span><span class="">  801: 
-</span><span class="">  802: 	# The package exists only if every segment resolved.  *ISA{ARRAY} is
-</span><span class="">  803: 	# undef until @ISA is first used, so fall back to an empty list.
-</span><span class="">  804: 	my $isa = $stash ? $stash-&gt;{ISA} : undef;
-</span><span class="">  805: 	return (defined($isa) &amp;&amp; ref(\$isa) eq &#39;GLOB&#39; &amp;&amp; *{$isa}{ARRAY}) || [];
-</span><span class="">  806: }
+</span><span class="">  753: 	# undef cannot name a package, and &#39;&#39; would silently mean main::.
+</span><span class="">  754: 	_fail(&quot;${routine}:undef&quot;) unless defined($invocant) &amp;&amp; length($invocant);
+</span><span class="">  755: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  756: 	return $invocant;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  757: }
+</span><span class="">  758: 
+</span><span class="">  759: # _bypass_active
+</span><span class="">  760: # Purpose      : Decide whether enforcement is switched off.
+</span><span class="">  761: # Entry        : None (reads $BYPASS, %config, $ENV{HARNESS_ACTIVE}).
+</span><span class="">  762: # Exit status  : 1 if any bypass applies, else 0.
+</span><span class="">  763: # Side effects : None.
+</span><span class="">  764: # Notes        : $BYPASS is checked first and short-circuits, so it wins
+</span><span class="">  765: #                over harness_bypass (documented under LIMITATIONS).
+</span><span class="">  766: sub _bypass_active {
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  767: 	return ($BYPASS || ($config{harness_bypass} &amp;&amp; $ENV{HARNESS_ACTIVE})) ? 1 : 0;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  768: }
+</span><span class="">  769: 
+</span><span class="">  770: # _enforce
+</span><span class="">  771: # Purpose      : Croak if $class is directly abstract and no bypass is on.
+</span><span class="">  772: # Entry        : $class -- an already-validated class name.
+</span><span class="">  773: # Exit status  : Returns $class on success; croaks otherwise.
+</span><span class="">  774: # Side effects : None.
+</span><span class="">  775: # Notes        : The bypass test runs first so that, with a bypass on,
+</span><span class="">  776: #                _is_direct_abstract() is never called.  t/function.t
+</span><span class="">  777: #                counts those calls, so keep this order.
+</span><span class="">  778: sub _enforce {
+</span><span class="">  779: 	my ($class) = @_;
+</span><span class="">  780: 	_fail(&#39;abstract&#39;, $class) if !_bypass_active() &amp;&amp; _is_direct_abstract($class);
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  781: 	return $class;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  782: }
+</span><span class="">  783: 
+</span><span class="">  784: # _direct_isa
+</span><span class="">  785: # Purpose      : Return a package&#39;s own @ISA without creating the package.
+</span><span class="">  786: #                The obvious @{&quot;${class}::ISA&quot;} autovivifies the stash, so a
+</span><span class="">  787: #                mere is_abstract(&#39;Typo::Name&#39;) would conjure an empty
+</span><span class="">  788: #                package into existence.
+</span><span class="">  789: # Entry        : $class -- package name string.  &#39;&#39; means main::.
+</span><span class="">  790: # Exit status  : An arrayref.  It is the live @ISA if the package and its
+</span><span class="">  791: #                @ISA exist, otherwise a new empty arrayref.
+</span><span class="">  792: # Side effects : None.  The symbol table is only read, never written.
+</span><span class="">  793: # Notes        : The old &quot;&#39;&quot; package separator (Foo&#39;Bar) is not recognised.
+</span><span class="">  794: sub _direct_isa {
+</span><span class=""><span class="lcsaj-tip"><span class="lcsaj-dot">●</span><span class="lcsaj-tip-text">795 → 802 → 810</span></span>  795: 	my ($class) = @_;
+</span><span class="">  796: 
+</span><span class="">  797: 	# Walk the stash tree one &#39;::&#39; segment at a time from main::.  Empty
+</span><span class="">  798: 	# segments (from &#39;::Foo&#39; or &#39;Foo::&#39;) are skipped, as Perl skips them.
+</span><span class="">  799: 	# A stash entry may hold a non-glob (e.g. an optimised constant), so
+</span><span class="">  800: 	# check that each entry really is a glob before dereferencing it.
+</span><span class="">  801: 	my $stash = \%main::;
+</span><span class="">  802: 	foreach my $segment (grep { length } split /::/, $class) {
+</span><span class="">  803: 		my $glob = $stash-&gt;{&quot;${segment}::&quot;};
+</span><span class="">  804: 		$stash = (defined($glob) &amp;&amp; ref(\$glob) eq &#39;GLOB&#39;) ? *{$glob}{HASH} : undef;
+</span><span class="">  805: 		last unless $stash;
+</span><span class="">  806: 	}
 </span><span class="">  807: 
-</span><span class="">  808: # _is_direct_abstract
-</span><span class="">  809: # Purpose      : Decide whether a class is directly abstract: it is
-</span><span class="">  810: #                Class::Abstract, or Class::Abstract is in its own @ISA.
-</span><span class="">  811: # Entry        : $class -- package name string, or undef.
-</span><span class="">  812: # Exit status  : Exactly 1 or 0 (never undef or &#39;&#39;); the mutation tests in
-</span><span class="">  813: #                t/mutant_killers.t rely on these exact integers.
-</span><span class="">  814: # Side effects : None.  $_ is localised by grep.
-</span><span class="">  815: # Notes        : Intentionally shallow: a subclass of an abstract class is
-</span><span class="">  816: #                concrete unless it opts in too.  Undefined @ISA elements
-</span><span class="">  817: #                are skipped so that they do not warn.
-</span><span class="">  818: sub _is_direct_abstract {
-</span><span class="">  819: 	my ($class) = @_;
-</span><span class="">  820: 
-</span><span class="">  821: 	# undef names nothing; Class::Abstract itself must never be built;
-</span><span class="">  822: 	# anything else is abstract iff we sit directly in its @ISA.
-</span><span class="">  823: 	my $abstract = !defined($class)  ? 0
-</span><span class="">  824: 		: ($class eq $SELF)       ? 1
-</span><span class="">  825: 		: (grep { defined($_) &amp;&amp; ($_ eq $SELF) } @{ _direct_isa($class) }) ? 1
-</span><span class="">  826: 		: 0;
-</span><span class="">  827: 
-</span><span class="">  828: 	return $abstract;
-</span><span class="">  829: }
-</span><span class="">  830: 
-</span><span class="">  831: 1;
-</span><span class="">  832: 
-</span><span class="">  833: __END__
-</span><span class="">  834: 
-</span><span class="">  835: =head1 PUBLIC VARIABLES
+</span><span class="">  808: 	# The package exists only if every segment resolved.  *ISA{ARRAY} is
+</span><span class="">  809: 	# undef until @ISA is first used, so fall back to an empty list.
+</span><span class="">  810: 	my $isa = $stash ? $stash-&gt;{ISA} : undef;
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  811: 	return (defined($isa) &amp;&amp; ref(\$isa) eq &#39;GLOB&#39; &amp;&amp; *{$isa}{ARRAY}) || [];
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  812: }
+</span><span class="">  813: 
+</span><span class="">  814: # _is_direct_abstract
+</span><span class="">  815: # Purpose      : Decide whether a class is directly abstract: it is
+</span><span class="">  816: #                Class::Abstract, or Class::Abstract is in its own @ISA.
+</span><span class="">  817: # Entry        : $class -- package name string, or undef.
+</span><span class="">  818: # Exit status  : Exactly 1 or 0 (never undef or &#39;&#39;); the mutation tests in
+</span><span class="">  819: #                t/mutant_killers.t rely on these exact integers.
+</span><span class="">  820: # Side effects : None.  $_ is localised by grep.
+</span><span class="">  821: # Notes        : Intentionally shallow: a subclass of an abstract class is
+</span><span class="">  822: #                concrete unless it opts in too.  Undefined @ISA elements
+</span><span class="">  823: #                are skipped so that they do not warn.
+</span><span class="">  824: sub _is_direct_abstract {
+</span><span class="">  825: 	my ($class) = @_;
+</span><span class="">  826: 
+</span><span class="">  827: 	# undef names nothing; Class::Abstract itself must never be built;
+</span><span class="">  828: 	# anything else is abstract iff we sit directly in its @ISA.
+</span><span class="">  829: 	my $abstract = !defined($class)  ? 0
+</span><span class="">  830: 		: ($class eq $SELF)       ? 1
+</span><span class="">  831: 		: (grep { defined($_) &amp;&amp; ($_ eq $SELF) } @{ _direct_isa($class) }) ? 1
+</span><span class="">  832: 		: 0;
+</span><span class="">  833: 
+</span><span class="killed tooltip" data-tooltip="Mutations here were killed. Tests are effectively covering this logic.">  834: 	return $abstract;
+</span><p> <b> Mutants (Total: 2, Killed: 2, Survived: 0)</b><p><span class="">  835: }
 </span><span class="">  836: 
-</span><span class="">  837: =head2 $Class::Abstract::BYPASS
+</span><span class="">  837: 1;
 </span><span class="">  838: 
-</span><span class="">  839: Default: C&lt;0&gt;.
+</span><span class="">  839: __END__
 </span><span class="">  840: 
-</span><span class="">  841: When this is true, the check is off for B&lt;every&gt; class.  Always change
-</span><span class="">  842: it with C&lt;local&gt;, so that it goes back to its old value at the end of the
-</span><span class="">  843: block:
+</span><span class="">  841: =head1 PUBLIC VARIABLES
+</span><span class="">  842: 
+</span><span class="">  843: =head2 $Class::Abstract::BYPASS
 </span><span class="">  844: 
-</span><span class="">  845:     {
-</span><span class="">  846:         local $Class::Abstract::BYPASS = 1;
-</span><span class="">  847:         my $animal = Animal-&gt;new;    # works, even though Animal is abstract
-</span><span class="">  848:     }
-</span><span class="">  849:     Animal-&gt;new;                     # dies again
+</span><span class="">  845: Default: C&lt;0&gt;.
+</span><span class="">  846: 
+</span><span class="">  847: When this is true, the check is off for B&lt;every&gt; class.  Always change
+</span><span class="">  848: it with C&lt;local&gt;, so that it goes back to its old value at the end of the
+</span><span class="">  849: block:
 </span><span class="">  850: 
-</span><span class="">  851: Any true value turns the check off.  This includes strings that look
-</span><span class="">  852: false to a person, such as C&lt;&quot;false&quot;&gt;, C&lt;&quot;no&quot;&gt; and C&lt;&quot;0E0&quot;&gt;.
-</span><span class="">  853: 
-</span><span class="">  854: =head2 %Class::Abstract::config
-</span><span class="">  855: 
-</span><span class="">  856: Settings for the module.  It has one key.
-</span><span class="">  857: 
-</span><span class="">  858: =over 4
+</span><span class="">  851:     {
+</span><span class="">  852:         local $Class::Abstract::BYPASS = 1;
+</span><span class="">  853:         my $animal = Animal-&gt;new;    # works, even though Animal is abstract
+</span><span class="">  854:     }
+</span><span class="">  855:     Animal-&gt;new;                     # dies again
+</span><span class="">  856: 
+</span><span class="">  857: Any true value turns the check off.  This includes strings that look
+</span><span class="">  858: false to a person, such as C&lt;&quot;false&quot;&gt;, C&lt;&quot;no&quot;&gt; and C&lt;&quot;0E0&quot;&gt;.
 </span><span class="">  859: 
-</span><span class="">  860: =item harness_bypass
+</span><span class="">  860: =head2 %Class::Abstract::config
 </span><span class="">  861: 
-</span><span class="">  862: Default: C&lt;0&gt;.
+</span><span class="">  862: Settings for the module.  It has one key.
 </span><span class="">  863: 
-</span><span class="">  864: When this is true B&lt;and&gt; the environment variable C&lt;HARNESS_ACTIVE&gt; is
-</span><span class="">  865: true, the check is off.  C&lt;HARNESS_ACTIVE&gt; is set by test harnesses such
-</span><span class="">  866: as C&lt;prove&gt; and C&lt;make test&gt;.
+</span><span class="">  864: =over 4
+</span><span class="">  865: 
+</span><span class="">  866: =item harness_bypass
 </span><span class="">  867: 
-</span><span class="">  868: The default was C&lt;1&gt; before version 0.03.  Set it to C&lt;1&gt; to get the old
-</span><span class="">  869: behaviour back.
-</span><span class="">  870: 
-</span><span class="">  871: =back
-</span><span class="">  872: 
-</span><span class="">  873: =head1 ERROR MESSAGES
-</span><span class="">  874: 
-</span><span class="">  875: This is the full list of messages that the module can produce.  The text
-</span><span class="">  876: is always plain English.  It does not change with the locale.  Each
-</span><span class="">  877: message ends with the file and line number of B&lt;your&gt; code, for example
-</span><span class="">  878: C&lt;at script.pl line 12.&gt;
-</span><span class="">  879: 
-</span><span class="">  880:     Message                                                    Comes from
-</span><span class="">  881:     -------                                                    ----------
-</span><span class="">  882:     Cannot instantiate abstract class CLASS directly           new, check_abstract
-</span><span class="">  883:     new() invocant must be a class name or blessed object,     new
-</span><span class="">  884:       got TYPE
-</span><span class="">  885:     new() requires a defined class name as invocant            new
-</span><span class="">  886:     check_abstract() requires a class name or blessed object,  check_abstract
-</span><span class="">  887:       got TYPE
-</span><span class="">  888:     check_abstract() requires a defined class name             check_abstract
-</span><span class="">  889:     is_abstract() requires a class name or object invocant,    is_abstract
+</span><span class="">  868: Default: C&lt;0&gt;.
+</span><span class="">  869: 
+</span><span class="">  870: When this is true B&lt;and&gt; the environment variable C&lt;HARNESS_ACTIVE&gt; is
+</span><span class="">  871: true, the check is off.  C&lt;HARNESS_ACTIVE&gt; is set by test harnesses such
+</span><span class="">  872: as C&lt;prove&gt; and C&lt;make test&gt;.
+</span><span class="">  873: 
+</span><span class="">  874: The default was C&lt;1&gt; before version 0.03.  Set it to C&lt;1&gt; to get the old
+</span><span class="">  875: behaviour back.
+</span><span class="">  876: 
+</span><span class="">  877: =back
+</span><span class="">  878: 
+</span><span class="">  879: =head1 ERROR MESSAGES
+</span><span class="">  880: 
+</span><span class="">  881: This is the full list of messages that the module can produce.  The text
+</span><span class="">  882: is always plain English.  It does not change with the locale.  Each
+</span><span class="">  883: message ends with the file and line number of B&lt;your&gt; code, for example
+</span><span class="">  884: C&lt;at script.pl line 12.&gt;
+</span><span class="">  885: 
+</span><span class="">  886:     Message                                                    Comes from
+</span><span class="">  887:     -------                                                    ----------
+</span><span class="">  888:     Cannot instantiate abstract class CLASS directly           new, check_abstract
+</span><span class="">  889:     new() invocant must be a class name or blessed object,     new
 </span><span class="">  890:       got TYPE
-</span><span class="">  891:     is_abstract() requires a class name or object invocant     is_abstract
-</span><span class="">  892:     Class::Abstract internal error: unknown message key KEY    (a bug in this
-</span><span class="">  893:                                                                 module; please
-</span><span class="">  894:                                                                 report it)
-</span><span class="">  895: 
-</span><span class="">  896: CLASS is the class name.  TYPE is the kind of reference, such as
-</span><span class="">  897: C&lt;ARRAY&gt;, C&lt;HASH&gt; or C&lt;CODE&gt;.
-</span><span class="">  898: 
-</span><span class="">  899: =head1 COMMON PITFALLS
-</span><span class="">  900: 
-</span><span class="">  901: =over 4
-</span><span class="">  902: 
-</span><span class="">  903: =item Your own new() skips the check
+</span><span class="">  891:     new() requires a defined class name as invocant            new
+</span><span class="">  892:     check_abstract() requires a class name or blessed object,  check_abstract
+</span><span class="">  893:       got TYPE
+</span><span class="">  894:     check_abstract() requires a defined class name             check_abstract
+</span><span class="">  895:     is_abstract() requires a class name or object invocant,    is_abstract
+</span><span class="">  896:       got TYPE
+</span><span class="">  897:     is_abstract() requires a class name or object invocant     is_abstract
+</span><span class="">  898:     Class::Abstract internal error: unknown message key KEY    (a bug in this
+</span><span class="">  899:                                                                 module; please
+</span><span class="">  900:                                                                 report it)
+</span><span class="">  901: 
+</span><span class="">  902: CLASS is the class name.  TYPE is the kind of reference, such as
+</span><span class="">  903: C&lt;ARRAY&gt;, C&lt;HASH&gt; or C&lt;CODE&gt;.
 </span><span class="">  904: 
-</span><span class="">  905: If an abstract class writes its own C&lt;new()&gt; and creates the object
-</span><span class="">  906: with C&lt;bless&gt;, C&lt;Class::Abstract::new()&gt; never runs.  Nothing stops
-</span><span class="">  907: C&lt;&lt; Shape-&gt;new &gt;&gt;.  Fix: call
-</span><span class="">  908: C&lt;Class::Abstract::check_abstract($class)&gt; on the first line, or build
-</span><span class="">  909: the object with C&lt;&lt; $class-&gt;SUPER::new &gt;&gt;.
+</span><span class="">  905: =head1 COMMON PITFALLS
+</span><span class="">  906: 
+</span><span class="">  907: =over 4
+</span><span class="">  908: 
+</span><span class="">  909: =item Your own new() skips the check
 </span><span class="">  910: 
-</span><span class="">  911: =item The order of parents matters
-</span><span class="">  912: 
-</span><span class="">  913: Perl uses the B&lt;first&gt; C&lt;new()&gt; it finds, reading C&lt;@ISA&gt; from left to
-</span><span class="">  914: right.  In C&lt;use parent &#39;Animal&#39;, &#39;Class::Abstract&#39;&gt;, Perl finds
-</span><span class="">  915: C&lt;Animal::new&gt; first, if C&lt;Animal&gt; has one.  If that C&lt;new()&gt; does not
-</span><span class="">  916: call C&lt;check_abstract()&gt;, there is no check.
-</span><span class="">  917: 
-</span><span class="">  918: =item Child classes are not abstract automatically
-</span><span class="">  919: 
-</span><span class="">  920: C&lt;Mammal&gt; below the abstract class C&lt;Animal&gt; is B&lt;concrete&gt; unless
-</span><span class="">  921: C&lt;Mammal&gt; also lists C&lt;Class::Abstract&gt; in its own C&lt;@ISA&gt;.
-</span><span class="">  922: 
-</span><span class="">  923: =item &quot;use Class::Abstract;&quot; changes the current package
-</span><span class="">  924: 
-</span><span class="">  925: C&lt;use Class::Abstract;&gt; makes the package it is written in abstract.  If
-</span><span class="">  926: you write it in a script only to call C&lt;is_abstract()&gt;, the C&lt;main&gt;
-</span><span class="">  927: package becomes abstract.  Write C&lt;use Class::Abstract ();&gt; instead.
-</span><span class="">  928: With the empty list, Perl does not call C&lt;import()&gt;.  The same is true
-</span><span class="">  929: for C&lt;require Class::Abstract;&gt;: it does B&lt;not&gt; make any class abstract.
+</span><span class="">  911: If an abstract class writes its own C&lt;new()&gt; and creates the object
+</span><span class="">  912: with C&lt;bless&gt;, C&lt;Class::Abstract::new()&gt; never runs.  Nothing stops
+</span><span class="">  913: C&lt;&lt; Shape-&gt;new &gt;&gt;.  Fix: call
+</span><span class="">  914: C&lt;Class::Abstract::check_abstract($class)&gt; on the first line, or build
+</span><span class="">  915: the object with C&lt;&lt; $class-&gt;SUPER::new &gt;&gt;.
+</span><span class="">  916: 
+</span><span class="">  917: =item The order of parents matters
+</span><span class="">  918: 
+</span><span class="">  919: Perl uses the B&lt;first&gt; C&lt;new()&gt; it finds, reading C&lt;@ISA&gt; from left to
+</span><span class="">  920: right.  In C&lt;use parent &#39;Animal&#39;, &#39;Class::Abstract&#39;&gt;, Perl finds
+</span><span class="">  921: C&lt;Animal::new&gt; first, if C&lt;Animal&gt; has one.  If that C&lt;new()&gt; does not
+</span><span class="">  922: call C&lt;check_abstract()&gt;, there is no check.
+</span><span class="">  923: 
+</span><span class="">  924: =item Child classes are not abstract automatically
+</span><span class="">  925: 
+</span><span class="">  926: C&lt;Mammal&gt; below the abstract class C&lt;Animal&gt; is B&lt;concrete&gt; unless
+</span><span class="">  927: C&lt;Mammal&gt; also lists C&lt;Class::Abstract&gt; in its own C&lt;@ISA&gt;.
+</span><span class="">  928: 
+</span><span class="">  929: =item &quot;use Class::Abstract;&quot; changes the current package
 </span><span class="">  930: 
-</span><span class="">  931: =item undef and empty strings
-</span><span class="">  932: 
-</span><span class="">  933: C&lt;&lt; Class::Abstract::new(undef) &gt;&gt;, C&lt;new(&#39;&#39;)&gt; and the same calls to
-</span><span class="">  934: C&lt;check_abstract()&gt; and C&lt;is_abstract()&gt; die.  But an C&lt;undef&gt;
-</span><span class="">  935: B&lt;target&gt; in C&lt;&lt; $obj-&gt;is_abstract(undef) &gt;&gt; is treated as &quot;no target&quot;,
-</span><span class="">  936: so the invocant is checked.
-</span><span class="">  937: 
-</span><span class="">  938: =item Spelling mistakes give 0, not an error
-</span><span class="">  939: 
-</span><span class="">  940: C&lt;&lt; Class::Abstract-&gt;is_abstract(&#39;Anmial&#39;) &gt;&gt; returns C&lt;0&gt;, because no
-</span><span class="">  941: package with that name has C&lt;Class::Abstract&gt; in its C&lt;@ISA&gt;.  Check
-</span><span class="">  942: the spelling if you get C&lt;0&gt; when you expect C&lt;1&gt;.
+</span><span class="">  931: C&lt;use Class::Abstract;&gt; makes the package it is written in abstract.  If
+</span><span class="">  932: you write it in a script only to call C&lt;is_abstract()&gt;, the C&lt;main&gt;
+</span><span class="">  933: package becomes abstract.  Write C&lt;use Class::Abstract ();&gt; instead.
+</span><span class="">  934: With the empty list, Perl does not call C&lt;import()&gt;.  The same is true
+</span><span class="">  935: for C&lt;require Class::Abstract;&gt;: it does B&lt;not&gt; make any class abstract.
+</span><span class="">  936: 
+</span><span class="">  937: =item undef and empty strings
+</span><span class="">  938: 
+</span><span class="">  939: C&lt;&lt; Class::Abstract::new(undef) &gt;&gt;, C&lt;new(&#39;&#39;)&gt; and the same calls to
+</span><span class="">  940: C&lt;check_abstract()&gt; and C&lt;is_abstract()&gt; die.  But an C&lt;undef&gt;
+</span><span class="">  941: B&lt;target&gt; in C&lt;&lt; $obj-&gt;is_abstract(undef) &gt;&gt; is treated as &quot;no target&quot;,
+</span><span class="">  942: so the invocant is checked.
 </span><span class="">  943: 
-</span><span class="">  944: =item A bypass without &quot;local&quot; never ends
+</span><span class="">  944: =item Spelling mistakes give 0, not an error
 </span><span class="">  945: 
-</span><span class="">  946: C&lt;$Class::Abstract::BYPASS = 1;&gt; without C&lt;local&gt; turns the check off
-</span><span class="">  947: for the rest of the program, in every file.
-</span><span class="">  948: 
-</span><span class="">  949: =item Strings that look false are true
-</span><span class="">  950: 
-</span><span class="">  951: C&lt;$BYPASS = &#39;false&#39;&gt; and C&lt;$BYPASS = &#39;no&#39;&gt; turn the check B&lt;off&gt;,
-</span><span class="">  952: because Perl treats every non-empty string except C&lt;&#39;0&#39;&gt; as true.  Use
-</span><span class="">  953: C&lt;1&gt; and C&lt;0&gt;.
+</span><span class="">  946: C&lt;&lt; Class::Abstract-&gt;is_abstract(&#39;Anmial&#39;) &gt;&gt; returns C&lt;0&gt;, because no
+</span><span class="">  947: package with that name has C&lt;Class::Abstract&gt; in its C&lt;@ISA&gt;.  Check
+</span><span class="">  948: the spelling if you get C&lt;0&gt; when you expect C&lt;1&gt;.
+</span><span class="">  949: 
+</span><span class="">  950: =item A bypass without &quot;local&quot; never ends
+</span><span class="">  951: 
+</span><span class="">  952: C&lt;$Class::Abstract::BYPASS = 1;&gt; without C&lt;local&gt; turns the check off
+</span><span class="">  953: for the rest of the program, in every file.
 </span><span class="">  954: 
-</span><span class="">  955: =item $BYPASS wins over harness_bypass
+</span><span class="">  955: =item Strings that look false are true
 </span><span class="">  956: 
-</span><span class="">  957: If C&lt;$BYPASS&gt; is true, setting C&lt;harness_bypass&gt; to C&lt;0&gt; does not turn
-</span><span class="">  958: the check on.  To be sure the check is on, set both:
-</span><span class="">  959: 
-</span><span class="">  960:     local $Class::Abstract::BYPASS                 = 0;
-</span><span class="">  961:     local $Class::Abstract::config{harness_bypass} = 0;
+</span><span class="">  957: C&lt;$BYPASS = &#39;false&#39;&gt; and C&lt;$BYPASS = &#39;no&#39;&gt; turn the check B&lt;off&gt;,
+</span><span class="">  958: because Perl treats every non-empty string except C&lt;&#39;0&#39;&gt; as true.  Use
+</span><span class="">  959: C&lt;1&gt; and C&lt;0&gt;.
+</span><span class="">  960: 
+</span><span class="">  961: =item $BYPASS wins over harness_bypass
 </span><span class="">  962: 
-</span><span class="">  963: =item Tests that passed before 0.03 may now die
-</span><span class="">  964: 
-</span><span class="">  965: Before version 0.03 the check was off inside a test harness.  If your
-</span><span class="">  966: tests make objects of abstract classes, they will now die.  See
-</span><span class="">  967: L&lt;/Turning the check off&gt;.
+</span><span class="">  963: If C&lt;$BYPASS&gt; is true, setting C&lt;harness_bypass&gt; to C&lt;0&gt; does not turn
+</span><span class="">  964: the check on.  To be sure the check is on, set both:
+</span><span class="">  965: 
+</span><span class="">  966:     local $Class::Abstract::BYPASS                 = 0;
+</span><span class="">  967:     local $Class::Abstract::config{harness_bypass} = 0;
 </span><span class="">  968: 
-</span><span class="">  969: =item isa() is not the same as is_abstract()
+</span><span class="">  969: =item Tests that passed before 0.03 may now die
 </span><span class="">  970: 
-</span><span class="">  971: C&lt;&lt; Dog-&gt;isa(&#39;Class::Abstract&#39;) &gt;&gt; is true, because C&lt;Class::Abstract&gt;
-</span><span class="">  972: is a grandparent of C&lt;Dog&gt;.  Use C&lt;&lt; Dog-&gt;is_abstract &gt;&gt; to ask whether
-</span><span class="">  973: C&lt;Dog&gt; itself is abstract.
+</span><span class="">  971: Before version 0.03 the check was off inside a test harness.  If your
+</span><span class="">  972: tests make objects of abstract classes, they will now die.  See
+</span><span class="">  973: L&lt;/Turning the check off&gt;.
 </span><span class="">  974: 
-</span><span class="">  975: =item new() throws away its arguments
+</span><span class="">  975: =item isa() is not the same as is_abstract()
 </span><span class="">  976: 
-</span><span class="">  977: C&lt;&lt; Dog-&gt;SUPER::new(name =&gt; &#39;Rex&#39;) &gt;&gt; does not store C&lt;name&gt;.  Store it
-</span><span class="">  978: yourself after C&lt;SUPER::new&gt; returns.
-</span><span class="">  979: 
-</span><span class="">  980: =item Objects made during a bypass stay abstract
-</span><span class="">  981: 
-</span><span class="">  982: An object made while the bypass was on still belongs to the abstract
-</span><span class="">  983: class.  Calling C&lt;&lt; $obj-&gt;new &gt;&gt; on it later, with the check on, dies.
-</span><span class="">  984: 
-</span><span class="">  985: =back
-</span><span class="">  986: 
-</span><span class="">  987: =head1 ENCODING
-</span><span class="">  988: 
-</span><span class="">  989: The module does not read files, the terminal or the network.  The only
-</span><span class="">  990: text it handles is class names, and the error messages that contain them.
-</span><span class="">  991: 
-</span><span class="">  992: =over 4
-</span><span class="">  993: 
-</span><span class="">  994: =item Class names
-</span><span class="">  995: 
-</span><span class="">  996: Class names may contain any characters that Perl allows in a package
-</span><span class="">  997: name.  This includes non-ASCII letters (C&lt;CafE&lt;eacute&gt;&gt;, Japanese,
-</span><span class="">  998: Chinese) and, for names made with C&lt;bless&gt; or symbolic references, emoji.
-</span><span class="">  999: The module compares names exactly, character by character.
-</span><span class=""> 1000: 
-</span><span class=""> 1001: Two conditions apply:
-</span><span class=""> 1002: 
-</span><span class=""> 1003: =over 4
-</span><span class=""> 1004: 
-</span><span class=""> 1005: =item * Non-ASCII package names need Perl 5.16 or later.  The rest of
-</span><span class=""> 1006: the module works on Perl 5.8.
-</span><span class=""> 1007: 
-</span><span class=""> 1008: =item * The name must be a B&lt;character string&gt;, not raw UTF-8 bytes.
-</span><span class=""> 1009: Names written in source code under C&lt;use utf8;&gt; are character strings.
-</span><span class=""> 1010: Names read from a file or the network must be decoded first (for example
-</span><span class=""> 1011: with L&lt;Encode/decode&gt;).  A name that is still raw bytes is a B&lt;different&gt;
-</span><span class=""> 1012: name to Perl, so C&lt;is_abstract()&gt; returns C&lt;0&gt; for it.
+</span><span class="">  977: C&lt;&lt; Dog-&gt;isa(&#39;Class::Abstract&#39;) &gt;&gt; is true, because C&lt;Class::Abstract&gt;
+</span><span class="">  978: is a grandparent of C&lt;Dog&gt;.  Use C&lt;&lt; Dog-&gt;is_abstract &gt;&gt; to ask whether
+</span><span class="">  979: C&lt;Dog&gt; itself is abstract.
+</span><span class="">  980: 
+</span><span class="">  981: =item new() throws away its arguments
+</span><span class="">  982: 
+</span><span class="">  983: C&lt;&lt; Dog-&gt;SUPER::new(name =&gt; &#39;Rex&#39;) &gt;&gt; does not store C&lt;name&gt;.  Store it
+</span><span class="">  984: yourself after C&lt;SUPER::new&gt; returns.
+</span><span class="">  985: 
+</span><span class="">  986: =item Objects made during a bypass stay abstract
+</span><span class="">  987: 
+</span><span class="">  988: An object made while the bypass was on still belongs to the abstract
+</span><span class="">  989: class.  Calling C&lt;&lt; $obj-&gt;new &gt;&gt; on it later, with the check on, dies.
+</span><span class="">  990: 
+</span><span class="">  991: =back
+</span><span class="">  992: 
+</span><span class="">  993: =head1 ENCODING
+</span><span class="">  994: 
+</span><span class="">  995: The module does not read files, the terminal or the network.  The only
+</span><span class="">  996: text it handles is class names, and the error messages that contain them.
+</span><span class="">  997: 
+</span><span class="">  998: =over 4
+</span><span class="">  999: 
+</span><span class=""> 1000: =item Class names
+</span><span class=""> 1001: 
+</span><span class=""> 1002: Class names may contain any characters that Perl allows in a package
+</span><span class=""> 1003: name.  This includes non-ASCII letters (C&lt;CafE&lt;eacute&gt;&gt;, Japanese,
+</span><span class=""> 1004: Chinese) and, for names made with C&lt;bless&gt; or symbolic references, emoji.
+</span><span class=""> 1005: The module compares names exactly, character by character.
+</span><span class=""> 1006: 
+</span><span class=""> 1007: Two conditions apply:
+</span><span class=""> 1008: 
+</span><span class=""> 1009: =over 4
+</span><span class=""> 1010: 
+</span><span class=""> 1011: =item * Non-ASCII package names need Perl 5.16 or later.  The rest of
+</span><span class=""> 1012: the module works on Perl 5.8.
 </span><span class=""> 1013: 
-</span><span class=""> 1014: =back
-</span><span class=""> 1015: 
-</span><span class=""> 1016: =item Error messages
-</span><span class=""> 1017: 
-</span><span class=""> 1018: The fixed text of every message is plain ASCII English.  A message also
-</span><span class=""> 1019: contains the class name, so it can contain non-ASCII characters.  If you
-</span><span class=""> 1020: print such a message to a file handle that has no encoding layer, Perl
-</span><span class=""> 1021: warns C&lt;Wide character in print&gt;.  Add a layer to avoid this:
-</span><span class=""> 1022: 
-</span><span class=""> 1023:     binmode STDERR, &#39;:encoding(UTF-8)&#39;;
-</span><span class=""> 1024: 
-</span><span class=""> 1025: =item Settings
-</span><span class=""> 1026: 
-</span><span class=""> 1027: C&lt;$BYPASS&gt;, C&lt;harness_bypass&gt; and C&lt;HARNESS_ACTIVE&gt; are only tested for
-</span><span class=""> 1028: true or false.  Their text is never used.
-</span><span class=""> 1029: 
-</span><span class=""> 1030: =back
-</span><span class=""> 1031: 
-</span><span class=""> 1032: =head1 LIMITATIONS
-</span><span class=""> 1033: 
-</span><span class=""> 1034: =over 4
+</span><span class=""> 1014: =item * The name must be a B&lt;character string&gt;, not raw UTF-8 bytes.
+</span><span class=""> 1015: Names written in source code under C&lt;use utf8;&gt; are character strings.
+</span><span class=""> 1016: Names read from a file or the network must be decoded first (for example
+</span><span class=""> 1017: with L&lt;Encode/decode&gt;).  A name that is still raw bytes is a B&lt;different&gt;
+</span><span class=""> 1018: name to Perl, so C&lt;is_abstract()&gt; returns C&lt;0&gt; for it.
+</span><span class=""> 1019: 
+</span><span class=""> 1020: =back
+</span><span class=""> 1021: 
+</span><span class=""> 1022: =item Error messages
+</span><span class=""> 1023: 
+</span><span class=""> 1024: The fixed text of every message is plain ASCII English.  A message also
+</span><span class=""> 1025: contains the class name, so it can contain non-ASCII characters.  If you
+</span><span class=""> 1026: print such a message to a file handle that has no encoding layer, Perl
+</span><span class=""> 1027: warns C&lt;Wide character in print&gt;.  Add a layer to avoid this:
+</span><span class=""> 1028: 
+</span><span class=""> 1029:     binmode STDERR, &#39;:encoding(UTF-8)&#39;;
+</span><span class=""> 1030: 
+</span><span class=""> 1031: =item Settings
+</span><span class=""> 1032: 
+</span><span class=""> 1033: C&lt;$BYPASS&gt;, C&lt;harness_bypass&gt; and C&lt;HARNESS_ACTIVE&gt; are only tested for
+</span><span class=""> 1034: true or false.  Their text is never used.
 </span><span class=""> 1035: 
-</span><span class=""> 1036: =item Only the check in new() and check_abstract() protects a class
+</span><span class=""> 1036: =back
 </span><span class=""> 1037: 
-</span><span class=""> 1038: Code can still make an object of an abstract class with
-</span><span class=""> 1039: C&lt;bless {}, &#39;Animal&#39;&gt;, with L&lt;Storable/dclone&gt;, with C&lt;thaw&gt;, or with a
-</span><span class=""> 1040: C&lt;new()&gt; that forgets to call C&lt;check_abstract()&gt;.  The check is a rule
-</span><span class=""> 1041: that the module follows when it is asked.  It is not built into Perl.
-</span><span class=""> 1042: 
-</span><span class=""> 1043: =item can(&#39;new&#39;) returns a method that dies
-</span><span class=""> 1044: 
-</span><span class=""> 1045: C&lt;&lt; Animal-&gt;can(&#39;new&#39;) &gt;&gt; returns C&lt;\&amp;Class::Abstract::new&gt;.  This looks
-</span><span class=""> 1046: like &quot;yes, you can call new()&quot;.  You can call it, but it dies.
-</span><span class=""> 1047: 
-</span><span class=""> 1048: =item The bypass is global
-</span><span class=""> 1049: 
-</span><span class=""> 1050: C&lt;$BYPASS&gt; turns the check off for every class, not only for the class
-</span><span class=""> 1051: that a test is about.
-</span><span class=""> 1052: 
-</span><span class=""> 1053: =item The old package separator is not supported
-</span><span class=""> 1054: 
-</span><span class=""> 1055: Perl once allowed C&lt;&#39;&gt; between parts of a package name (C&lt;Foo&#39;Bar&gt;
-</span><span class=""> 1056: meaning C&lt;Foo::Bar&gt;).  This module does not convert C&lt;&#39;&gt; to C&lt;::&gt;, so
-</span><span class=""> 1057: such names are treated as concrete.
+</span><span class=""> 1038: =head1 LIMITATIONS
+</span><span class=""> 1039: 
+</span><span class=""> 1040: =over 4
+</span><span class=""> 1041: 
+</span><span class=""> 1042: =item Only the check in new() and check_abstract() protects a class
+</span><span class=""> 1043: 
+</span><span class=""> 1044: Code can still make an object of an abstract class with
+</span><span class=""> 1045: C&lt;bless {}, &#39;Animal&#39;&gt;, with L&lt;Storable/dclone&gt;, with C&lt;thaw&gt;, or with a
+</span><span class=""> 1046: C&lt;new()&gt; that forgets to call C&lt;check_abstract()&gt;.  The check is a rule
+</span><span class=""> 1047: that the module follows when it is asked.  It is not built into Perl.
+</span><span class=""> 1048: 
+</span><span class=""> 1049: =item can(&#39;new&#39;) returns a method that dies
+</span><span class=""> 1050: 
+</span><span class=""> 1051: C&lt;&lt; Animal-&gt;can(&#39;new&#39;) &gt;&gt; returns C&lt;\&amp;Class::Abstract::new&gt;.  This looks
+</span><span class=""> 1052: like &quot;yes, you can call new()&quot;.  You can call it, but it dies.
+</span><span class=""> 1053: 
+</span><span class=""> 1054: =item The bypass is global
+</span><span class=""> 1055: 
+</span><span class=""> 1056: C&lt;$BYPASS&gt; turns the check off for every class, not only for the class
+</span><span class=""> 1057: that a test is about.
 </span><span class=""> 1058: 
-</span><span class=""> 1059: =item Threads
+</span><span class=""> 1059: =item The old package separator is not supported
 </span><span class=""> 1060: 
-</span><span class=""> 1061: The module shares no data between threads, except C&lt;$BYPASS&gt; and
-</span><span class=""> 1062: C&lt;%config&gt;, which are normally only read.  C&lt;import()&gt; changes the
-</span><span class=""> 1063: caller&#39;s C&lt;@ISA&gt;, usually when the program is compiled.  This is safe if
-</span><span class=""> 1064: modules are not loaded with C&lt;require&gt; from several threads at once.
-</span><span class=""> 1065: 
-</span><span class=""> 1066: =item Not for Moo or Moose
-</span><span class=""> 1067: 
-</span><span class=""> 1068: Moo and Moose have their own ways to make abstract classes and required
-</span><span class=""> 1069: methods.  This module is for plain Perl classes.
-</span><span class=""> 1070: 
-</span><span class=""> 1071: =back
-</span><span class=""> 1072: 
-</span><span class=""> 1073: =head1 DEPENDENCIES
-</span><span class=""> 1074: 
-</span><span class=""> 1075: L&lt;Carp&gt; (part of Perl),
-</span><span class=""> 1076: L&lt;Scalar::Util&gt; (part of Perl),
-</span><span class=""> 1077: L&lt;Readonly&gt;,
-</span><span class=""> 1078: L&lt;Return::Set&gt;.
-</span><span class=""> 1079: 
-</span><span class=""> 1080: =head1 SEE ALSO
-</span><span class=""> 1081: 
-</span><span class=""> 1082: =over 4
-</span><span class=""> 1083: 
-</span><span class=""> 1084: =item * L&lt;Test Dashboard|https://nigelhorne.github.io/Class-Abstract/coverage/&gt;
+</span><span class=""> 1061: Perl once allowed C&lt;&#39;&gt; between parts of a package name (C&lt;Foo&#39;Bar&gt;
+</span><span class=""> 1062: meaning C&lt;Foo::Bar&gt;).  This module does not convert C&lt;&#39;&gt; to C&lt;::&gt;, so
+</span><span class=""> 1063: such names are treated as concrete.
+</span><span class=""> 1064: 
+</span><span class=""> 1065: =item Threads
+</span><span class=""> 1066: 
+</span><span class=""> 1067: The module shares no data between threads, except C&lt;$BYPASS&gt; and
+</span><span class=""> 1068: C&lt;%config&gt;, which are normally only read.  C&lt;import()&gt; changes the
+</span><span class=""> 1069: caller&#39;s C&lt;@ISA&gt;, usually when the program is compiled.  This is safe if
+</span><span class=""> 1070: modules are not loaded with C&lt;require&gt; from several threads at once.
+</span><span class=""> 1071: 
+</span><span class=""> 1072: =item Not for Moo or Moose
+</span><span class=""> 1073: 
+</span><span class=""> 1074: Moo and Moose have their own ways to make abstract classes and required
+</span><span class=""> 1075: methods.  This module is for plain Perl classes.
+</span><span class=""> 1076: 
+</span><span class=""> 1077: =back
+</span><span class=""> 1078: 
+</span><span class=""> 1079: =head1 DEPENDENCIES
+</span><span class=""> 1080: 
+</span><span class=""> 1081: L&lt;Carp&gt; (part of Perl),
+</span><span class=""> 1082: L&lt;Scalar::Util&gt; (part of Perl),
+</span><span class=""> 1083: L&lt;Readonly&gt;,
+</span><span class=""> 1084: L&lt;Return::Set&gt;.
 </span><span class=""> 1085: 
-</span><span class=""> 1086: =item * L&lt;Sub::Abstract&gt;
+</span><span class=""> 1086: =head1 SEE ALSO
 </span><span class=""> 1087: 
-</span><span class=""> 1088: Makes child classes write certain methods.  Use it together with
-</span><span class=""> 1089: C&lt;Class::Abstract&gt; for a complete abstract base class.
-</span><span class=""> 1090: 
-</span><span class=""> 1091: =item * L&lt;Sub::Private&gt;
-</span><span class=""> 1092: 
-</span><span class=""> 1093: Makes a method callable only from its own class.
-</span><span class=""> 1094: 
-</span><span class=""> 1095: =item * L&lt;Sub::Protected&gt;
+</span><span class=""> 1088: =over 4
+</span><span class=""> 1089: 
+</span><span class=""> 1090: =item * L&lt;Test Dashboard|https://nigelhorne.github.io/Class-Abstract/coverage/&gt;
+</span><span class=""> 1091: 
+</span><span class=""> 1092: =item * L&lt;Sub::Abstract&gt;
+</span><span class=""> 1093: 
+</span><span class=""> 1094: Makes child classes write certain methods.  Use it together with
+</span><span class=""> 1095: C&lt;Class::Abstract&gt; for a complete abstract base class.
 </span><span class=""> 1096: 
-</span><span class=""> 1097: Makes a method callable only from its own class and its child classes.
+</span><span class=""> 1097: =item * L&lt;Sub::Private&gt;
 </span><span class=""> 1098: 
-</span><span class=""> 1099: =back
+</span><span class=""> 1099: Makes a method callable only from its own class.
 </span><span class=""> 1100: 
-</span><span class=""> 1101: =head1 AUTHOR
+</span><span class=""> 1101: =item * L&lt;Sub::Protected&gt;
 </span><span class=""> 1102: 
-</span><span class=""> 1103: Nigel Horne, C&lt;&lt; &lt;njh at nigelhorne.com&gt; &gt;&gt;
+</span><span class=""> 1103: Makes a method callable only from its own class and its child classes.
 </span><span class=""> 1104: 
-</span><span class=""> 1105: =encoding utf8
+</span><span class=""> 1105: =back
 </span><span class=""> 1106: 
-</span><span class=""> 1107: =head1 FORMAL SPECIFICATION
+</span><span class=""> 1107: =head1 AUTHOR
 </span><span class=""> 1108: 
-</span><span class=""> 1109: This section describes the module in the Z notation.  You do not need to
-</span><span class=""> 1110: read it to use the module.
-</span><span class=""> 1111: 
-</span><span class=""> 1112: =head2 Definitions
-</span><span class=""> 1113: 
-</span><span class=""> 1114:     Package == seq CHAR
-</span><span class=""> 1115:     [Object, Ref]                     -- objects and references; Object &acirc;&#138;&#134; Ref
-</span><span class=""> 1116: 
-</span><span class=""> 1117:     &acirc;&#148;&#140;&acirc;&#148;&#128; Registry &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1118:     &acirc;&#148;&#130; bypass         : &eth;&#157;&#148;&sup1;
-</span><span class=""> 1119:     &acirc;&#148;&#130; harness_bypass : &eth;&#157;&#148;&sup1;
-</span><span class=""> 1120:     &acirc;&#148;&#130; HARNESS_ACTIVE : &eth;&#157;&#148;&sup1;
-</span><span class=""> 1121:     &acirc;&#148;&#130; ISA            : Package &acirc;&#135;&cedil; seq Package
-</span><span class=""> 1122:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1123: 
-</span><span class=""> 1124:     &acirc;&#148;&#140;&acirc;&#148;&#128; InitRegistry &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1125:     &acirc;&#148;&#130; Registry&#39;
-</span><span class=""> 1126:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1127:     &acirc;&#148;&#130; bypass&#39; = false &acirc;&#136;&sect; harness_bypass&#39; = false
+</span><span class=""> 1109: Nigel Horne, C&lt;&lt; &lt;njh at nigelhorne.com&gt; &gt;&gt;
+</span><span class=""> 1110: 
+</span><span class=""> 1111: =encoding utf8
+</span><span class=""> 1112: 
+</span><span class=""> 1113: =head1 FORMAL SPECIFICATION
+</span><span class=""> 1114: 
+</span><span class=""> 1115: This section describes the module in the Z notation.  You do not need to
+</span><span class=""> 1116: read it to use the module.
+</span><span class=""> 1117: 
+</span><span class=""> 1118: =head2 Definitions
+</span><span class=""> 1119: 
+</span><span class=""> 1120:     Package == seq CHAR
+</span><span class=""> 1121:     [Object, Ref]                     -- objects and references; Object &acirc;&#138;&#134; Ref
+</span><span class=""> 1122: 
+</span><span class=""> 1123:     &acirc;&#148;&#140;&acirc;&#148;&#128; Registry &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1124:     &acirc;&#148;&#130; bypass         : &eth;&#157;&#148;&sup1;
+</span><span class=""> 1125:     &acirc;&#148;&#130; harness_bypass : &eth;&#157;&#148;&sup1;
+</span><span class=""> 1126:     &acirc;&#148;&#130; HARNESS_ACTIVE : &eth;&#157;&#148;&sup1;
+</span><span class=""> 1127:     &acirc;&#148;&#130; ISA            : Package &acirc;&#135;&cedil; seq Package
 </span><span class=""> 1128:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
 </span><span class=""> 1129: 
-</span><span class=""> 1130:     bypass_active &acirc;&#135;&#148; bypass &acirc;&#136;&uml; (harness_bypass &acirc;&#136;&sect; HARNESS_ACTIVE)
-</span><span class=""> 1131: 
-</span><span class=""> 1132:     resolve : (Package &acirc;&#136;&ordf; Object) &acirc;&#135;&cedil; Package
-</span><span class=""> 1133:     resolve(x) = class_of(x)  if x &acirc;&#136;&#136; Object
-</span><span class=""> 1134:                = x            if x &acirc;&#136;&#136; Package &acirc;&#136;&sect; #x &gt; 0
+</span><span class=""> 1130:     &acirc;&#148;&#140;&acirc;&#148;&#128; InitRegistry &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1131:     &acirc;&#148;&#130; Registry&#39;
+</span><span class=""> 1132:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1133:     &acirc;&#148;&#130; bypass&#39; = false &acirc;&#136;&sect; harness_bypass&#39; = false
+</span><span class=""> 1134:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
 </span><span class=""> 1135: 
-</span><span class=""> 1136:     is_direct_abstract : Package &acirc;&#134;&#146; &eth;&#157;&#148;&sup1;
-</span><span class=""> 1137:     is_direct_abstract(c) &acirc;&#135;&#148; c = &#39;Class::Abstract&#39;
-</span><span class=""> 1138:                           &acirc;&#136;&uml; (c &acirc;&#136;&#136; dom ISA &acirc;&#136;&sect; &#39;Class::Abstract&#39; &acirc;&#136;&#136; ran ISA(c))
-</span><span class=""> 1139: 
-</span><span class=""> 1140:     &acirc;&#148;&#140;&acirc;&#148;&#128; BadInvocant &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1141:     &acirc;&#148;&#130; &Icirc;&#158;Registry
-</span><span class=""> 1142:     &acirc;&#148;&#130; inv? : Package &acirc;&#136;&ordf; Ref &acirc;&#136;&ordf; {&acirc;&#138;&yen;}
-</span><span class=""> 1143:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1144:     &acirc;&#148;&#130; inv? &acirc;&#136;&#136; Ref &acirc;&#136;&#150; Object &acirc;&#136;&uml; inv? = &acirc;&#138;&yen; &acirc;&#136;&uml; inv? = &#39;&#39;
-</span><span class=""> 1145:     &acirc;&#148;&#130; croak(message for the calling routine)
-</span><span class=""> 1146:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1147: 
-</span><span class=""> 1148:     &acirc;&#148;&#140;&acirc;&#148;&#128; NewAbstract &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1149:     &acirc;&#148;&#130; &Icirc;&#158;Registry
-</span><span class=""> 1150:     &acirc;&#148;&#130; inv? : Package &acirc;&#136;&ordf; Object
-</span><span class=""> 1151:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1152:     &acirc;&#148;&#130; is_direct_abstract(resolve(inv?)) &acirc;&#136;&sect; &Acirc;&not;bypass_active
-</span><span class=""> 1153:     &acirc;&#148;&#130; croak(&#39;Cannot instantiate abstract class &#39; &acirc;&#129;&#128; resolve(inv?) &acirc;&#129;&#128; &#39; directly&#39;)
-</span><span class=""> 1154:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1155: 
-</span><span class=""> 1156: =head2 import
-</span><span class=""> 1157: 
-</span><span class=""> 1158:     &acirc;&#148;&#140;&acirc;&#148;&#128; Import &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1159:     &acirc;&#148;&#130; &Icirc;&#148;Registry
-</span><span class=""> 1160:     &acirc;&#148;&#130; class?  : Package
-</span><span class=""> 1161:     &acirc;&#148;&#130; caller? : Package &acirc;&#136;&ordf; {&acirc;&#138;&yen;}
-</span><span class=""> 1162:     &acirc;&#148;&#130; result! : Package
-</span><span class=""> 1163:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1164:     &acirc;&#148;&#130; registrable &acirc;&#135;&#148; caller? &acirc;&#137;&nbsp; &acirc;&#138;&yen; &acirc;&#136;&sect; #caller? &gt; 0
-</span><span class=""> 1165:     &acirc;&#148;&#130;               &acirc;&#136;&sect; caller? &acirc;&#137;&nbsp; &#39;Class::Abstract&#39;
-</span><span class=""> 1166:     &acirc;&#148;&#130;               &acirc;&#136;&sect; &Acirc;&not;is_direct_abstract(caller?)
-</span><span class=""> 1167:     &acirc;&#148;&#130; registrable &acirc;&#135;&#146; ISA&#39;(caller?) = ISA(caller?) &acirc;&#129;&#128; &acirc;&#159;&uml;&#39;Class::Abstract&#39;&acirc;&#159;&copy;
-</span><span class=""> 1168:     &acirc;&#148;&#130; &Acirc;&not;registrable &acirc;&#135;&#146; ISA&#39; = ISA
-</span><span class=""> 1169:     &acirc;&#148;&#130; bypass&#39; = bypass &acirc;&#136;&sect; harness_bypass&#39; = harness_bypass
-</span><span class=""> 1170:     &acirc;&#148;&#130; result! = class?
-</span><span class=""> 1171:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1172: 
-</span><span class=""> 1173: =head2 new
-</span><span class=""> 1174: 
-</span><span class=""> 1175:     &acirc;&#148;&#140;&acirc;&#148;&#128; New &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1176:     &acirc;&#148;&#130; &Icirc;&#158;Registry
-</span><span class=""> 1177:     &acirc;&#148;&#130; inv?    : Package &acirc;&#136;&ordf; Object
-</span><span class=""> 1178:     &acirc;&#148;&#130; result! : Object
-</span><span class=""> 1179:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1180:     &acirc;&#148;&#130; &Acirc;&not;is_direct_abstract(resolve(inv?)) &acirc;&#136;&uml; bypass_active
-</span><span class=""> 1181:     &acirc;&#148;&#130; class_of(result!) = resolve(inv?)
-</span><span class=""> 1182:     &acirc;&#148;&#130; result! is a new, empty hash
-</span><span class=""> 1183:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1184: 
-</span><span class=""> 1185:     NewOp &acirc;&#137;&#153; New &acirc;&#136;&uml; NewAbstract &acirc;&#136;&uml; BadInvocant
-</span><span class=""> 1186: 
-</span><span class=""> 1187: =head2 check_abstract
-</span><span class=""> 1188: 
-</span><span class=""> 1189:     &acirc;&#148;&#140;&acirc;&#148;&#128; CheckAbstract &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1190:     &acirc;&#148;&#130; &Icirc;&#158;Registry
-</span><span class=""> 1191:     &acirc;&#148;&#130; inv?    : Package &acirc;&#136;&ordf; Object
-</span><span class=""> 1192:     &acirc;&#148;&#130; result! : {&acirc;&#138;&yen;}
-</span><span class=""> 1193:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1194:     &acirc;&#148;&#130; &Acirc;&not;is_direct_abstract(resolve(inv?)) &acirc;&#136;&uml; bypass_active
-</span><span class=""> 1195:     &acirc;&#148;&#130; result! = &acirc;&#138;&yen;
-</span><span class=""> 1196:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1197: 
-</span><span class=""> 1198:     CheckAbstractOp &acirc;&#137;&#153; CheckAbstract &acirc;&#136;&uml; NewAbstract &acirc;&#136;&uml; BadInvocant
-</span><span class=""> 1199: 
-</span><span class=""> 1200: =head2 is_abstract
-</span><span class=""> 1201: 
-</span><span class=""> 1202:     &acirc;&#148;&#140;&acirc;&#148;&#128; IsAbstract &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1203:     &acirc;&#148;&#130; &Icirc;&#158;Registry
-</span><span class=""> 1204:     &acirc;&#148;&#130; self?   : Package &acirc;&#136;&ordf; Object
-</span><span class=""> 1205:     &acirc;&#148;&#130; target? : Package &acirc;&#136;&ordf; Object &acirc;&#136;&ordf; {&acirc;&#138;&yen;}
-</span><span class=""> 1206:     &acirc;&#148;&#130; result! : {0, 1}
-</span><span class=""> 1207:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1208:     &acirc;&#148;&#130; c = resolve(if target? = &acirc;&#138;&yen; then self? else target?)
-</span><span class=""> 1209:     &acirc;&#148;&#130; result! = 1 &acirc;&#135;&#148; is_direct_abstract(c)
-</span><span class=""> 1210:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
-</span><span class=""> 1211: 
-</span><span class=""> 1212:     IsAbstractOp &acirc;&#137;&#153; IsAbstract &acirc;&#136;&uml; BadInvocant
-</span><span class=""> 1213: 
-</span><span class=""> 1214:     -- &Icirc;&#158;Registry in New, CheckAbstract and IsAbstract means that
-</span><span class=""> 1215:     -- asking about a package never creates it or changes any @ISA.
-</span><span class=""> 1216: 
-</span><span class=""> 1217: =head1 STATE DIAGRAM
-</span><span class=""> 1218: 
-</span><span class=""> 1219: The module has two independent kinds of state: the state of B&lt;each
-</span><span class=""> 1220: class&gt;, and the global B&lt;check mode&gt;.
-</span><span class=""> 1221: 
-</span><span class=""> 1222: =head2 Class states
-</span><span class=""> 1223: 
-</span><span class=""> 1224: Every package is in exactly one of these states:
-</span><span class=""> 1225: 
-</span><span class=""> 1226:     MISSING    The package does not exist yet.
-</span><span class=""> 1227:     PLAIN      The package exists.  Class::Abstract is not one of its
-</span><span class=""> 1228:                ancestors, so it has no new() from this module.
-</span><span class=""> 1229:     ABSTRACT   &#39;Class::Abstract&#39; is in the package&#39;s own @ISA.
-</span><span class=""> 1230:     CONCRETE   The package inherits from an abstract class, but
-</span><span class=""> 1231:                &#39;Class::Abstract&#39; is not in its own @ISA.
-</span><span class=""> 1232: 
-</span><span class=""> 1233: Transitions:
-</span><span class=""> 1234: 
-</span><span class=""> 1235:                        use Class::Abstract;
-</span><span class=""> 1236:                        use parent &#39;Class::Abstract&#39;;
-</span><span class=""> 1237:                        push @P::ISA, &#39;Class::Abstract&#39;
-</span><span class=""> 1238:         +---------+  -------------------------------&gt;  +----------+
-</span><span class=""> 1239:         | MISSING |                                    |          |
-</span><span class=""> 1240:         +---------+                                    |          |
-</span><span class=""> 1241:           |     |                                      |          |
-</span><span class=""> 1242:           |     | Class::Abstract::new(&#39;P&#39;)            |          |
-</span><span class=""> 1243:           |     | (bless creates P)                    | ABSTRACT |
-</span><span class=""> 1244:           |     v                                      |          |
-</span><span class=""> 1245:           |  +-------+   same triggers as above        |          |
-</span><span class=""> 1246:           |  | PLAIN | ------------------------------&gt; |          |
-</span><span class=""> 1247:           |  |       | &lt;------------------------------ |          |
-</span><span class=""> 1248:           |  +-------+   remove &#39;Class::Abstract&#39;      +----------+
-</span><span class=""> 1249:           |     |        from @P::ISA (P-&gt;new now          ^   |
-</span><span class=""> 1250:           |     |        fails: &quot;Can&#39;t locate object       |   | remove
-</span><span class=""> 1251:           |     |        method new&quot;)                      |   | &#39;Class::Abstract&#39;
-</span><span class=""> 1252:           |     | @P::ISA = (&#39;Animal&#39;)                     |   | from @P::ISA
-</span><span class=""> 1253:           |     | (Animal is ABSTRACT or CONCRETE)         |   | (an abstract
-</span><span class=""> 1254:           |     v                                    add   |   | parent remains)
-</span><span class=""> 1255:           |  +----------+  -----------------------------&gt;--+   |
-</span><span class=""> 1256:           +-&gt;| CONCRETE |   use parent &#39;Class::Abstract&#39;       |
-</span><span class=""> 1257:              |          |  &lt;-----------------------------------+
-</span><span class=""> 1258:              +----------+
-</span><span class=""> 1259: 
-</span><span class=""> 1260:     @P::ISA = (&#39;Animal&#39;) also moves MISSING directly to CONCRETE.
-</span><span class=""> 1261: 
-</span><span class=""> 1262: Calls that never change a class&#39;s state:
-</span><span class=""> 1263: 
-</span><span class=""> 1264:     P-&gt;is_abstract, Class::Abstract-&gt;is_abstract(&#39;P&#39;)   any state  -&gt; same state
-</span><span class=""> 1265:     Class::Abstract::check_abstract(&#39;P&#39;)                any state  -&gt; same state
-</span><span class=""> 1266:     use Class::Abstract;  (again, in P)                 ABSTRACT   -&gt; ABSTRACT
+</span><span class=""> 1136:     bypass_active &acirc;&#135;&#148; bypass &acirc;&#136;&uml; (harness_bypass &acirc;&#136;&sect; HARNESS_ACTIVE)
+</span><span class=""> 1137: 
+</span><span class=""> 1138:     resolve : (Package &acirc;&#136;&ordf; Object) &acirc;&#135;&cedil; Package
+</span><span class=""> 1139:     resolve(x) = class_of(x)  if x &acirc;&#136;&#136; Object
+</span><span class=""> 1140:                = x            if x &acirc;&#136;&#136; Package &acirc;&#136;&sect; #x &gt; 0
+</span><span class=""> 1141: 
+</span><span class=""> 1142:     is_direct_abstract : Package &acirc;&#134;&#146; &eth;&#157;&#148;&sup1;
+</span><span class=""> 1143:     is_direct_abstract(c) &acirc;&#135;&#148; c = &#39;Class::Abstract&#39;
+</span><span class=""> 1144:                           &acirc;&#136;&uml; (c &acirc;&#136;&#136; dom ISA &acirc;&#136;&sect; &#39;Class::Abstract&#39; &acirc;&#136;&#136; ran ISA(c))
+</span><span class=""> 1145: 
+</span><span class=""> 1146:     &acirc;&#148;&#140;&acirc;&#148;&#128; BadInvocant &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1147:     &acirc;&#148;&#130; &Icirc;&#158;Registry
+</span><span class=""> 1148:     &acirc;&#148;&#130; inv? : Package &acirc;&#136;&ordf; Ref &acirc;&#136;&ordf; {&acirc;&#138;&yen;}
+</span><span class=""> 1149:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1150:     &acirc;&#148;&#130; inv? &acirc;&#136;&#136; Ref &acirc;&#136;&#150; Object &acirc;&#136;&uml; inv? = &acirc;&#138;&yen; &acirc;&#136;&uml; inv? = &#39;&#39;
+</span><span class=""> 1151:     &acirc;&#148;&#130; croak(message for the calling routine)
+</span><span class=""> 1152:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1153: 
+</span><span class=""> 1154:     &acirc;&#148;&#140;&acirc;&#148;&#128; NewAbstract &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1155:     &acirc;&#148;&#130; &Icirc;&#158;Registry
+</span><span class=""> 1156:     &acirc;&#148;&#130; inv? : Package &acirc;&#136;&ordf; Object
+</span><span class=""> 1157:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1158:     &acirc;&#148;&#130; is_direct_abstract(resolve(inv?)) &acirc;&#136;&sect; &Acirc;&not;bypass_active
+</span><span class=""> 1159:     &acirc;&#148;&#130; croak(&#39;Cannot instantiate abstract class &#39; &acirc;&#129;&#128; resolve(inv?) &acirc;&#129;&#128; &#39; directly&#39;)
+</span><span class=""> 1160:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1161: 
+</span><span class=""> 1162: =head2 import
+</span><span class=""> 1163: 
+</span><span class=""> 1164:     &acirc;&#148;&#140;&acirc;&#148;&#128; Import &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1165:     &acirc;&#148;&#130; &Icirc;&#148;Registry
+</span><span class=""> 1166:     &acirc;&#148;&#130; class?  : Package
+</span><span class=""> 1167:     &acirc;&#148;&#130; caller? : Package &acirc;&#136;&ordf; {&acirc;&#138;&yen;}
+</span><span class=""> 1168:     &acirc;&#148;&#130; result! : Package
+</span><span class=""> 1169:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1170:     &acirc;&#148;&#130; registrable &acirc;&#135;&#148; caller? &acirc;&#137;&nbsp; &acirc;&#138;&yen; &acirc;&#136;&sect; #caller? &gt; 0
+</span><span class=""> 1171:     &acirc;&#148;&#130;               &acirc;&#136;&sect; caller? &acirc;&#137;&nbsp; &#39;Class::Abstract&#39;
+</span><span class=""> 1172:     &acirc;&#148;&#130;               &acirc;&#136;&sect; &Acirc;&not;is_direct_abstract(caller?)
+</span><span class=""> 1173:     &acirc;&#148;&#130; registrable &acirc;&#135;&#146; ISA&#39;(caller?) = ISA(caller?) &acirc;&#129;&#128; &acirc;&#159;&uml;&#39;Class::Abstract&#39;&acirc;&#159;&copy;
+</span><span class=""> 1174:     &acirc;&#148;&#130; &Acirc;&not;registrable &acirc;&#135;&#146; ISA&#39; = ISA
+</span><span class=""> 1175:     &acirc;&#148;&#130; bypass&#39; = bypass &acirc;&#136;&sect; harness_bypass&#39; = harness_bypass
+</span><span class=""> 1176:     &acirc;&#148;&#130; result! = class?
+</span><span class=""> 1177:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1178: 
+</span><span class=""> 1179: =head2 new
+</span><span class=""> 1180: 
+</span><span class=""> 1181:     &acirc;&#148;&#140;&acirc;&#148;&#128; New &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1182:     &acirc;&#148;&#130; &Icirc;&#158;Registry
+</span><span class=""> 1183:     &acirc;&#148;&#130; inv?    : Package &acirc;&#136;&ordf; Object
+</span><span class=""> 1184:     &acirc;&#148;&#130; result! : Object
+</span><span class=""> 1185:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1186:     &acirc;&#148;&#130; &Acirc;&not;is_direct_abstract(resolve(inv?)) &acirc;&#136;&uml; bypass_active
+</span><span class=""> 1187:     &acirc;&#148;&#130; class_of(result!) = resolve(inv?)
+</span><span class=""> 1188:     &acirc;&#148;&#130; result! is a new, empty hash
+</span><span class=""> 1189:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1190: 
+</span><span class=""> 1191:     NewOp &acirc;&#137;&#153; New &acirc;&#136;&uml; NewAbstract &acirc;&#136;&uml; BadInvocant
+</span><span class=""> 1192: 
+</span><span class=""> 1193: =head2 check_abstract
+</span><span class=""> 1194: 
+</span><span class=""> 1195:     &acirc;&#148;&#140;&acirc;&#148;&#128; CheckAbstract &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1196:     &acirc;&#148;&#130; &Icirc;&#158;Registry
+</span><span class=""> 1197:     &acirc;&#148;&#130; inv?    : Package &acirc;&#136;&ordf; Object
+</span><span class=""> 1198:     &acirc;&#148;&#130; result! : {&acirc;&#138;&yen;}
+</span><span class=""> 1199:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1200:     &acirc;&#148;&#130; &Acirc;&not;is_direct_abstract(resolve(inv?)) &acirc;&#136;&uml; bypass_active
+</span><span class=""> 1201:     &acirc;&#148;&#130; result! = &acirc;&#138;&yen;
+</span><span class=""> 1202:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1203: 
+</span><span class=""> 1204:     CheckAbstractOp &acirc;&#137;&#153; CheckAbstract &acirc;&#136;&uml; NewAbstract &acirc;&#136;&uml; BadInvocant
+</span><span class=""> 1205: 
+</span><span class=""> 1206: =head2 is_abstract
+</span><span class=""> 1207: 
+</span><span class=""> 1208:     &acirc;&#148;&#140;&acirc;&#148;&#128; IsAbstract &acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1209:     &acirc;&#148;&#130; &Icirc;&#158;Registry
+</span><span class=""> 1210:     &acirc;&#148;&#130; self?   : Package &acirc;&#136;&ordf; Object
+</span><span class=""> 1211:     &acirc;&#148;&#130; target? : Package &acirc;&#136;&ordf; Object &acirc;&#136;&ordf; {&acirc;&#138;&yen;}
+</span><span class=""> 1212:     &acirc;&#148;&#130; result! : {0, 1}
+</span><span class=""> 1213:     &acirc;&#148;&#156;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1214:     &acirc;&#148;&#130; c = resolve(if target? = &acirc;&#138;&yen; then self? else target?)
+</span><span class=""> 1215:     &acirc;&#148;&#130; result! = 1 &acirc;&#135;&#148; is_direct_abstract(c)
+</span><span class=""> 1216:     &acirc;&#148;&#148;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;&acirc;&#148;&#128;
+</span><span class=""> 1217: 
+</span><span class=""> 1218:     IsAbstractOp &acirc;&#137;&#153; IsAbstract &acirc;&#136;&uml; BadInvocant
+</span><span class=""> 1219: 
+</span><span class=""> 1220:     -- &Icirc;&#158;Registry in New, CheckAbstract and IsAbstract means that
+</span><span class=""> 1221:     -- asking about a package never creates it or changes any @ISA.
+</span><span class=""> 1222: 
+</span><span class=""> 1223: =head1 STATE DIAGRAM
+</span><span class=""> 1224: 
+</span><span class=""> 1225: The module has two independent kinds of state: the state of B&lt;each
+</span><span class=""> 1226: class&gt;, and the global B&lt;check mode&gt;.
+</span><span class=""> 1227: 
+</span><span class=""> 1228: =head2 Class states
+</span><span class=""> 1229: 
+</span><span class=""> 1230: Every package is in exactly one of these states:
+</span><span class=""> 1231: 
+</span><span class=""> 1232:     MISSING    The package does not exist yet.
+</span><span class=""> 1233:     PLAIN      The package exists.  Class::Abstract is not one of its
+</span><span class=""> 1234:                ancestors, so it has no new() from this module.
+</span><span class=""> 1235:     ABSTRACT   &#39;Class::Abstract&#39; is in the package&#39;s own @ISA.
+</span><span class=""> 1236:     CONCRETE   The package inherits from an abstract class, but
+</span><span class=""> 1237:                &#39;Class::Abstract&#39; is not in its own @ISA.
+</span><span class=""> 1238: 
+</span><span class=""> 1239: Transitions:
+</span><span class=""> 1240: 
+</span><span class=""> 1241:                        use Class::Abstract;
+</span><span class=""> 1242:                        use parent &#39;Class::Abstract&#39;;
+</span><span class=""> 1243:                        push @P::ISA, &#39;Class::Abstract&#39;
+</span><span class=""> 1244:         +---------+  -------------------------------&gt;  +----------+
+</span><span class=""> 1245:         | MISSING |                                    |          |
+</span><span class=""> 1246:         +---------+                                    |          |
+</span><span class=""> 1247:           |     |                                      |          |
+</span><span class=""> 1248:           |     | Class::Abstract::new(&#39;P&#39;)            |          |
+</span><span class=""> 1249:           |     | (bless creates P)                    | ABSTRACT |
+</span><span class=""> 1250:           |     v                                      |          |
+</span><span class=""> 1251:           |  +-------+   same triggers as above        |          |
+</span><span class=""> 1252:           |  | PLAIN | ------------------------------&gt; |          |
+</span><span class=""> 1253:           |  |       | &lt;------------------------------ |          |
+</span><span class=""> 1254:           |  +-------+   remove &#39;Class::Abstract&#39;      +----------+
+</span><span class=""> 1255:           |     |        from @P::ISA (P-&gt;new now          ^   |
+</span><span class=""> 1256:           |     |        fails: &quot;Can&#39;t locate object       |   | remove
+</span><span class=""> 1257:           |     |        method new&quot;)                      |   | &#39;Class::Abstract&#39;
+</span><span class=""> 1258:           |     | @P::ISA = (&#39;Animal&#39;)                     |   | from @P::ISA
+</span><span class=""> 1259:           |     | (Animal is ABSTRACT or CONCRETE)         |   | (an abstract
+</span><span class=""> 1260:           |     v                                    add   |   | parent remains)
+</span><span class=""> 1261:           |  +----------+  -----------------------------&gt;--+   |
+</span><span class=""> 1262:           +-&gt;| CONCRETE |   use parent &#39;Class::Abstract&#39;       |
+</span><span class=""> 1263:              |          |  &lt;-----------------------------------+
+</span><span class=""> 1264:              +----------+
+</span><span class=""> 1265: 
+</span><span class=""> 1266:     @P::ISA = (&#39;Animal&#39;) also moves MISSING directly to CONCRETE.
 </span><span class=""> 1267: 
-</span><span class=""> 1268: =head2 Check mode
+</span><span class=""> 1268: Calls that never change a class&#39;s state:
 </span><span class=""> 1269: 
-</span><span class=""> 1270:     +-----------+   local $Class::Abstract::BYPASS = 1               +----------+
-</span><span class=""> 1271:     |           | -------------------------------------------------&gt; |          |
-</span><span class=""> 1272:     | ENFORCING |   $config{harness_bypass} = 1 while HARNESS_ACTIVE | BYPASSED |
-</span><span class=""> 1273:     |           |   HARNESS_ACTIVE set while harness_bypass is 1     |          |
-</span><span class=""> 1274:     |           | &lt;------------------------------------------------- |          |
-</span><span class=""> 1275:     +-----------+   end of the block with &quot;local&quot;                    +----------+
-</span><span class=""> 1276:                     $BYPASS false AND (harness_bypass false
-</span><span class=""> 1277:                     OR HARNESS_ACTIVE false)
-</span><span class=""> 1278: 
-</span><span class=""> 1279:     Start state: ENFORCING  ($BYPASS = 0, harness_bypass = 0).
-</span><span class=""> 1280: 
-</span><span class=""> 1281: =head2 What new() and check_abstract() do in each state
-</span><span class=""> 1282: 
-</span><span class=""> 1283:     Class state  Check mode  P-&gt;new                       check_abstract(&#39;P&#39;)
-</span><span class=""> 1284:     -----------  ----------  ---------------------------  -------------------
-</span><span class=""> 1285:     ABSTRACT     ENFORCING   dies: &quot;Cannot instantiate    dies (same message)
-</span><span class=""> 1286:                              abstract class P directly&quot;
-</span><span class=""> 1287:     ABSTRACT     BYPASSED    returns an object of P       returns undef
-</span><span class=""> 1288:     CONCRETE     either      returns an object of P       returns undef
-</span><span class=""> 1289:     PLAIN        either      dies: &quot;Can&#39;t locate object   returns undef
-</span><span class=""> 1290:                              method new&quot; (Perl error)
-</span><span class=""> 1291:     MISSING      either      dies: &quot;Can&#39;t locate object   returns undef
-</span><span class=""> 1292:                              method new&quot; (Perl error)
-</span><span class=""> 1293: 
-</span><span class=""> 1294: No call changes the check mode except the assignments shown above.
-</span><span class=""> 1295: 
-</span><span class=""> 1296: =head1 LICENCE AND COPYRIGHT
-</span><span class=""> 1297: 
-</span><span class=""> 1298: Copyright 2026 Nigel Horne.
+</span><span class=""> 1270:     P-&gt;is_abstract, Class::Abstract-&gt;is_abstract(&#39;P&#39;)   any state  -&gt; same state
+</span><span class=""> 1271:     Class::Abstract::check_abstract(&#39;P&#39;)                any state  -&gt; same state
+</span><span class=""> 1272:     use Class::Abstract;  (again, in P)                 ABSTRACT   -&gt; ABSTRACT
+</span><span class=""> 1273: 
+</span><span class=""> 1274: =head2 Check mode
+</span><span class=""> 1275: 
+</span><span class=""> 1276:     +-----------+   local $Class::Abstract::BYPASS = 1               +----------+
+</span><span class=""> 1277:     |           | -------------------------------------------------&gt; |          |
+</span><span class=""> 1278:     | ENFORCING |   $config{harness_bypass} = 1 while HARNESS_ACTIVE | BYPASSED |
+</span><span class=""> 1279:     |           |   HARNESS_ACTIVE set while harness_bypass is 1     |          |
+</span><span class=""> 1280:     |           | &lt;------------------------------------------------- |          |
+</span><span class=""> 1281:     +-----------+   end of the block with &quot;local&quot;                    +----------+
+</span><span class=""> 1282:                     $BYPASS false AND (harness_bypass false
+</span><span class=""> 1283:                     OR HARNESS_ACTIVE false)
+</span><span class=""> 1284: 
+</span><span class=""> 1285:     Start state: ENFORCING  ($BYPASS = 0, harness_bypass = 0).
+</span><span class=""> 1286: 
+</span><span class=""> 1287: =head2 What new() and check_abstract() do in each state
+</span><span class=""> 1288: 
+</span><span class=""> 1289:     Class state  Check mode  P-&gt;new                       check_abstract(&#39;P&#39;)
+</span><span class=""> 1290:     -----------  ----------  ---------------------------  -------------------
+</span><span class=""> 1291:     ABSTRACT     ENFORCING   dies: &quot;Cannot instantiate    dies (same message)
+</span><span class=""> 1292:                              abstract class P directly&quot;
+</span><span class=""> 1293:     ABSTRACT     BYPASSED    returns an object of P       returns undef
+</span><span class=""> 1294:     CONCRETE     either      returns an object of P       returns undef
+</span><span class=""> 1295:     PLAIN        either      dies: &quot;Can&#39;t locate object   returns undef
+</span><span class=""> 1296:                              method new&quot; (Perl error)
+</span><span class=""> 1297:     MISSING      either      dies: &quot;Can&#39;t locate object   returns undef
+</span><span class=""> 1298:                              method new&quot; (Perl error)
 </span><span class=""> 1299: 
-</span><span class=""> 1300: Usage is subject to the GPL2 licence terms.
-</span><span class=""> 1301: If you use it, please let me know.
-</span><span class=""> 1302: 
-</span><span class=""> 1303: =cut
+</span><span class=""> 1300: No call changes the check mode except the assignments shown above.
+</span><span class=""> 1301: 
+</span><span class=""> 1302: =head1 LICENCE AND COPYRIGHT
+</span><span class=""> 1303: 
+</span><span class=""> 1304: Copyright 2026 Nigel Horne.
+</span><span class=""> 1305: 
+</span><span class=""> 1306: Usage is subject to the GPL2 licence terms.
+</span><span class=""> 1307: If you use it, please let me know.
+</span><span class=""> 1308: 
+</span><span class=""> 1309: =cut
 </span></pre>
 
 <script>
