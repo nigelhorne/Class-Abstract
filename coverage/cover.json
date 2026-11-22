@@ -4,188 +4,188 @@
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360974.73231,
+         "finish" : 1795361920.55075,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "-e",
-         "start" : 1795360967.74993,
-         "version" : "0.03"
+         "start" : 1795361914.32767,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360967.87441,
+         "finish" : 1795361914.43761,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "-e",
-         "start" : 1795360967.87429,
-         "version" : "0.03"
+         "start" : 1795361914.43751,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360968.11993,
+         "finish" : 1795361914.65656,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "t/00-load.t",
-         "start" : 1795360968.09439,
-         "version" : "0.03"
+         "start" : 1795361914.63472,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360968.41526,
+         "finish" : 1795361914.91569,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "t/basic.t",
-         "start" : 1795360968.40001,
-         "version" : "0.03"
+         "start" : 1795361914.90485,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360968.71406,
+         "finish" : 1795361915.18096,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "t/bypass.t",
-         "start" : 1795360968.7021,
-         "version" : "0.03"
+         "start" : 1795361915.17083,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360969.05833,
+         "finish" : 1795361915.48408,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "t/edge_cases.t",
-         "start" : 1795360969.00375,
-         "version" : "0.03"
+         "start" : 1795361915.44065,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360969.43709,
+         "finish" : 1795361915.81251,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "t/extended_tests.t",
-         "start" : 1795360969.40493,
-         "version" : "0.03"
+         "start" : 1795361915.78909,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360970.06116,
+         "finish" : 1795361916.33808,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "t/function.t",
-         "start" : 1795360969.75498,
-         "version" : "0.03"
+         "start" : 1795361916.09341,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360972.29091,
+         "finish" : 1795361918.4479,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "t/integration.t",
-         "start" : 1795360970.53524,
-         "version" : "0.03"
+         "start" : 1795361916.75375,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360972.7148,
+         "finish" : 1795361918.79006,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "t/is_abstract.t",
-         "start" : 1795360972.70441,
-         "version" : "0.03"
+         "start" : 1795361918.78305,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360973.63083,
+         "finish" : 1795361919.588,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "t/locales.t",
-         "start" : 1795360972.99551,
-         "version" : "0.03"
+         "start" : 1795361919.03703,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360973.17379,
+         "finish" : 1795361919.18476,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "-e",
-         "start" : 1795360973.17354,
-         "version" : "0.03"
+         "start" : 1795361919.18454,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360973.3781,
+         "finish" : 1795361919.36433,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "-e",
-         "start" : 1795360973.37783,
-         "version" : "0.03"
+         "start" : 1795361919.36412,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360973.58186,
+         "finish" : 1795361919.54513,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "-e",
-         "start" : 1795360973.58162,
-         "version" : "0.03"
+         "start" : 1795361919.54491,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360973.93732,
+         "finish" : 1795361919.86118,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "t/mutant_killers.t",
-         "start" : 1795360973.92092,
-         "version" : "0.03"
+         "start" : 1795361919.84758,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360974.24487,
+         "finish" : 1795361920.12988,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "t/override_new.t",
-         "start" : 1795360974.23554,
-         "version" : "0.03"
+         "start" : 1795361920.12215,
+         "version" : "0.04"
       },
       {
          "OS" : "linux",
          "abstract" : "Stop code from making objects of a class that is only a template",
          "dir" : "/home/runner/work/Class-Abstract/Class-Abstract",
-         "finish" : 1795360974.59497,
+         "finish" : 1795361920.43314,
          "name" : "Class-Abstract",
          "perl" : "5.40.5",
          "run" : "t/unit.t",
-         "start" : 1795360974.53313,
-         "version" : "0.03"
+         "start" : 1795361920.38325,
+         "version" : "0.04"
       }
    ],
    "summary" : {
