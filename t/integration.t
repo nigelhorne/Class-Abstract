@@ -283,7 +283,9 @@ use Class::Abstract ();
 my %have;
 BEGIN {
 	foreach my $m (qw(Sub::Abstract Sub::Private Sub::Protected)) {
-		$have{$m} = eval "require $m; 1" ? 1 : 0;
+		# Sub::Private before 0.07 has no { mode => ... } import option
+		my $min = $m eq 'Sub::Private' ? '0.07' : 0;
+		$have{$m} = eval "require $m; $m->VERSION($min); 1" ? 1 : 0;
 	}
 }
 
@@ -338,7 +340,15 @@ sub isa_of {
 sub module_installed {
 	my ($module) = @_;
 	(my $file = "$module.pm") =~ s{::}{/}g;
-	return grep({ -f File::Spec->catfile($_, $file) } @CHILD_INC) ? 1 : 0;
+	my ($path) = grep { -f $_ } map { File::Spec->catfile($_, $file) } @CHILD_INC;
+	return 0 unless $path;
+
+	# Sub::Private before 0.07 lacks the import options the child uses
+	if($module eq 'Sub::Private') {
+		my $v = eval { require ExtUtils::MakeMaker; MM->parse_version($path) };
+		return 0 unless defined $v && eval { version->parse($v) >= version->parse('0.07') };
+	}
+	return 1;
 }
 
 # All subsets of a list (the empty set included)
