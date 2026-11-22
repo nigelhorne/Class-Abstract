@@ -296,6 +296,10 @@ It does B<nothing> in these cases:
 =item * C<'Class::Abstract'> is already in that C<@ISA>.  So writing
 C<use Class::Abstract;> twice is safe.
 
+=item * C<import()> was reached through a subclass, for example
+C<use Animal;> where C<Animal> is abstract.  Subclasses inherit
+C<import()>, and only C<use Class::Abstract;> may make a package abstract.
+
 =item * The calling package is C<Class::Abstract> itself.  A class cannot
 be its own parent.
 
@@ -354,7 +358,9 @@ sub import {
 	# Register the caller only when it is a real package other than this one
 	# and is not already registered (keeps repeated 'use' idempotent).
 	# The defined/length guard stops '' from resolving to @main::ISA.
-	if (defined($caller) && length($caller) && ($caller ne $SELF) && !_is_direct_abstract($caller)) {
+	# Subclasses inherit import(), so "use Animal;" would otherwise make the
+	# *user* of Animal abstract.  Only "use Class::Abstract" may register.
+	if (($class eq $SELF) && defined($caller) && length($caller) && ($caller ne $SELF) && !_is_direct_abstract($caller)) {
 		# Writing another package's @ISA needs a symbolic reference.
 		no strict 'refs';    ## no critic (ProhibitNoStrict)
 		push @{"${caller}::ISA"}, $SELF;
